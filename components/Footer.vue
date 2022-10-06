@@ -42,7 +42,7 @@
 <script setup>
 import { useStore } from "~/store/store";
 const { settings } = useStore();
-
+const mainTheme = useState("mainTheme");
 const route = useRoute();
 const path = ref(route.path);
 const moveTo = () => {
@@ -52,7 +52,6 @@ watch(
   route,
   (to) => {
     path.value = to.path;
-    console.log(path.value, to.path);
   },
   { flush: "pre", immediate: true, deep: true }
 );
@@ -66,11 +65,11 @@ const returnThemeClassFooter = (isBackground, color) => {
     gallery: "purple",
   };
   if (isBackground) {
-    return settings.mainTheme === "black"
+    return mainTheme.value === "black"
       ? "bg-black text-white"
       : `bg-${colors[path.value]}`;
   } else {
-    return settings.mainTheme === "black" ? "text-white" : `text-${color}`;
+    return mainTheme.value === "black" ? "text-white" : `text-${color}`;
   }
 };
 </script>

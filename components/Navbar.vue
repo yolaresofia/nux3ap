@@ -54,12 +54,7 @@
           <li class="text-center md:text-left">
             <span
               class="hidden md:inline-block py-2 no-underline transition-all duration-200 desktop:mx-4 tablet:mx-2 hover:text-green cursor-pointer"
-              @click="
-                $store.commit(
-                  'SET_mainTheme',
-                  settings.mainTheme === 'black' ? 'white' : 'black'
-                )
-              "
+              @click="changeTheme"
             >
               🌈
             </span>
@@ -97,8 +92,8 @@
                 <h4 class="text-xxs hidden md:flex text-gray-700">
                   network of collaborators
                 </h4>
-              </div></NuxtLink
-            >
+              </div>
+            </NuxtLink>
           </li>
           <li class="text-center md:text-left">
             <NuxtLink
@@ -127,8 +122,8 @@
 
 <script setup>
 import { useStore } from "~/store/store";
-const { settings } = useStore();
-
+let { settings, SET_mainTheme } = useStore();
+const mainTheme = useState('mainTheme');
 let toggle = ref(false);
 let linkse = ref(false);
 onMounted(() => {
@@ -136,7 +131,12 @@ onMounted(() => {
     window.innerWidth < 1000 && clickAndClose();
   }
 });
-
+const changeTheme = () => {
+  if (mainTheme.value === "black") {
+    mainTheme.value = "white";
+  } else {
+    mainTheme.value = "black";}
+};
 const toggleNav = () => {
   toggle.value = !toggle.value;
   linkse.value
@@ -158,6 +158,7 @@ const clickAndClose = () => {
 .invert {
   filter: invert(1);
 }
+
 .text-xxs {
   font-size: 0.5rem;
 }
@@ -165,11 +166,13 @@ const clickAndClose = () => {
 .logo {
   border-bottom: none !important;
 }
+
 @keyframes slide-nav-down {
   100% {
     transform: translateY(0);
   }
 }
+
 @keyframes slide-nav-up {
   100% {
     transform: translateY(100%);
@@ -199,11 +202,13 @@ nav {
     font-family: "Helveticabold";
   }
 }
+
 @media (min-width: 768px) {
   nav * {
     font-family: sans-serif;
   }
 }
+
 .transparent {
   background: white;
 }
@@ -212,18 +217,22 @@ nav {
   from {
     padding: 0;
   }
+
   to {
     padding: 0;
   }
 }
+
 @-webkit-keyframes bugfix {
   from {
     padding: 0;
   }
+
   to {
     padding: 0;
   }
 }
+
 #overlay-button {
   position: absolute;
   top: 1.4em;
@@ -232,6 +241,7 @@ nav {
   cursor: pointer;
   user-select: none;
 }
+
 #overlay-button .white {
   height: 3px;
   width: 35px;
@@ -242,6 +252,7 @@ nav {
   display: block;
   transition: all 0.2s ease-in-out;
 }
+
 #overlay-button .white:before,
 #overlay-button .white:after {
   height: 3px;
@@ -253,6 +264,7 @@ nav {
   content: "";
   transition: all 0.2s ease-in-out;
 }
+
 #overlay-button .black {
   height: 3px;
   width: 35px;
@@ -263,6 +275,7 @@ nav {
   display: block;
   transition: all 0.2s ease-in-out;
 }
+
 #overlay-button .black:before,
 #overlay-button .black:after {
   height: 3px;
@@ -275,10 +288,12 @@ nav {
   content: "";
   transition: all 0.2s ease-in-out;
 }
+
 #overlay-button span:before {
   top: -7px;
   visibility: visible;
 }
+
 #overlay-button span:after {
   top: 7px;
   visibility: visible;
@@ -307,13 +322,16 @@ input[type="checkbox"]:checked ~ #overlay-button:hover span,
 input[type="checkbox"]:checked ~ #overlay-button span {
   background: transparent;
 }
+
 input[type="checkbox"]:checked ~ #overlay-button span:before {
   transform: rotate(45deg) translate(7px, 5px);
   opacity: 1;
 }
+
 input[type="checkbox"]:checked ~ #overlay-button span:after {
   transform: rotate(-45deg) translate(9px, -9px);
 }
+
 .text-nav {
   font-size: 2.74rem;
 }

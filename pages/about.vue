@@ -1,8 +1,7 @@
 <template>
-  <div :class="[returnThemeClass(true, 'pink', settings.mainTheme)]">
-    <!-- section 1  -->
+  <div :class="[returnThemeClass(true, 'pink', mainTheme)]">
     <div class="flex flex-col lg:min-h-screen py-28 md:px-4">
-      <p :class="['heading-3 p-4', returnThemeClass(false, 'mint')]">
+      <p :class="['heading-3 p-4', returnThemeClass(false, 'mint', mainTheme)]">
         {{ page.header }}
       </p>
       <div class="lg:grid lg:grid-cols-2 lg:p-20 mx-auto">
@@ -11,7 +10,7 @@
             <h1
               :class="[
                 'font-black helvetica-bold p-4 lg:text-4xl text-2_5xl leading-none',
-                returnThemeClass(false, 'teal', settings.mainTheme),
+                returnThemeClass(false, 'teal', mainTheme),
               ]"
             >
               {{ author.name }}
@@ -20,22 +19,16 @@
           </div>
         </div>
       </div>
-      <Pill
-        text="clients"
-        :color="settings.mainTheme === 'black' ? false : true"
-      />
+      <Pill text="clients" :color="mainTheme === 'black' ? false : true" />
       <div
         :class="[
           'heading-4 text-center',
-          returnThemeClass(false, 'mint', settings.mainTheme),
+          returnThemeClass(false, 'mint', mainTheme),
         ]"
       >
         <SanityContent :blocks="page.clients" />
       </div>
-      <Pill
-        text="services"
-        :color="settings.mainTheme === 'black' ? false : true"
-      />
+      <Pill text="services" :color="mainTheme === 'black' ? false : true" />
       <div class="grid grid-cols-3 w-full">
         <div
           v-for="service in page.services"
@@ -45,7 +38,7 @@
           <h1
             :class="[
               'font-black py-4 text-xl leading-none text-left',
-              returnThemeClass(false, 'teal', settings.mainTheme),
+              returnThemeClass(false, 'teal', mainTheme),
             ]"
           >
             {{ service.name }}
@@ -58,10 +51,7 @@
           ></div>
         </div>
       </div>
-      <Pill
-        text="awards"
-        :color="settings.mainTheme === 'black' ? false : true"
-      />
+      <Pill text="awards" :color="mainTheme === 'black' ? false : true" />
       <div class="soehne column-split text-xs">
         <SanityContent :blocks="page.awards" />
       </div>
@@ -70,9 +60,8 @@
 </template>
 
 <script setup>
-import { useStore } from "~/store/store";
 import { returnThemeClass, urlFor } from "~/mixins/general";
-const { settings } = useStore();
+const mainTheme = useState("mainTheme");
 
 const sanity = useSanity();
 const query = groq`*[_type=="about"][0]`;
