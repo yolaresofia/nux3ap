@@ -1,0 +1,179 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+*::-webkit-scrollbar {
+	display: none;
+}
+
+*,
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-ms-overflow-style: none;
+	/* IE and Edge */
+	scrollbar-width: none;
+	/* Firefox */
+	font-family: 'Helveticaheavy';
+}
+
+body::-webkit-scrollbar {
+	display: none;
+}
+
+
+@font-face {
+	font-family: 'Soehne';
+	src: local('Soehne'),
+		url(~/assets/fonts/Soehne.otf) format('truetype');
+}
+
+@font-face {
+	font-family: 'Helveticaheavy';
+	src: local('Helveticaheavy'),
+		url(~/assets/fonts/Helveticaheavy.otf) format('truetype');
+}
+
+@font-face {
+	font-family: 'Helveticabold';
+	src: local('Helveticabold'),
+		url(~/assets/fonts/Helveticabold.otf) format('truetype');
+}
+
+html {
+	scroll-behavior: smooth;
+
+}
+
+.helvetica-heavy {
+	font-family: 'Helveticaheavy';
+}
+
+.helvetica-bold {
+	font-family: 'Helveticabold';
+}
+
+.soehne,
+.soehne * {
+	font-family: 'Soehne';
+}
+
+.Copernicus {
+	font-family: 'Copernicus';
+}
+
+.Haffer {
+	font-family: 'Haffer';
+}
+
+.Crusellia {
+	font-family: 'Crusellia';
+}
+
+.SpaceMono {
+	font-family: 'Space Mono';
+}
+
+li {
+	list-style: none;
+}
+
+.btn:focus {
+	outline: 0;
+}
+
+.scene {
+	background-color: '#220022';
+}
+
+/*heading 2 pasa a ser heading 1, heading 3 pasa a ser heading 2 y heading 1 pasa a ser heading 3*/
+
+.heading-3 {
+	line-height: 2.7rem;
+	letter-spacing: -2px;
+	font-family: "Helveticaheavy";
+	font-size: 48px;
+}
+
+.heading-4 {
+	line-height: 2.5rem;
+	letter-spacing: -2px;
+	font-family: "Helveticaheavy";
+	font-size: 32px;
+}
+
+.heading-1 {
+	line-height: 4.5rem;
+	letter-spacing: -4.8px;
+	font-family: "Helveticaheavy";
+	font-size: 4.8rem;
+}
+
+.heading-2 {
+    line-height: 2.8rem;
+    letter-spacing: -2px;
+    font-family: "Helveticaheavy";
+    font-size: 3.5rem;
+}
+
+.-letter-spacing-2 {
+	letter-spacing: -2px;
+}
+
+.letter-spaced {
+	letter-spacing: 4px;
+}
+
+.letter-spaced-nav {
+	letter-spacing: 6px;
+}
+
+.letter-spaced-3 {
+	letter-spacing: 3px;
+}
+
+.max-width {
+	max-width: 100vw;
+}
+
+.page-enter-active,
+.page-leave-active {
+	transition: all 0.15s;
+}
+
+.page-enter,
+.page-leave-to {
+	opacity: 0;
+	transform: scale(0.999);
+}
+
+.layout-enter-active,
+.layout-leave-active {
+	transition: all 0.2s;
+}
+
+.layout-enter,
+.layout-leave-active {
+	opacity: 0;
+}
+
+.center {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, 50%);
+}
+
+.max-h-screen {
+	max-height: 100vh;
+}
+
+
+@media only screen and (max-width: 780px) {
+	.heading-3 {
+		line-height: 2rem;
+		letter-spacing: -2px;
+		font-family: "Helveticaheavy";
+		font-size: 33px;
+	}
+  }

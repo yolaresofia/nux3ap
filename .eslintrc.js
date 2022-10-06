@@ -11,9 +11,11 @@ module.exports = {
   plugins: ["vue"],
   rules: {
     "vue/multi-word-component-names": "off",
-    "vue/no-unused-vars": "warn",
+    // "vue/no-unused-vars": "",
     "vue/max-attributes-per-line": "off",
     "vue/singleline-html-element-content-newline": "off",
     "vue/html-self-closing": "off",
+    "vue/attributes-order": "off",
+    "vue/html-indent" : "off",
   },
 };

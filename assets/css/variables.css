@@ -1,0 +1,24 @@
+:root {
+	/* 
+   * Colors 
+   */
+	--black: #000000;
+	--white: #ffffff;
+	--mint: #afdb98;
+	--green: #00932d;
+	--teal: #4ed9e5;
+	--blue: #0e63c1;
+	--darkblue: #2e26ff;
+	--yellow: #f7db0f;
+	--darkyellow: #99904c;
+	--pink: #fa5af1;
+	--purple: #a97cff;
+	--darkpurple: #7b2de8;
+	--sharppurple:#771FFF;
+	--orange: #fe7315;
+	--brown: #884900;
+	--lime: #00C41E;
+	--cyan: #11C4F4;
+	--magenta: #AA1BB2;
+	--darkgray: #707070;
+}

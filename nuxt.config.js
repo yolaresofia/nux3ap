@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@pinia/nuxt",
   ],
+  css: ['assets/css/tailwind.css', 'assets/css/variables.css'],
 
   sanity: {
     projectId: "q5syy0z1",

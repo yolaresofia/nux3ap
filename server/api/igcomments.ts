@@ -15,7 +15,7 @@ export default defineEventHandler(async () => {
     let commentsFeed = await ig.feed.mediaComments(post.id);
     let commentsResponse = await commentsFeed.items();
     const comments = commentsResponse.map((comment) => {
-      return { text: comment.text, user: comment.user.username };
+      return { text: comment.text, user: comment.user.username, timestamp: comment.created_at };
     });
 
     return comments;
