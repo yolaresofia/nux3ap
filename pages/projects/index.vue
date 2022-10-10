@@ -31,7 +31,12 @@
 import { returnThemeClass } from '~/mixins/general'
 
 const mainTheme = useState('mainTheme')
-
+definePageMeta({
+  pageTransition: {
+    mode: "default",
+    appear: true,
+  },
+});
 const sanity = useSanity()
 const query = groq` {
   "projects": *[_type == "project"],

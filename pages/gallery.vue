@@ -30,7 +30,7 @@ const direction = useState('direction', () => 0)
 
 const sanity = useSanity()
 const query = groq`*[_type=="gallery"][0]`
-const { data: collection } = await useAsyncData('about', async () => sanity.fetch(query))
+const { data: collection } = await useAsyncData('gallery', async () => sanity.fetch(query))
 
 onMounted(() => {
     console.log(`the component is now mounted.`)

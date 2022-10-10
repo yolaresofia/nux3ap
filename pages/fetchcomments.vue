@@ -67,12 +67,7 @@ onMounted(() => {
     duration: 1,
   });
 });
-// const sanity = useSanity();
-// const query = groq`*[_type=="about"][0]`;
 
-// const { data: page } = await useAsyncData("page", async () =>
-//   sanity.fetch(query)
-// );
 const clientSB = useSupabaseClient();
 
 const { data } = await clientSB

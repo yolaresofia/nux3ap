@@ -61,7 +61,12 @@
 
 <script setup>
 import { returnThemeClass, urlFor } from "~/mixins/general";
-
+definePageMeta({
+  pageTransition: {
+    mode: "default",
+    appear: true,
+  },
+});
 const mainTheme = useState("mainTheme");
 
 const sanity = useSanity();
