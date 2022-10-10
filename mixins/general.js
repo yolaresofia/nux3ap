@@ -24,7 +24,7 @@ export function matches(elem, filter) {
 export function getPreviousSiblings(elem, filter) {
   const sibs = [];
   while ((elem = elem.previousSibling)) {
-    if (this.matches(elem, filter)) sibs.push(elem);
+    if (matches(elem, filter)) sibs.push(elem);
   }
 
   return sibs;
@@ -32,7 +32,7 @@ export function getPreviousSiblings(elem, filter) {
 export function getNextSiblings(elem, filter) {
   const sibs = [];
   while ((elem = elem.nextSibling)) {
-    if (this.matches(elem, filter)) sibs.push(elem);
+    if (matches(elem, filter)) sibs.push(elem);
   }
 
   return sibs;

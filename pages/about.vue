@@ -61,12 +61,13 @@
 
 <script setup>
 import { returnThemeClass, urlFor } from "~/mixins/general";
+
 const mainTheme = useState("mainTheme");
 
 const sanity = useSanity();
 const query = groq`*[_type=="about"][0]`;
 
-const { data: page } = await useAsyncData("page", async () =>
+const { data: page } = await useAsyncData("about", async () =>
   sanity.fetch(query)
 );
 </script>
