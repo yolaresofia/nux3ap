@@ -2,8 +2,8 @@
     <footer :class="[returnThemeClassFooter(true), 'w-full pb-4 px-2 md:px-4']">
         <div class="flex justify-between w-full">
             <div class="flex flex-col-reverse md:flex-row justify-between md:w-full">
-                <img :class="[mainTheme === 'black' && 'invert', 'w-24 md:w-60']" :src="settings.circleLogo" />
-                <div class="flex items-end" @click="moveTo()">
+                <img :class="[mainTheme === 'black' && 'invert', 'w-24 md:w-60']" :src="settings.circleLogo" @mouseenter="onEnter" @mouseleave="onLeave" ref="logoimg" />
+                <div class="flex items-end" @click="moveTo()" @mouseenter="onEnterTop" @mouseleave="onLeaveTop" ref="topbtn">
                     <img class="md:w-28 w-24 pr-4 cursor-pointer" src="~/assets/images/back-to-top.svg" alt="" />
                 </div>
             </div>
@@ -28,6 +28,7 @@
 </template>
 
 <script setup>
+import { gsap } from 'gsap'
 import { useStore } from '~/store/store'
 const { settings } = useStore()
 const mainTheme = useState('mainTheme')
@@ -36,6 +37,7 @@ const path = ref(route.path)
 const moveTo = () => {
     window.scrollTo(0, 0)
 }
+
 watch(
     route,
     (to) => {
@@ -60,6 +62,42 @@ const returnThemeClassFooter = (isBackground, color) => {
     } else {
         return mainTheme.value === 'black' ? 'text-white' : `text-${color}`
     }
+}
+
+const logoimg = ref(null)
+const topbtn = ref(null)
+
+const onEnter = () => {
+    gsap.killTweensOf(logoimg.value)
+    gsap.to(logoimg.value, {
+        rotate: gsap.utils.random(-360, 360),
+        duration: 0.8,
+        ease: 'expo.out',
+    })
+}
+const onLeave = () => {
+    gsap.killTweensOf(logoimg.value)
+    gsap.to(logoimg.value, {
+        rotate: 0,
+        duration: 0.5,
+        ease: 'bounce',
+    })
+}
+
+const onEnterTop = () => {
+    gsap.to(topbtn.value, {
+        y: -10,
+        duration: 0.3,
+        ease: 'poewr4.out',
+    })
+}
+
+const onLeaveTop = () => {
+    gsap.to(topbtn.value, {
+        y: 0,
+        duration: 0.3,
+        ease: 'bounce',
+    })
 }
 </script>
 
