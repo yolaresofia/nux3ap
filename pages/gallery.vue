@@ -33,7 +33,6 @@ const query = groq`*[_type=="gallery"][0]`
 const { data: collection } = await useAsyncData('gallery', async () => sanity.fetch(query))
 
 onMounted(() => {
-    console.log(`the component is now mounted.`)
     gsap.registerPlugin(ScrollTrigger)
 
     checkMobile()
@@ -44,23 +43,20 @@ onMounted(() => {
 
     initScrollTrigger()
 })
-const OFFSET = computed(() => {
-    if (isMobile) return 40
-    return 90
-})
-const SCALE = computed(() => {
-    if (isMobile) return 0.1
-    return 0.06
-})
+
 const mouseEnter = (index, element) => {
     activeProject.value = collection.value.collection.findIndex((img) => img.title === element.title)
 }
+
 const renderImage = (el, index, setIndex = true) => {
+    const OFFSET = isMobile.value ? 90 : 50
+    const SCALE = isMobile.value ? 0.1 : 0.04
 
     gsap.killTweensOf(el)
     const isFirst = el.dataset.index == 0
 
     const tl = gsap.timeline({ defaults: { ease: 'power4.out', duration: 0.8 } })
+
     if (isFirst && direction === 1) {
         tl.to(el, { bottom: -250 })
         tl.to(el, { zIndex: collection.value.collection.length - index }, '<')
@@ -102,7 +98,7 @@ const initScrollTrigger = () => {
             },
         })
 
-        if (!isMobile) st.disable()
+        if (!isMobile.value) st.disable()
     })
 }
 const checkMobile = () => {
@@ -114,6 +110,9 @@ const resize = () => {
     initScrollTrigger()
 }
 watch(activeProject, () => {
+    const OFFSET = isMobile.value ? 90 : 50
+    const SCALE = isMobile.value ? 0.1 : 0.04
+
     const images = selectAll('figure')
     const activeImage = images[activeProject.value]
 
