@@ -9,7 +9,7 @@
             </div>
         </section>
 
-        <section class="images-section | absolute px-4 bottom-16 h-screen w-full md:transform md:-translate-x-4">
+        <section class="images-section | absolute px-4 bottom-16 h-screen w-full md:transform md:-translate-x-4 opacity-0" ref="imagesContainer">
             <figure v-for="(element, index) in collection.collection" :key="element._key" :data-index="index" class="img | overflow-hidden absolute">
                 <SanityImage :asset-id="element.image.asset._ref" class="object-cover h-full w-full" />
                 <figcaption class="text-white absolute inset-0">{{ element.title }}</figcaption>
@@ -32,16 +32,22 @@ const sanity = useSanity()
 const query = groq`*[_type=="gallery"][0]`
 const { data: collection } = await useAsyncData('gallery', async () => sanity.fetch(query))
 
+const imagesContainer = ref(null)
+
 onMounted(() => {
     gsap.registerPlugin(ScrollTrigger)
 
     checkMobile()
     window.addEventListener('resize', resize)
 
-    const images = selectAll('figure')
-    images.forEach((img, index) => renderImage(img, index, false, true))
+    setTimeout(() => {
+        gsap.to(imagesContainer.value, { opacity: 1, duration: 0.2, delay: 0.35 })
 
-    initScrollTrigger()
+        const images = selectAll('figure')
+        images.forEach((img, index) => renderImage(img, index, false, true))
+
+        initScrollTrigger()
+    }, 100)
 })
 
 const mouseEnter = (index, element) => {
