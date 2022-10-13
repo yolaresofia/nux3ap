@@ -18,12 +18,12 @@
                 <title>WOMB</title>
             </div>
         </div>
-        <div :class="[toggle ? 'h-screen' : 'h-0', 'w-full flex-grow flex lg:items-center lg:w-auto lg:pt-8 items-center']" id="nav-content">
+        <div :class="[toggle ? 'h-screen' : 'h-0', 'w-full flex-grow flex lg:items-center lg:w-auto tems-center']" id="nav-content">
             <ul
                 id="link-list"
                 :class="[
                     linkse ? 'opacity-100' : 'opacity-0 hidden',
-                    'pt-4 lg:pt-0 lg:opacity-100 list-reset lg:flex justify-end flex-1 items-center md:uppercase lg:text-xs text-5xl lg:text-center text-left text-white lg:text-black ',
+                    'pt-4 lg:pt-0 lg:opacity-100 list-reset lg:flex justify-end flex-1 items-center lg:text-xs text-5xl lg:text-center text-left text-white lg:text-black ',
                 ]"
             >
                 <div class="grid lg:flex">
@@ -34,26 +34,26 @@
                     <li class="text-center md:text-left">
                         <NuxtLink to="/gallery" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green">
                             <div class="flex flex-col md:w-28 text-left">
-                                <span class="md:mr-auto text-black md:text-white bg-white md:bg-transparent pt-3 px-4 rounded-xl md:p-0">Projects</span>
-                                <h4 class="text-xxs hidden md:flex text-gray-700">A vast range of projects</h4>
+                                <span class="font-mono md:pb-1 md:mr-auto text-black md:text-white bg-white md:bg-transparent pt-3 px-4 rounded-xl md:p-0 md:uppercase">Projects</span>
+                                <h4 class="font-mono text-xxs hidden md:flex text-gray-700">A vast range of projects</h4>
                             </div>
                         </NuxtLink>
                     </li>
                     <li class="text-center md:text-left">
                         <NuxtLink to="/partners" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green">
                             <div class="flex flex-col text-left">
-                                <span class="md:mr-auto text-black md:text-white bg-white md:bg-transparent pt-3 px-4 rounded-xl md:p-0">Partners</span>
-                                <h4 class="text-xxs hidden md:flex text-gray-700 w-28">Our diverse</h4>
-                                <h4 class="text-xxs hidden md:flex text-gray-700">network of collaborators</h4>
+                                <span class="font-mono md:pb-1 md:mr-auto text-black md:text-white bg-white md:bg-transparent pt-3 px-4 rounded-xl md:p-0 md:uppercase">Partners</span>
+                                <h4 class="font-mono text-xxs hidden md:flex text-gray-700 w-28">Our diverse</h4>
+                                <h4 class="font-mono text-xxs hidden md:flex text-gray-700">network of collaborators</h4>
                             </div>
                         </NuxtLink>
                     </li>
                     <li class="text-center md:text-left">
                         <NuxtLink to="/about" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green">
                             <div class="flex flex-col text-left">
-                                <span class="md:mr-auto text-black md:text-white bg-white md:bg-transparent pt-3 px-4 rounded-xl md:p-0">About</span>
-                                <h4 class="text-xxs hidden md:flex text-gray-700 w-28">Learn more</h4>
-                                <h4 class="text-xxs hidden md:flex text-gray-700">about our process</h4>
+                                <span class="font-mono md:pb-1 md:mr-auto text-black md:text-white bg-white md:bg-transparent pt-3 px-4 rounded-xl md:p-0 md:uppercase">About</span>
+                                <h4 class="font-mono text-xxs hidden md:flex text-gray-700 w-28">Learn more</h4>
+                                <h4 class="font-mono text-xxs hidden md:flex text-gray-700">about our process</h4>
                             </div>
                         </NuxtLink>
                     </li>
@@ -97,6 +97,10 @@ const clickAndClose = () => {
 </script>
 
 <style>
+h4 {
+    line-height: 1.1;
+}
+
 .invert {
     filter: invert(1);
 }
