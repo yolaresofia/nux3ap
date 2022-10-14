@@ -2,7 +2,7 @@
     <article :class="['gallery | relative', returnThemeClass(true, 'purple', mainTheme)]">
         <!-- //TODO reference projects -->
 
-        <section class="text-yellow leading-9 px-4 flex flex-col h-screen overflow-scroll pb-24">
+        <section class="text-yellow leading-9 px-4 flex flex-col md:h-screen md:overflow-scroll pb-24">
             <div class="arrows | pb-4 pt-28">
                 <svg height="84" viewBox="0 0 127 84" width="127">
                     <g fill="#fff">

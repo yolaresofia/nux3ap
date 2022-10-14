@@ -44,6 +44,7 @@
                     <div @click="nextSlide(post.res[0].mainSlider.length)" class="cursor-pointer">slide</div>
                 </div>
             </div>
+
             <div class="flex flex-col">
                 <h1 :class="[returnThemeClass(false, 'yellow', mainTheme), 'heading-2 py-20  text-center']">
                     {{ post.res[0].quote }}
@@ -52,16 +53,9 @@
                     {{ post.res[0].quoteAuthor }}
                 </h4>
             </div>
-            <div class="flex flex-wrap items-center justify-center">
-                <div v-for="image in post.res[0].secondSlider" :key="image.id" class="w-1/3 p-4">
-                    <div
-                        class="flex h-120 bg-cover bg-center rounded-3xl"
-                        :style="{
-                            backgroundImage: 'url(' + urlFor(image.asset._ref) + ')',
-                        }"
-                    ></div>
-                </div>
-            </div>
+
+            <ProjectSlider :obj="post" />
+
             <div class="flex w-full flex-col">
                 <div class="flex justify-center xl:justify-between m-auto py-12">
                     <h1 class="text-center px-6 py-4 rounded-full bg-white text-black">SIMILAR</h1>
@@ -77,14 +71,16 @@
         </div>
     </div>
 </template>
+
 <script setup>
 import { returnThemeClass, urlFor } from '~/mixins/general'
+
 definePageMeta({
-  pageTransition: {
-    mode: "default",
-    appear: true,
-  },
-});
+    pageTransition: {
+        mode: 'default',
+        appear: true,
+    },
+})
 const mainTheme = useState('mainTheme')
 const route = useRoute()
 const { id } = route.params
