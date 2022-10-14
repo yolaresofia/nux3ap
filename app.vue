@@ -2,6 +2,7 @@
     <div class="grid overflow-x-hidden fadeIn">
         <Navbar />
         <NuxtPage />
+        <Comments />
         <Footer />
     </div>
 </template>

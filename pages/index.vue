@@ -1,6 +1,6 @@
 <template>
     <div :class="[returnThemeClass(true, 'primaryYellow', mainTheme)]">
-        <Comments />
+    
         <div class="flex flex-col">
             <div class="static" style="height: 70vh; overflow: hidden">
                 <video playsinline autoplay muted loop id="bgvideo" class="w-screen">
@@ -45,11 +45,11 @@ import { useStore } from '~/store/store'
 const store = useStore()
 
 definePageMeta({
-  pageTransition: {
-    mode: "default",
-    appear: true,
-  },
-});
+    pageTransition: {
+        mode: 'default',
+        appear: true,
+    },
+})
 const query = groq`{
 "section1":*[_type=="home"][0]{blocks[0]{...,"video":media.video.asset->url}},
 "section2":*[_type=="home"][0]{"collection":blocks[1].collection, "projects":blocks[1].projects[]->{...,"mainVideo":mainMedia.video.asset->url}},
@@ -62,9 +62,6 @@ const sanity = useSanity()
 
 const { data: page } = await useAsyncData('index', async () => sanity.fetch(query))
 
-
-
-
 const clientSB = useSupabaseClient()
 
 const { data } = await clientSB.from('lastcheck').select('*').order('created_at', { ascending: false })
@@ -74,11 +71,11 @@ const anHourAgo = Date.now() - HOUR
 const lastCheck = new Date(data[0].created_at) < new Date(anHourAgo)
 
 if (lastCheck) {
-    await clientSB.from('comment').delete().neq('id', 0)
     const { data: comments } = await useFetch('/api/igcomments')
- 
+
     try {
-        if (comments._rawValue.data) {
+        if (comments._rawValue.data.length) {
+            await clientSB.from('comment').delete().neq('id', 0)
             comments._rawValue.data.forEach(async (item) => {
                 await clientSB.from('comment').upsert({
                     title: item.text,
@@ -89,17 +86,18 @@ if (lastCheck) {
             await clientSB.from('lastcheck').upsert({
                 check: true,
             })
+        } else {
+            console.log('no comments')
         }
-    } catch (error) {}
+    } catch (error) {
+        console.log(error)
+    }
 }
-const { data: comment } = await useAsyncData('comment', async () => {
+await useAsyncData('comment', async () => {
     const { data } = await clientSB.from('comment').select('*').order('timestamp', { ascending: false })
     store.comments = data
     return data
 })
-
-
-
 </script>
 
 <style lang="postcss">

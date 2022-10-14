@@ -1,8 +1,5 @@
 <template>
     <div :class="[returnThemeClass(true, 'lime', mainTheme), 'min-h-screen']">
-        <div v-if="post.res[0].video" class="w-full">
-            <video class="w-full" :src="post.res[0].video.url" muted autoplay loop></video>
-        </div>
         <MediaBase :src="post.res[0].video.url" />
         <div class="p-4 space-y-4">
             <h1 class="text-9xl helvetica-bold">{{ post.res[0].title }}</h1>
@@ -80,11 +77,11 @@
 <script setup>
 import { returnThemeClass, urlFor } from '~/mixins/general'
 definePageMeta({
-  pageTransition: {
-    mode: "default",
-    appear: true,
-  },
-});
+    pageTransition: {
+        mode: 'default',
+        appear: true,
+    },
+})
 const mainTheme = useState('mainTheme')
 const route = useRoute()
 const { id } = route.params
