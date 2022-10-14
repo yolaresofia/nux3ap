@@ -1,5 +1,6 @@
 <template>
     <div :class="[returnThemeClass(true, 'primaryYellow', mainTheme)]">
+        <Comments />
         <div class="flex flex-col">
             <div class="static" style="height: 70vh; overflow: hidden">
                 <video playsinline autoplay muted loop id="bgvideo" class="w-screen">
@@ -39,6 +40,10 @@
 
 <script setup>
 import { returnThemeClass } from '~/mixins/general'
+import { useStore } from '~/store/store'
+
+const store = useStore()
+
 definePageMeta({
   pageTransition: {
     mode: "default",
@@ -56,6 +61,45 @@ const mainTheme = useState('mainTheme')
 const sanity = useSanity()
 
 const { data: page } = await useAsyncData('index', async () => sanity.fetch(query))
+
+
+
+
+const clientSB = useSupabaseClient()
+
+const { data } = await clientSB.from('lastcheck').select('*').order('created_at', { ascending: false })
+
+const HOUR = 1000 * 60 * 60
+const anHourAgo = Date.now() - HOUR
+const lastCheck = new Date(data[0].created_at) < new Date(anHourAgo)
+
+if (lastCheck) {
+    await clientSB.from('comment').delete().neq('id', 0)
+    const { data: comments } = await useFetch('/api/igcomments')
+ 
+    try {
+        if (comments._rawValue.data) {
+            comments._rawValue.data.forEach(async (item) => {
+                await clientSB.from('comment').upsert({
+                    title: item.text,
+                    user: item.user,
+                    timestamp: item.timestamp,
+                })
+            })
+            await clientSB.from('lastcheck').upsert({
+                check: true,
+            })
+        }
+    } catch (error) {}
+}
+const { data: comment } = await useAsyncData('comment', async () => {
+    const { data } = await clientSB.from('comment').select('*').order('timestamp', { ascending: false })
+    store.comments = data
+    return data
+})
+
+
+
 </script>
 
 <style lang="postcss">
