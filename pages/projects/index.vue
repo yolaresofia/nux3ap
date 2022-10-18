@@ -45,7 +45,7 @@ const query = groq` {
    },
 }`
 
-const { data: page } = await useAsyncData('about', async () => sanity.fetch(query))
+const { data: page } = await useAsyncData('projectIndex', async () => sanity.fetch(query))
 </script>
 
 <style scoped>

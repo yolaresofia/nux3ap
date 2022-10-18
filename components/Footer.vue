@@ -151,6 +151,7 @@ const onLeaveTop = () => {
     bg-darkblue
     text-darkblue
     bg-cyan bg-magenta
+    text-magenta
     text-lime
 */
 .logo-fuchsia {

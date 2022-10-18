@@ -279,6 +279,7 @@ module.exports = {
         cyan: "var(--cyan)",
         magenta: "var(--magenta)",
         darkgray: "var(--darkgray)",
+        midgray: "var(--midgray)",
       },
       screens: {
         tablet: "640px",
