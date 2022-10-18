@@ -6,7 +6,7 @@
         }"
         :class="['fixed top-0 z-10 flex flex-wrap items-center justify-between w-full py-1 xl:pr-12']"
     >
-        <div class="flex items-center flex-shrink-0 mr-6 lg:ml-4">
+        <div class="hidden md:flex items-center flex-shrink-0 mr-6 lg:ml-4">
             <NuxtLink to="/">
                 <img :src="settings.logo" alt="" :class="[mainTheme === 'black' && 'invert', 'w-30 h-auto md:mx-3 mx-1 md:my-4 my-0']" />
             </NuxtLink>
@@ -20,8 +20,9 @@
                 <title>WOMB</title>
             </div>
         </div>
-
-        <ProjectsSwitcher v-if="route.path === '/gallery' || route.path === '/projects'" />
+        <div class="pl-[240px]">
+            <ProjectsSwitcher v-if="route.path === '/gallery' || route.path === '/projects'" />
+        </div>
 
         <div :class="[toggle ? 'h-screen' : 'h-0', 'w-full flex-grow flex lg:items-center lg:w-auto items-center']" id="nav-content">
             <ul
@@ -39,7 +40,9 @@
                     <li class="text-center md:text-left px-8 md:px-0">
                         <NuxtLink to="/gallery" class="inline-block md:py-2 py-1 no-underline transition-all w-full duration-200 lg:mx-2 hover:text-green">
                             <div class="flex flex-col md:w-28 text-center md:text-left">
-                                <span class="md:mr-auto text-black md:text-white text-[2.5rem] md:text-xs bg-white md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg">Projects</span>
+                                <span :class="['md:mr-auto   md:text-white text-[2.5rem] md:text-xs md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg', returnNavColors('projects')]"
+                                    >Projects</span
+                                >
                                 <h4 class="text-xxs hidden md:flex text-gray-700">A vast range of projects</h4>
                             </div>
                         </NuxtLink>
@@ -47,16 +50,16 @@
                     <li class="text-center md:text-left px-8 md:px-0">
                         <NuxtLink to="/partners" class="inline-block md:py-2 py-1 no-underline w-full transition-all duration-200 lg:mx-2 hover:text-green">
                             <div class="flex flex-col text-center md:text-left">
-                                <span class="md:mr-auto text-black md:text-white text-[2.5rem] md:text-xs bg-white md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg">Partners</span>
+                                <span :class="['md:mr-auto md:text-white text-[2.5rem] md:text-xs md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg', returnNavColors('partners')]">Partners</span>
                                 <h4 class="text-xxs hidden md:flex text-gray-700 w-28">Our diverse</h4>
                                 <h4 class="text-xxs hidden md:flex text-gray-700">network of collaborators</h4>
                             </div>
-                            </NuxtLink>
+                        </NuxtLink>
                     </li>
                     <li class="text-center md:text-left px-8 md:px-0">
                         <NuxtLink to="/about" class="inline-block md:py-2 py-1 no-underline w-full transition-all duration-200 lg:mx-2 hover:text-green">
                             <div class="flex flex-col text-center md:text-left">
-                                <span class="md:mr-auto text-black md:text-white text-[2.5rem] md:text-xs bg-white md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg">About</span>
+                                <span :class="['md:mr-auto md:text-white text-[2.5rem] md:text-xs md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg', returnNavColors('about')]">About</span>
                                 <h4 class="text-xxs hidden md:flex text-gray-700 w-28">Learn more</h4>
                                 <h4 class="text-xxs hidden md:flex text-gray-700">about our process</h4>
                             </div>
@@ -93,13 +96,21 @@ const toggleNav = () => {
 }
 const clickAndClose = () => {
     let lis = document.getElementsByTagName('li')
-    let burger = document.getElementById('overlay-button');
-    [...lis].forEach((x) =>
+    let burger = document.getElementById('overlay-button')
+    ;[...lis].forEach((x) =>
         x.addEventListener('click', () => {
             burger.click()
         })
     )
-};
+}
+const returnNavColors = (routeNav) => {
+    const primaryColors = {
+        projects: 'bg-purple text-yellow',
+        about: 'bg-pink text-green',
+        partners: 'bg-orange text-blue',
+    }
+    return mainTheme.value === 'black' ? 'bg-white text-black' : primaryColors[routeNav]
+}
 </script>
 
 <style>
@@ -180,7 +191,6 @@ nav {
 #overlay-button .black:after {
     height: 3px;
     width: 35px;
-    height: 3px;
 
     background-color: #000;
 
@@ -190,12 +200,12 @@ nav {
 }
 
 #overlay-button span:before {
-    top: -7px;
+    top: -11px;
     visibility: visible;
 }
 
 #overlay-button span:after {
-    top: 7px;
+    top: 9px;
     visibility: visible;
 }
 
@@ -231,5 +241,4 @@ input[type='checkbox']:checked ~ #overlay-button span:before {
 input[type='checkbox']:checked ~ #overlay-button span:after {
     transform: rotate(-45deg) translate(9px, -9px);
 }
-
 </style>
