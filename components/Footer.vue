@@ -2,7 +2,7 @@
     <footer :class="[returnThemeClassFooter(true), 'w-full pb-4 px-2 md:px-4']">
         <div class="flex justify-between w-full">
             <div class="flex flex-col-reverse md:flex-row justify-between md:w-full">
-                <img :class="[mainTheme === 'black' && 'invert', 'w-24 md:w-60']" :src="settings.circleLogo" @mouseenter="onEnter" @mouseleave="onLeave" ref="logoimg" />
+                <img :class="[mainTheme !== 'black' ? returnFooterLogoColors() : 'invert', 'w-24 md:w-60']" :src="settings.circleLogo" @mouseenter="onEnter" @mouseleave="onLeave" ref="logoimg" />
                 <div class="flex items-end" @click="moveTo()" @mouseenter="onEnterTop" @mouseleave="onLeaveTop" ref="topbtn">
                     <img class="md:w-28 w-24 pr-4 cursor-pointer" src="~/assets/images/back-to-top.svg" alt="" />
                 </div>
@@ -44,6 +44,17 @@ watch(
     },
     { flush: 'pre', immediate: true, deep: true }
 )
+const returnFooterLogoColors = () => {
+    const primaryColors = {
+        '/': 'logo-lime',
+        '/about': 'logo-darkyellow',
+        '/partners': 'logo-fuchsia',
+        project: 'logo-fuchsia',
+        '/gallery': 'logo-lightpurple',
+    }
+
+    return mainTheme.value === 'black' ? 'bg-white text-black' : primaryColors[path.value]
+}
 const returnFooterButtonColors = (isPrimary) => {
     const primaryColors = {
         '/': 'bg-brown text-lime',
@@ -142,4 +153,16 @@ const onLeaveTop = () => {
     bg-cyan bg-magenta
     text-lime
 */
+.logo-fuchsia {
+    filter: invert(19%) sepia(98%) saturate(2877%) hue-rotate(291deg) brightness(112%) contrast(136%);
+}
+.logo-lime {
+    filter: invert(47%) sepia(19%) saturate(5911%) hue-rotate(81deg) brightness(115%) contrast(92%);
+}
+.logo-darkyellow {
+    filter: invert(58%) sepia(4%) saturate(4174%) hue-rotate(15deg) brightness(97%) contrast(80%);
+}
+.logo-lightpurple {
+    filter: invert(47%) sepia(26%) saturate(328%) hue-rotate(288deg) brightness(95%) contrast(91%);
+}
 </style>

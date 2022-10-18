@@ -41,14 +41,14 @@
 import { returnThemeClass } from '~/mixins/general'
 import { useStore } from '~/store/store'
 
-const store = useStore()
-
 definePageMeta({
     pageTransition: {
         mode: 'default',
         appear: true,
     },
 })
+const store = useStore()
+
 const query = groq`{
 "section1":*[_type=="home"][0]{blocks[0]{...,"video":media.video.asset->url}},
 "section2":*[_type=="home"][0]{"collection":blocks[1].collection, "projects":blocks[1].projects[]->{...,"mainVideo":mainMedia.video.asset->url}},
