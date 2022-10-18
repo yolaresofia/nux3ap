@@ -4,6 +4,8 @@ const hiddenDocTypes = {
 	home: 'Home',
 	settings: 'Settings',
 	gallery: 'Gallery',
+	partners: 'Partners',
+	about: 'About',
 }
 
 export default () =>

@@ -1,6 +1,5 @@
 <template>
     <div :class="[returnThemeClass(true, 'primaryYellow', mainTheme)]">
-    
         <div class="flex flex-col">
             <div class="static" style="height: 70vh; overflow: hidden">
                 <video playsinline autoplay muted loop id="bgvideo" class="w-screen">

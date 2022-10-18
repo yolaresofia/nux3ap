@@ -1,6 +1,6 @@
 <template>
   <div :class="[returnThemeClass(true, 'pink', mainTheme)]">
-    <div class="flex flex-col lg:min-h-screen py-28 md:px-4">
+    <div class="flex flex-col lg:min-h-screen py-20 md:px-4">
       <p :class="['heading-3 p-4', returnThemeClass(false, 'mint', mainTheme)]">
         {{ page.header }}
       </p>
@@ -28,27 +28,29 @@
       >
         <SanityContent :blocks="page.clients" />
       </div>
-      <Pill text="services" :color="mainTheme === 'black' ? false : true" />
-      <div class="grid grid-cols-3 w-full">
-        <div
-          v-for="service in page.services"
-          :key="service.id"
-          class="flex-1 flex-col m-4 fadeIn"
-        >
-          <h1
-            :class="[
-              'font-black py-4 text-xl leading-none text-left',
-              returnThemeClass(false, 'teal', mainTheme),
-            ]"
-          >
-            {{ service.name }}
-          </h1>
+      <div class="hidden md:block">
+        <Pill text="services" :color="mainTheme === 'black' ? false : true" />
+        <div class="grid grid-cols-3 w-full">
           <div
-            class="flex h-80 bg-cover bg-center rounded-3xl relative"
-            :style="{
-              backgroundImage: 'url(' + urlFor(service.image.asset._ref) + ')',
-            }"
-          ></div>
+            v-for="service in page.services"
+            :key="service.id"
+            class="flex-1 flex-col m-4 fadeIn"
+          >
+            <h1
+              :class="[
+                'font-black py-4 text-xl leading-none text-left',
+                returnThemeClass(false, 'teal', mainTheme),
+              ]"
+            >
+              {{ service.name }}
+            </h1>
+            <div
+              class="flex h-80 bg-cover bg-center rounded-3xl relative"
+              :style="{
+                backgroundImage: 'url(' + urlFor(service.image.asset._ref) + ')',
+              }"
+            ></div>
+          </div>
         </div>
       </div>
       <Pill text="awards" :color="mainTheme === 'black' ? false : true" />

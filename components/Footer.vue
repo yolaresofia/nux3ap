@@ -11,12 +11,8 @@
                 <div class="flex flex-col space-y-3 items-end">
                     <img :src="settings.logo" :class="[mainTheme === 'black' && 'invert', 'h-auto w-28 md:w-44']" />
                     <span class="ml-auto text-4xl hidden md:block">🌈</span>
-                    <!-- <ButtonBase :url="settings.contact.link">
-            {{ settings.contact.text }}</ButtonBase
-          >
-          <ButtonBase :url="settings.instagram.link">
-            {{ settings.instagram.text }}</ButtonBase
-          > -->
+                    <ButtonBase :url="settings.contact.link"> {{ settings.contact.text }}</ButtonBase>
+                    <ButtonBase :url="settings.instagram.link"> {{ settings.instagram.text }}</ButtonBase>
                 </div>
             </div>
         </div>

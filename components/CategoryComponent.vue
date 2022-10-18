@@ -5,7 +5,7 @@
 <script setup>
 
 import { returnCategoryClass  } from '~/mixins/general'
-const mainTheme = useState('mainTheme')
+
 
 defineProps({
     title: {

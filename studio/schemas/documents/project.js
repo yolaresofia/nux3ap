@@ -44,7 +44,12 @@ export default {
 		},
 		{
 			name: 'information',
-			title: 'Information',
+			title: 'Summary',
+			type: 'blockContent',
+		},
+		{
+			name: 'mainInformation',
+			title: 'Content',
 			type: 'blockContent',
 		},
 		{

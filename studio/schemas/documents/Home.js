@@ -39,31 +39,13 @@ export default {
 					type: 'object',
 					fields: [
 						{
-							name: 'collection',
-							title: 'Collection',
+							name: 'projects',
+							title: 'Projects',
 							type: 'array',
 							of: [
 								{
-									type: 'object',
-									name: 'article',
-									title: 'Article',
-									fields: [
-										{
-											name: 'header',
-											title: 'Header',
-											type: 'text',
-										},
-										{
-											name: 'text',
-											title: 'Text',
-											type: 'text',
-										},
-										{
-											name: 'image',
-											title: 'Image',
-											type: 'image',
-										},
-									],
+									type: 'reference',
+									to: [{ type: 'project' }],
 								},
 							],
 						},
@@ -81,11 +63,6 @@ export default {
 					title: 'Third Section',
 					type: 'object',
 					fields: [
-						{
-							name: 'topHeader',
-							title: 'Top Header',
-							type: 'button',
-						},
 						{
 							name: 'header',
 							title: 'Header',
@@ -116,30 +93,14 @@ export default {
 					title: 'Fourth Section',
 					type: 'object',
 					fields: [
-						// {
-						// 	type: 'reference',
-						// 	name:'project',
-						// 	to: [{ type: 'project' }],
-						// },
 						{
-							name: 'articles',
-							title: 'Article',
-							type: 'object',
-							fields: [
+							name: 'projects',
+							title: 'Projects',
+							type: 'array',
+							of: [
 								{
-									name: 'image',
-									title: 'Image',
-									type: 'image',
-								},
-								{
-									name: 'header',
-									title: 'Header',
-									type: 'text',
-								},
-								{
-									name: 'text',
-									title: 'Text',
-									type: 'text',
+									type: 'reference',
+									to: [{ type: 'project' }],
 								},
 							],
 						},

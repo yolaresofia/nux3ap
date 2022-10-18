@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed z-50 w-[30rem] bottom-4 right-4 ">
+    <div v-if="commentArr" class="fixed z-50 w-[30rem] bottom-4 right-4 ">
         <div class="text-sm p-10 rounded-xl bg-black mt-3 fadeInComment font-mono grid text-white" v-for="comment in commentArr" :key="comment.id"> <span class="font-mono">From IG </span> <span class="font-mono">{{ comment.user }} just commented on WOMB post </span>  <span class="font-mono">{{ comment.title }}</span> </div>
     </div>
 </template>
