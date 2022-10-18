@@ -135,7 +135,7 @@ li {
 .max-width {
 	max-width: 100vw;
 }
-
+/* 
 .page-enter-active,
 .page-leave-active {
 	transition: all 0.15s;
@@ -155,7 +155,7 @@ li {
 .layout-enter,
 .layout-leave-active {
 	opacity: 0;
-}
+} */
 
 .center {
 	position: absolute;

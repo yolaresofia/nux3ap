@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <!-- <ProjectsSwitcher v-if="$router.history.current.name === 'gallery' || $router.history.current.name === 'projects'" /> -->
+        <ProjectsSwitcher v-if="route.path === '/gallery' || route.path === '/projects'" />
 
         <div :class="[toggle ? 'h-screen' : 'h-0', 'w-full flex-grow flex lg:items-center lg:w-auto items-center']" id="nav-content">
             <ul
@@ -74,6 +74,7 @@ let { settings } = useStore()
 const mainTheme = useState('mainTheme')
 let toggle = ref(false)
 let linkse = ref(false)
+const route = useRoute()
 onMounted(() => {
     if (process.client) {
         window.innerWidth < 1000 && clickAndClose()

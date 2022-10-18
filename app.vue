@@ -2,7 +2,7 @@
     <div class="grid overflow-x-hidden fadeIn">
         <Navbar />
         <NuxtPage />
-        <!-- <Cookies /> -->
+        <Cookies />
         <Teleport to="body">
             <Modal :show="isModalOpen" @close="isModalOpen = false" />
         </Teleport>

@@ -27,7 +27,7 @@
                     <div
                         class="flex h-120 bg-cover bg-center rounded-3xl"
                         :style="{
-                            backgroundImage: 'url(' + post.res[0].mainSlider[index].asset.url + ')',
+                            backgroundImage: 'url(' + post.res[0].mainSlider[phIndex].asset.url + ')',
                         }"
                     ></div>
                 </div>
@@ -37,7 +37,7 @@
                     <h4>Text by {{ post.res[0].author }}</h4>
                 </div>
                 <div class="flex justify-between w-full" v-if="post.res[0].mainSlider">
-                    <div>{{ index + 1 }} of {{ post.res[0].mainSlider.length }}</div>
+                    <div>{{ phIndex + 1 }} of {{ post.res[0].mainSlider.length }}</div>
                     <div @click="nextSlide(post.res[0].mainSlider.length)" class="cursor-pointer">slide</div>
                 </div>
             </div>
@@ -82,7 +82,7 @@ const mainTheme = useState('mainTheme')
 const route = useRoute()
 const { id } = route.params
 const sanity = useSanity()
-const index = useState('index', () => 0)
+const phIndex = useState('phIndex', () => 0)
 const query = groq`
             *[slug.current=="${id}"]{...,categories[]->{...,"similar":*[_type=="project" && references(^._id)]{...,categories[]->}},
             "video": video.asset->,mainSlider[]{asset->{url}}}`
@@ -105,10 +105,10 @@ const { data: post } = await useAsyncData(id, async () => {
     return { res: res, similarProjects }
 })
 const nextSlide = (length) => {
-    if (index.value < length - 1) {
-        index.value++
+    if (phIndex.value < length - 1) {
+        phIndex.value++
     } else {
-        index.value = 0
+        phIndex.value = 0
     }
 }
 </script>

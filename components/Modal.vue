@@ -72,15 +72,6 @@ const props = defineProps({
     float: right;
 }
 
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
-
 .modal-enter-from {
     opacity: 0;
 }
@@ -89,9 +80,4 @@ const props = defineProps({
     opacity: 0;
 }
 
-.modal-enter-from .modal-container,
-.modal-leave-to .modal-container {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-}
 </style>
