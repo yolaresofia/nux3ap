@@ -1,9 +1,9 @@
 <template>
     <div :class="[returnThemeClass(true, 'lime', mainTheme), 'min-h-screen']">
         <MediaBase :src="post.res[0].video.url" />
-        <div class="p-4 space-y-4">
-            <h1 class="text-9xl helvetica-bold">{{ post.res[0].title }}</h1>
-            <div class="w-3/4 sans-serif text-xs">
+        <div class="md:p-4 md:space-y-4 p-2">
+            <h1 class="md:text-9xl text-[2rem] helvetica-bold">{{ post.res[0].title }}</h1>
+            <div class="md:w-3/4 sans-serif text-[10px] md:text-xs">
                 <SanityContent :blocks="post.res[0].subtitle" />
             </div>
             <div class="flex justify-between items-center">

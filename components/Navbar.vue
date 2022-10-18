@@ -23,7 +23,7 @@
 
         <!-- <ProjectsSwitcher v-if="$router.history.current.name === 'gallery' || $router.history.current.name === 'projects'" /> -->
 
-        <div :class="[toggle ? 'h-screen' : 'h-0', 'w-full flex-grow flex lg:items-center lg:w-auto lg:pt-8 items-center']" id="nav-content">
+        <div :class="[toggle ? 'h-screen' : 'h-0', 'w-full flex-grow flex lg:items-center lg:w-auto items-center']" id="nav-content">
             <ul
                 id="link-list"
                 :class="[
@@ -36,27 +36,27 @@
                         <span class="hidden md:inline-block py-2 no-underline transition-all duration-200 desktop:mx-4 tablet:mx-2 hover:text-green cursor-pointer" @click="changeTheme"> 🌈 </span>
                     </li>
 
-                    <li class="text-center md:text-left">
-                        <NuxtLink to="/gallery" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green">
-                            <div class="flex flex-col md:w-28 text-left">
-                                <span class="md:mr-auto text-black md:text-white bg-white md:bg-transparent pt-3 px-4 rounded-xl md:p-0">Projects</span>
+                    <li class="text-center md:text-left px-8 md:px-0">
+                        <NuxtLink to="/gallery" class="inline-block md:py-2 py-1 no-underline transition-all w-full duration-200 lg:mx-2 hover:text-green">
+                            <div class="flex flex-col md:w-28 text-center md:text-left">
+                                <span class="md:mr-auto text-black md:text-white text-[2.5rem] md:text-xs bg-white md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg">Projects</span>
                                 <h4 class="text-xxs hidden md:flex text-gray-700">A vast range of projects</h4>
                             </div>
                         </NuxtLink>
                     </li>
-                    <li class="text-center md:text-left">
-                        <NuxtLink to="/partners" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green">
-                            <div class="flex flex-col text-left">
-                                <span class="md:mr-auto text-black md:text-white bg-white md:bg-transparent pt-3 px-4 rounded-xl md:p-0">Partners</span>
+                    <li class="text-center md:text-left px-8 md:px-0">
+                        <NuxtLink to="/partners" class="inline-block md:py-2 py-1 no-underline w-full transition-all duration-200 lg:mx-2 hover:text-green">
+                            <div class="flex flex-col text-center md:text-left">
+                                <span class="md:mr-auto text-black md:text-white text-[2.5rem] md:text-xs bg-white md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg">Partners</span>
                                 <h4 class="text-xxs hidden md:flex text-gray-700 w-28">Our diverse</h4>
                                 <h4 class="text-xxs hidden md:flex text-gray-700">network of collaborators</h4>
                             </div>
                             </NuxtLink>
                     </li>
-                    <li class="text-center md:text-left">
-                        <NuxtLink to="/about" class="inline-block py-2 no-underline transition-all duration-200 lg:mx-2 hover:text-green">
-                            <div class="flex flex-col text-left">
-                                <span class="md:mr-auto text-black md:text-white bg-white md:bg-transparent pt-3 px-4 rounded-xl md:p-0">About</span>
+                    <li class="text-center md:text-left px-8 md:px-0">
+                        <NuxtLink to="/about" class="inline-block md:py-2 py-1 no-underline w-full transition-all duration-200 lg:mx-2 hover:text-green">
+                            <div class="flex flex-col text-center md:text-left">
+                                <span class="md:mr-auto text-black md:text-white text-[2.5rem] md:text-xs bg-white md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg">About</span>
                                 <h4 class="text-xxs hidden md:flex text-gray-700 w-28">Learn more</h4>
                                 <h4 class="text-xxs hidden md:flex text-gray-700">about our process</h4>
                             </div>
@@ -92,13 +92,13 @@ const toggleNav = () => {
 }
 const clickAndClose = () => {
     let lis = document.getElementsByTagName('li')
-    let burger = document.getElementById('overlay-button')
-    ;[...lis].forEach((x) =>
+    let burger = document.getElementById('overlay-button');
+    [...lis].forEach((x) =>
         x.addEventListener('click', () => {
             burger.click()
         })
     )
-}
+};
 </script>
 
 <style>
@@ -112,34 +112,6 @@ h4 {
 
 .text-xxs {
     font-size: 0.5rem;
-}
-
-.logo {
-    border-bottom: none !important;
-}
-
-@keyframes slide-nav-down {
-    100% {
-        transform: translateY(0);
-    }
-}
-
-@keyframes slide-nav-up {
-    100% {
-        transform: translateY(100%);
-    }
-}
-
-.is-floating {
-    background-color: rgba(255, 255, 255, 0.87);
-    transform: translateY(-100%);
-    animation: slide-nav-down 0.5s ease;
-    animation-fill-mode: both;
-    opacity: 1;
-}
-
-.is-not {
-    opacity: 0;
 }
 
 nav {
@@ -156,31 +128,7 @@ nav {
 
 @media (min-width: 768px) {
     nav * {
-        font-family: sans-serif;
-    }
-}
-
-.transparent {
-    background: white;
-}
-
-@keyframes bugfix {
-    from {
-        padding: 0;
-    }
-
-    to {
-        padding: 0;
-    }
-}
-
-@-webkit-keyframes bugfix {
-    from {
-        padding: 0;
-    }
-
-    to {
-        padding: 0;
+        font-family: 'Soehne';
     }
 }
 
@@ -283,7 +231,4 @@ input[type='checkbox']:checked ~ #overlay-button span:after {
     transform: rotate(-45deg) translate(9px, -9px);
 }
 
-.text-nav {
-    font-size: 2.74rem;
-}
 </style>
