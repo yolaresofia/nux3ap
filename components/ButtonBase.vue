@@ -2,8 +2,8 @@
     <a :href="url" class="w-full">
         <button
             :class="[
-                'rounded-lg border px-7 pb-1 pt-2 text-2_5xl scaleUp w-full',
-                typeBtn == 'primary' ? 'bg-primaryGreen text-white' : typeBtn == 'secondary' ? 'bg-primaryBlue' : typeBtn == 'empty' ? 'bg-transparent border-2 border-black' : 'text-black bg-white',
+                'rounded-lg border px-7 pb-1 pt-2 text-2_5xl scaleUp w-full border-none',
+                btncolors
             ]"
         >
             <h4 class="mx-auto" style="width: max-content">
@@ -16,7 +16,7 @@
 <script>
 export default {
     props: {
-        typeBtn: {
+        btncolors: {
             type: String,
             required: false,
             default: 'nonEmpty',

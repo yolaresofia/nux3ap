@@ -10,9 +10,9 @@
             <div class="flex mt-auto">
                 <div class="flex flex-col space-y-3 items-end">
                     <img :src="settings.logo" :class="[mainTheme === 'black' && 'invert', 'h-auto w-28 md:w-44']" />
-                    <span class="ml-auto text-4xl hidden md:block">🌈</span>
-                    <ButtonBase :url="settings.contact.link"> {{ settings.contact.text }}</ButtonBase>
-                    <ButtonBase :url="settings.instagram.link"> {{ settings.instagram.text }}</ButtonBase>
+                    <span class="ml-auto text-4xl hidden md:block text-white">{{ mainTheme === 'black' ? '🌈' : '☁️' }}</span>
+                    <ButtonBase :url="settings.contact.link" :btncolors="returnFooterButtonColors(true)"> {{ settings.contact.text }}</ButtonBase>
+                    <ButtonBase :url="settings.instagram.link" :btncolors="returnFooterButtonColors(true)"> {{ settings.instagram.text }}</ButtonBase>
                 </div>
             </div>
         </div>
@@ -44,14 +44,25 @@ watch(
     },
     { flush: 'pre', immediate: true, deep: true }
 )
-
+const returnFooterButtonColors = (isPrimary) => {
+    const primaryColors = {
+        '/': 'bg-brown text-lime',
+        '/about': 'bg-cyan text-darkpurple',
+        '/partners': 'orange',
+        project: 'bg-darkgray text-white',
+        '/gallery': 'bg-yellow text-black',
+    }
+    if (isPrimary) {
+        return mainTheme.value === 'black' ? 'bg-white text-black' : primaryColors[path.value]
+    }
+}
 const returnThemeClassFooter = (isBackground, color) => {
     const colors = {
         '/': 'primaryYellow',
         '/about': 'pink',
         '/partners': 'orange',
         project: 'lime',
-        gallery: 'purple',
+        '/gallery': 'purple',
     }
     if (isBackground) {
         return mainTheme.value === 'black' ? 'bg-black text-white' : `bg-${colors[path.value]}`
@@ -129,5 +140,6 @@ const onLeaveTop = () => {
     bg-darkblue
     text-darkblue
     bg-cyan bg-magenta
+    text-lime
 */
 </style>
