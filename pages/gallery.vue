@@ -2,29 +2,32 @@
     <article :class="['gallery | relative', returnThemeClass(true, 'purple', mainTheme)]">
         <!-- //TODO reference projects -->
 
-        <section class="text-yellow leading-9 px-4 flex flex-col md:h-screen md:overflow-scroll pb-24">
-            <div class="arrows | pb-4 pt-28">
-                <svg height="84" viewBox="0 0 127 84" width="127">
-                    <g fill="#fff">
+        <section class="images-section | absolute px-4 bottom-[10rem] h-screen w-full md:transform md:-translate-x-4 opacity-0" ref="imagesContainer">
+            <figure v-for="(element, index) in collection.collection" :key="element._key" :data-index="index" class="img | overflow-hidden absolute">
+                <SanityImage :asset-id="element.image.asset._ref" class="object-cover h-full w-full" />
+                <!-- <figcaption class="text-white absolute inset-0">{{ element.title }}</figcaption> -->
+            </figure>
+        </section>
+        <div>
+            <div class="arrows | pb-4 pt-18 pl-4">
+                <svg height="84" viewBox="0 0 127 84" width="127" :fill="arrowsColor()">
+                    <g>
                         <path d="m126.14 35.42-21.65 21.65v-55.93h-13.93v35.14 20.75l-21.66-21.61-.07 19.31 28.78 28.79 28.63-28.81z" />
                         <path d="m0 28.8.1 19.3 21.65-21.65v55.93h13.93v-55.9l21.66 21.61.08-19.31-28.79-28.78z" />
                     </g>
                 </svg>
             </div>
-
-            <div v-for="(element, index) in collection.collection" :key="element._key">
-                <h2 class="inline-block text-4xl cursor-pointer" @mouseenter="mouseEnter(index, element)">
-                    {{ element.title }}
-                </h2>
-            </div>
-        </section>
-
-        <section class="images-section | absolute px-4 bottom-16 h-screen w-full md:transform md:-translate-x-4 opacity-0" ref="imagesContainer">
-            <figure v-for="(element, index) in collection.collection" :key="element._key" :data-index="index" class="img | overflow-hidden absolute">
-                <SanityImage :asset-id="element.image.asset._ref" class="object-cover h-full w-full" />
-                <figcaption class="text-white absolute inset-0">{{ element.title }}</figcaption>
-            </figure>
-        </section>
+            <section class="text-yellow leading-9 px-4 flex flex-col md:h-[70vh] md:overflow-scroll pb-24 md:pt-6">
+                <div v-for="(element, index) in collection.collection" :key="element._key">
+                    <h2
+                        :class="['inline-block md:text-5xl text-2_5xl leading-[28px] md:leading-[26px] cursor-pointer', returnThemeClass(false, 'yellow', mainTheme)]"
+                        @mouseenter="mouseEnter(index, element)"
+                    >
+                        {{ element.title }}
+                    </h2>
+                </div>
+            </section>
+        </div>
     </article>
 </template>
 
@@ -41,7 +44,9 @@ const direction = useState('direction', () => 0)
 const sanity = useSanity()
 const query = groq`*[_type=="gallery"][0]`
 const { data: collection } = await useAsyncData('gallery', async () => sanity.fetch(query))
-
+const arrowsColor = () => {
+    return mainTheme.value === 'black' ? 'white' : 'black'
+}
 const imagesContainer = ref(null)
 
 onMounted(() => {

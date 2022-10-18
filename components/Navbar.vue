@@ -4,11 +4,11 @@
             backdropFilter: toggle ? ' blur(10px)' : '',
             filter: toggle && 'brightness(150%);',
         }"
-        :class="['fixed top-0 z-10 flex flex-wrap items-center justify-between w-full py-1 xl:pr-12']"
+        :class="['fixed top-0 z-10 flex flex-wrap justify-between items-center w-full py-1']"
     >
-        <div class="hidden md:flex items-center flex-shrink-0 mr-6 lg:ml-4">
+        <div class="flex items-center flex-shrink-0 mr-6">
             <NuxtLink to="/">
-                <img :src="settings.logo" alt="" :class="[mainTheme === 'black' && 'invert', 'w-30 h-auto md:mx-3 mx-1 md:my-4 my-0']" />
+                <img :src="settings.logo" alt="" :class="[mainTheme === 'black' && 'invert', 'w-30 h-auto mx-1 md:my-4 my-0']" />
             </NuxtLink>
         </div>
         <div :class="[toggle ? 'sm:circleMenu' : 'sm:circleMenu2']">
@@ -20,11 +20,11 @@
                 <title>WOMB</title>
             </div>
         </div>
-        <div class="pl-[240px]">
+        <div class="pr-20 md:pr-0">
             <ProjectsSwitcher v-if="route.path === '/gallery' || route.path === '/projects'" />
         </div>
 
-        <div :class="[toggle ? 'h-screen' : 'h-0', 'w-full flex-grow flex lg:items-center lg:w-auto items-center']" id="nav-content">
+        <div :class="[toggle ? 'h-screen' : 'h-0', 'w-full flex lg:items-center lg:w-auto items-center']" id="nav-content">
             <ul
                 id="link-list"
                 :class="[
@@ -40,9 +40,7 @@
                     <li class="text-center md:text-left px-8 md:px-0">
                         <NuxtLink to="/gallery" class="inline-block md:py-2 py-1 no-underline transition-all w-full duration-200 lg:mx-2 hover:text-green">
                             <div class="flex flex-col md:w-28 text-center md:text-left">
-                                <span :class="['md:mr-auto   md:text-white text-[2.5rem] md:text-xs md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg', returnNavColors('projects')]"
-                                    >Projects</span
-                                >
+                                <span :class="['md:mr-auto   md:text-white text-[2.5rem] md:text-xs md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg', returnNavColors('projects')]">Projects</span>
                                 <h4 class="text-xxs hidden md:flex text-gray-700">A vast range of projects</h4>
                             </div>
                         </NuxtLink>

@@ -38,7 +38,9 @@ watch(
     route,
     (to) => {
         path.value = to.path
-        if (path.value.indexOf('project') > -1) {
+        if (path.value.indexOf('projects') > -1) {
+            path.value = 'projects'
+        } else if (path.value.indexOf('project') > -1) {
             path.value = 'project'
         }
     },
@@ -50,6 +52,7 @@ const returnFooterLogoColors = () => {
         '/about': 'logo-darkyellow',
         '/partners': 'logo-fuchsia',
         project: 'logo-fuchsia',
+        projects: 'logo-lightpurple',
         '/gallery': 'logo-lightpurple',
     }
 
@@ -73,6 +76,7 @@ const returnThemeClassFooter = (isBackground, color) => {
         '/about': 'pink',
         '/partners': 'orange',
         project: 'lime',
+        projects: 'purple',
         '/gallery': 'purple',
     }
     if (isBackground) {
