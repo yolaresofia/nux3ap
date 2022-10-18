@@ -22,4 +22,4 @@ const openModal = () => {
     isCookiesOpen.value = false
 }
 </script>
-<style></style>
+
