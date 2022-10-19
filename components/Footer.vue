@@ -8,7 +8,7 @@
                 </div>
             </div>
             <div class="flex mt-auto">
-                <div class="flex flex-col space-y-3 items-end">
+                <div class="flex flex-col space-y-2 items-end">
                     <img :src="settings.logo" :class="[mainTheme === 'black' && 'invert', 'h-auto w-28 md:w-44']" />
                     <span class="ml-auto text-4xl hidden md:block text-white">{{ mainTheme === 'black' ? '🌈' : '☁️' }}</span>
                     <ButtonBase :url="settings.contact.link" :btncolors="returnFooterButtonColors(true)"> {{ settings.contact.text }}</ButtonBase>
@@ -38,7 +38,9 @@ watch(
     route,
     (to) => {
         path.value = to.path
-        if (path.value.indexOf('project') > -1) {
+        if (path.value.indexOf('projects') > -1) {
+            path.value = 'projects'
+        } else if (path.value.indexOf('project') > -1) {
             path.value = 'project'
         }
     },
@@ -50,6 +52,7 @@ const returnFooterLogoColors = () => {
         '/about': 'logo-darkyellow',
         '/partners': 'logo-fuchsia',
         project: 'logo-fuchsia',
+        projects: 'logo-lightpurple',
         '/gallery': 'logo-lightpurple',
     }
 
@@ -59,7 +62,7 @@ const returnFooterButtonColors = (isPrimary) => {
     const primaryColors = {
         '/': 'bg-brown text-lime',
         '/about': 'bg-cyan text-darkpurple',
-        '/partners': 'orange',
+        '/partners': 'bg-green text-cyan',
         project: 'bg-darkgray text-white',
         '/gallery': 'bg-yellow text-black',
     }
@@ -73,6 +76,7 @@ const returnThemeClassFooter = (isBackground, color) => {
         '/about': 'pink',
         '/partners': 'orange',
         project: 'lime',
+        projects: 'purple',
         '/gallery': 'purple',
     }
     if (isBackground) {

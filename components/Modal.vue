@@ -8,12 +8,12 @@ const props = defineProps({
     <Transition name="modal">
         <div v-if="show" class="modal-mask">
             <div class="modal-wrapper">
-                <div class="modal-container w-[90vw] rounded-xl bg-black">
+                <div class="modal-container w-[90vw] h-[90vh] flex rounded-xl bg-black">
                     <div class="modal-header">
                         <slot name="header">default header</slot>
                     </div>
 
-                    <div class="text-xs text-white soehne">
+                    <div class="text-xs text-white soehne m-auto">
                         A cookie policy is at the heart of compliance with most major data privacy legislations in the world – while some laws require end-user consent and others opt-out options for
                         visitors, almost all require your website to keep an updated account of all cookies and trackers, and to make this available to end-users visiting your domain. Data privacy is
                         also one of the fastest expanding fields of consumer demand – end-users want transparency into and control of how their data is handled when visiting your website, and
@@ -21,7 +21,6 @@ const props = defineProps({
                         transparent and compliant use of cookies, and get an automatic cookie policy generated for your website with Cookiebot consent management platform (CMP).
                         <div class="modal-footer">
                             <slot name="footer">
-                                default footer
                                 <button class="modal-default-button" @click="$emit('close')">OK</button>
                             </slot>
                         </div>
@@ -79,5 +78,4 @@ const props = defineProps({
 .modal-leave-to {
     opacity: 0;
 }
-
 </style>
