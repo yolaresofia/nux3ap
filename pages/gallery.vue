@@ -70,8 +70,8 @@ const mouseEnter = (index, element) => {
 }
 
 const renderImage = (el, index, setIndex = true) => {
-    const OFFSET = isMobile.value ? 90 : 50
-    const SCALE = isMobile.value ? 0.1 : 0.04
+    const OFFSET = 50
+    const SCALE = 0.04
 
     gsap.killTweensOf(el)
     const isFirst = el.dataset.index == 0
@@ -131,8 +131,8 @@ const resize = () => {
     initScrollTrigger()
 }
 watch(activeProject, () => {
-    const OFFSET = isMobile.value ? 90 : 50
-    const SCALE = isMobile.value ? 0.1 : 0.04
+    const OFFSET = 50
+    const SCALE = 0.04
 
     const images = selectAll('figure')
     const activeImage = images[activeProject.value]
