@@ -37,12 +37,11 @@ const moveTo = () => {
 watch(
     route,
     (to) => {
+        console.log('route changed', to)
         path.value = to.path
-        if (path.value.indexOf('projects') > -1) {
-            path.value = 'projects'
-        } else if (path.value.indexOf('project') > -1) {
-            path.value = 'project'
-        }
+        if (path.value.length > 12) {
+            path.value = 'projectPage'
+        } 
     },
     { flush: 'pre', immediate: true, deep: true }
 )
@@ -51,8 +50,8 @@ const returnFooterLogoColors = () => {
         '/': 'logo-lime',
         '/about': 'logo-darkyellow',
         '/partners': 'logo-fuchsia',
-        project: 'logo-fuchsia',
-        projects: 'logo-lightpurple',
+        '/projects': 'logo-fuchsia',
+        projectPage: 'logo-lightpurple',
         '/gallery': 'logo-lightpurple',
     }
 
@@ -63,7 +62,7 @@ const returnFooterButtonColors = (isPrimary) => {
         '/': 'bg-brown text-lime',
         '/about': 'bg-cyan text-darkpurple',
         '/partners': 'bg-green text-cyan',
-        project: 'bg-darkgray text-white',
+        '/projects': 'bg-darkgray text-white',
         '/gallery': 'bg-yellow text-black',
     }
     if (isPrimary) {
@@ -75,8 +74,8 @@ const returnThemeClassFooter = (isBackground, color) => {
         '/': 'primaryYellow',
         '/about': 'pink',
         '/partners': 'orange',
-        project: 'lime',
-        projects: 'purple',
+        '/projects': 'purple',
+        projectPage: 'lime',
         '/gallery': 'purple',
     }
     if (isBackground) {
