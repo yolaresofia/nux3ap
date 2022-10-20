@@ -3,22 +3,22 @@
         <!-- //TODO reference projects -->
 
         <section class="images-section | absolute px-4 bottom-[10rem] h-screen w-full md:transform md:-translate-x-4 opacity-0" ref="imagesContainer">
-            <figure v-for="(element, index) in collection.collection" :key="element._key" :data-index="index" class="img | overflow-hidden absolute">
+            <figure v-for="(element, index) in sortedCollection" :key="element._key" :data-index="index" class="img | overflow-hidden absolute">
                 <SanityImage :asset-id="element.image.asset._ref" class="object-cover h-full w-full" />
-                <!-- <figcaption class="text-white absolute inset-0">{{ element.title }}</figcaption> -->
+                <figcaption class="text-white absolute inset-0">{{ element.title }}</figcaption>
             </figure>
         </section>
         <div>
-            <div class="arrows | pb-4 pt-18 pl-4">
-                <svg height="84" viewBox="0 0 127 84" width="127" :fill="arrowsColor()">
-                    <g>
-                        <path d="m126.14 35.42-21.65 21.65v-55.93h-13.93v35.14 20.75l-21.66-21.61-.07 19.31 28.78 28.79 28.63-28.81z" />
-                        <path d="m0 28.8.1 19.3 21.65-21.65v55.93h13.93v-55.9l21.66 21.61.08-19.31-28.79-28.78z" />
+            <button class="arrows | pb-4 pt-18 pl-4 group" @click="sorted = !sorted">
+                <svg height="100" viewBox="0 0 127 100" width="127" :fill="arrowsColor()">
+                    <g transform="translate(0 10)">
+                        <path class="duration-150 group-hover:translate-y-2" d="m126.14 35.42-21.65 21.65v-55.93h-13.93v35.14 20.75l-21.66-21.61-.07 19.31 28.78 28.79 28.63-28.81z" />
+                        <path class="duration-150 group-hover:-translate-y-2" d="m0 28.8.1 19.3 21.65-21.65v55.93h13.93v-55.9l21.66 21.61.08-19.31-28.79-28.78z" />
                     </g>
                 </svg>
-            </div>
+            </button>
             <section class="text-yellow leading-9 px-4 flex flex-col md:h-[70vh] md:overflow-scroll pb-24 md:pt-6">
-                <div v-for="(element, index) in collection.collection" :key="element._key">
+                <div v-for="(element, index) in sortedCollection" :key="element._key">
                     <h2
                         :class="['inline-block md:text-5xl text-2_5xl leading-[28px] md:leading-[26px] cursor-pointer', returnThemeClass(false, 'yellow', mainTheme)]"
                         @mouseenter="mouseEnter(index, element)"
@@ -40,6 +40,7 @@ const mainTheme = useState('mainTheme')
 const isMobile = useState('isMobile', () => false)
 const activeProject = useState('activeProject', () => 0)
 const direction = useState('direction', () => 0)
+const sorted = useState('sorted', () => false)
 
 const sanity = useSanity()
 const query = groq`*[_type=="gallery"][0]`
@@ -47,7 +48,18 @@ const { data: collection } = await useAsyncData('gallery', async () => sanity.fe
 const arrowsColor = () => {
     return mainTheme.value === 'black' ? 'white' : 'black'
 }
+
+const sortedCollection = computed(() => {
+    const abcProjects = [...collection.value.collection]
+    if (sorted.value) return abcProjects.sort((a, b) => a.title.localeCompare(b.title))
+
+    return collection.value.collection
+})
+
 const imagesContainer = ref(null)
+
+const OFFSET = 50
+const SCALE = 0.04
 
 onMounted(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -70,9 +82,6 @@ const mouseEnter = (index, element) => {
 }
 
 const renderImage = (el, index, setIndex = true) => {
-    const OFFSET = 50
-    const SCALE = 0.04
-
     gsap.killTweensOf(el)
     const isFirst = el.dataset.index == 0
 
@@ -131,9 +140,6 @@ const resize = () => {
     initScrollTrigger()
 }
 watch(activeProject, () => {
-    const OFFSET = 50
-    const SCALE = 0.04
-
     const images = selectAll('figure')
     const activeImage = images[activeProject.value]
 
