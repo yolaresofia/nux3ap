@@ -53,6 +53,10 @@
 
             <ProjectSlider :obj="post" />
 
+            <div class="flex" ref="wrapperLarge">
+                <ProjectSlide :large="true" v-for="image in post.res[0].secondSlider" :key="image.id" :item="image.asset._ref" />
+            </div>
+
             <div class="flex w-full flex-col">
                 <div class="flex justify-center xl:justify-between m-auto py-12">
                     <h1 class="text-center px-6 py-4 rounded-full bg-white text-black">SIMILAR</h1>
