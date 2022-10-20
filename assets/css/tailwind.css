@@ -86,7 +86,10 @@ li {
 	background-color: '#220022';
 }
 
-/*heading 2 pasa a ser heading 1, heading 3 pasa a ser heading 2 y heading 1 pasa a ser heading 3*/
+
+.formattedRichText * {
+    padding-bottom: 10px;
+}
 
 .heading-3 {
 	line-height: 2.7rem;

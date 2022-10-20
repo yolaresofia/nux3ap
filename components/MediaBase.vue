@@ -17,7 +17,7 @@
                     </svg>
                 </button>
             </div>
-            <video class="w-full" ref="video" :src="src" loop @click="pause" @canplay="updatePaused" @playing="updatePaused" @pause="updatePaused"></video>
+            <video class="md:w-full h-[70vh]" ref="video" :src="src" loop @click="pause" @canplay="updatePaused" @playing="updatePaused" @pause="updatePaused"></video>
         </div>
         <div v-else>
             <img class="w-full" :src="src" />

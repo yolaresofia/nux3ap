@@ -1,7 +1,7 @@
 <template>
   <div :class="[returnThemeClass(true, 'pink', mainTheme)]">
-    <div class="flex flex-col lg:min-h-screen py-20 md:px-4">
-      <p :class="['heading-3 p-4', returnThemeClass(false, 'mint', mainTheme)]">
+    <div class="flex flex-col lg:min-h-screen py-20 md:p-4 p-3">
+      <p :class="['heading-3', returnThemeClass(false, 'mint', mainTheme)]">
         {{ page.header }}
       </p>
       <div class="lg:grid lg:grid-cols-2 lg:p-20 mx-auto">
@@ -22,7 +22,7 @@
       <Pill text="clients" :color="mainTheme === 'black' ? false : true" />
       <div
         :class="[
-          'heading-4 text-center',
+          'text-[32px] leading-8 text-center',
           returnThemeClass(false, 'mint', mainTheme),
         ]"
       >
@@ -54,7 +54,7 @@
         </div>
       </div>
       <Pill text="awards" :color="mainTheme === 'black' ? false : true" />
-      <div class="soehne column-split text-xs">
+      <div class="soehne column-split text-xs formattedRichText">
         <SanityContent :blocks="page.awards" />
       </div>
     </div>
@@ -87,7 +87,6 @@ const { data: page } = await useAsyncData("about", async () =>
 @media only screen and (max-width: 780px) {
   .column-split {
     column-count: 1;
-    padding: 0 1rem 0 1rem;
   }
 }
 </style>
