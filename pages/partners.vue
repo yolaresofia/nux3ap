@@ -1,10 +1,15 @@
 <template>
     <div :class="[returnThemeClass(true, 'orange', mainTheme), 'min-h-screen p-2 md:p-4']">
-        <h1 :class="['md:py-20 pt-24 pb-8 text-3_5xl md:text-8xl leading-7 tracking-tight md:leading-[4.5rem] md:tracking-[0.05rem]', returnThemeClass(false, 'green', mainTheme)]">Our partners are lorem ipsum dolor sit amet</h1>
+        <h1 :class="['md:py-20 pt-24 pb-8 text-3_5xl md:text-8xl leading-7 tracking-tight md:leading-[4.5rem] md:tracking-[0.05rem]', returnThemeClass(false, 'green', mainTheme)]">
+            {{ page.title }}
+        </h1>
         <div class="">
             <div class="grid grid-cols-2 lg:grid-cols-3">
                 <div v-for="(element, index) in page.collection" :key="index" class="-my-1">
-                    <h2 :class="[index === currentIndex ? 'text-white' : returnThemeClass(false, 'blue', mainTheme), 'text-[15px] leading-6 md:text-2xl font-black cursor-pointer min-w-18']" @click="currentIndex = index">
+                    <h2
+                        :class="[index === currentIndex ? 'text-white' : returnThemeClass(false, 'blue', mainTheme), 'text-[15px] leading-6 md:text-2xl font-black cursor-pointer min-w-18']"
+                        @click="currentIndex = index"
+                    >
                         {{ element.name }}
                     </h2>
                 </div>
@@ -30,11 +35,11 @@
 import { returnThemeClass } from '~/mixins/general'
 const mainTheme = useState('mainTheme')
 definePageMeta({
-  pageTransition: {
-    mode: "default",
-    appear: true,
-  },
-});
+    pageTransition: {
+        mode: 'default',
+        appear: true,
+    },
+})
 const sanity = useSanity()
 const query = groq`*[_type=="partners"][0]`
 const currentIndex = useState('currentIndex', () => 0)

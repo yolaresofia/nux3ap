@@ -86,10 +86,10 @@ if (lastCheck) {
                 check: true,
             })
         } else {
-            console.log('no comments')
+             
         }
     } catch (error) {
-        console.log(error)
+         
     }
 }
 await useAsyncData('comment', async () => {

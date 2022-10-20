@@ -37,7 +37,7 @@ const moveTo = () => {
 watch(
     route,
     (to) => {
-        console.log('route changed', to)
+         
         path.value = to.path
         if (path.value.length > 12) {
             path.value = 'projectPage'

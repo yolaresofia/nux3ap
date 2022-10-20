@@ -44,7 +44,7 @@ class MyInput extends React.Component {
     //   const timeAsString = outgoingValue(hours, minutes)
     //   onChange(createPatchFrom(timeAsString))
     // }
-    console.log(x);
+     
   }
 
   render = () => {

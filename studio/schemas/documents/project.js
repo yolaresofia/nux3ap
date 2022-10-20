@@ -28,6 +28,11 @@ export default {
 			},
 		},
 		{
+			name: 'date',
+			title: 'Date',
+			type: 'date',
+		},
+		{
 			name: 'subtitle',
 			title: 'Subtitle',
 			type: 'blockContent',

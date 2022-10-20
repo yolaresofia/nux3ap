@@ -16,7 +16,7 @@
                     </h4>
                 </div>
                 <div>
-                    <h4 :class="[returnThemeClass(false, 'white', mainTheme), 'font-mono text-xs uppercase']">22.03.2021</h4>
+                    <h4 :class="[returnThemeClass(false, 'white', mainTheme), 'font-mono text-xs uppercase']">{{ post.res[0].date }}</h4>
                 </div>
             </div>
             <div class="grid grid-cols-2">
