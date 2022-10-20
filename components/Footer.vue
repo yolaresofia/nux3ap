@@ -41,7 +41,7 @@ watch(
         path.value = to.path
         if (path.value.length > 12) {
             path.value = 'projectPage'
-        } 
+        }
     },
     { flush: 'pre', immediate: true, deep: true }
 )
@@ -100,8 +100,8 @@ const onLeave = () => {
     gsap.killTweensOf(logoimg.value)
     gsap.to(logoimg.value, {
         rotate: 0,
-        duration: 0.5,
-        ease: 'bounce',
+        duration: 1,
+        ease: 'expo.out',
     })
 }
 

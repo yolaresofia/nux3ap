@@ -2422,9 +2422,9 @@
     "d" "^1.0.1"
     "ext" "^1.1.2"
 
-"esbuild-darwin-arm64@0.15.8":
-  "integrity" "sha512-8tjEaBgAKnXCkP7bhEJmEqdG9HEV6oLkF36BrMzpfW2rgaw0c48Zrxe+9RlfeGvs6gDF4w+agXyTjikzsS3izw=="
-  "resolved" "https://registry.npmjs.org/esbuild-darwin-arm64/-/esbuild-darwin-arm64-0.15.8.tgz"
+"esbuild-darwin-64@0.15.8":
+  "integrity" "sha512-KaKcGfJ+yto7Fo5gAj3xwxHMd1fBIKatpCHK8znTJLVv+9+NN2/tIPBqA4w5rBwjX0UqXDeIE2v1xJP+nGEXgA=="
+  "resolved" "https://registry.npmjs.org/esbuild-darwin-64/-/esbuild-darwin-64-0.15.8.tgz"
   "version" "0.15.8"
 
 "esbuild@^0.15.6", "esbuild@^0.15.7", "esbuild@>=0.13":
@@ -3712,6 +3712,11 @@
     "statuses" "^1.5.0"
     "type-is" "^1.6.16"
     "vary" "^1.1.2"
+
+"lazysizes@^5.3.2":
+  "integrity" "sha512-22UzWP+Vedi/sMeOr8O7FWimRVtiNJV2HCa+V8+peZOw6QbswN9k58VUhd7i6iK5bw5QkYrF01LJbeJe0PV8jg=="
+  "resolved" "https://registry.npmjs.org/lazysizes/-/lazysizes-5.3.2.tgz"
+  "version" "5.3.2"
 
 "lazystream@^1.0.0":
   "integrity" "sha512-b94GiNHQNy6JNTrt5w6zNyffMrNkXZb3KTkCZJb2V1xaEGCk093vkZ2jk3tpaeP33/OiXC+WvK9AxUebnf5nbw=="
