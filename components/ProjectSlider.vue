@@ -29,6 +29,7 @@
 <script setup>
 import { urlFor } from '~/mixins/general'
 import { gsap } from 'gsap'
+import { Observer } from 'gsap/Observer'
 
 const props = defineProps({
     obj: {
@@ -48,15 +49,17 @@ const initialPos = useState('initialPos', () => 0)
 const activeSlide = useState('activeSlide', () => 0)
 
 onMounted(() => {
+    gsap.registerPlugin(Observer)
     setInitialSliderPos()
+    initObserver()
 
     window.addEventListener('resize', resize)
 })
 
 const setSize = () => {
-    width.value = document.querySelector('[data-slide="false"]').offsetWidth
+    width.value = document.querySelector('[data-slide="false"]').offsetWidth + 0.5
 
-    initialPos.value = width.value * 3 * -1 - 1
+    initialPos.value = width.value * 3 * -1
 }
 
 const setInitialSliderPos = () => {
@@ -112,4 +115,25 @@ const handleSlide = (options) => {
         },
     })
 }
+
+let observer
+
+const initObserver = () => {
+    const threshold = 2
+
+    observer = Observer.create({
+        target: wrapper.value,
+        type: 'touch,pointer',
+        onDragEnd: ({ deltaX }) => {
+            if (!(deltaX < threshold * -1 || deltaX > threshold)) return // determine whether drag or click
+
+            if (deltaX > 0) prevSlide(props.obj.res[0].secondSlider.length)
+            if (deltaX < 0) nextSlide(props.obj.res[0].secondSlider.length)
+        },
+    })
+}
+
+onUnmounted(() => {
+    observer.kill()
+})
 </script>

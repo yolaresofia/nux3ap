@@ -55,8 +55,15 @@
 
             <ProjectSlider :obj="post" />
 
-            <div class="flex" ref="wrapperLarge">
-                <ProjectSlide :large="true" v-for="image in post.res[0].secondSlider" :key="image.id" :item="image.asset._ref" />
+            <div class="flex flex-col md:flex-row md:flex-wrap">
+                <div class="pb-2 md:p-4 md:w-1/2" v-for="image in post.res[0].secondSlider" :key="image.id">
+                    <div
+                        class="flex h-120 bg-cover bg-center rounded-3xl"
+                        :style="{
+                            backgroundImage: 'url(' + urlFor(image.asset._ref) + ')',
+                        }"
+                    ></div>
+                </div>
             </div>
 
             <div class="flex w-full flex-col">
