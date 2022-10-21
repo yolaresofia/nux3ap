@@ -1,22 +1,13 @@
 <template>
     <article :class="['gallery | relative', returnThemeClass(true, 'purple', mainTheme)]">
-        <!-- //TODO reference projects -->
-
         <section class="images-section | absolute px-4 bottom-[10rem] h-screen w-full md:transform md:-translate-x-4 opacity-0" ref="imagesContainer">
             <figure v-for="(element, index) in sortedCollection" :key="element._key" :data-index="index" class="img | overflow-hidden absolute">
-                <SanityImage :asset-id="element.image.asset._ref" class="object-cover h-full w-full" />
-                <figcaption class="text-white absolute inset-0">{{ element.title }}</figcaption>
+                <SanityImage :asset-id="element.mainMedia.image.asset._ref" class="object-cover h-full w-full" />
             </figure>
         </section>
         <div>
-            <button class="arrows | pb-4 pt-18 pl-4 group" @click="sorted = !sorted">
-                <svg height="100" viewBox="0 0 127 100" width="127" :fill="arrowsColor()">
-                    <g transform="translate(0 10)">
-                        <path class="duration-150 group-hover:translate-y-2" d="m126.14 35.42-21.65 21.65v-55.93h-13.93v35.14 20.75l-21.66-21.61-.07 19.31 28.78 28.79 28.63-28.81z" />
-                        <path class="duration-150 group-hover:-translate-y-2" d="m0 28.8.1 19.3 21.65-21.65v55.93h13.93v-55.9l21.66 21.61.08-19.31-28.79-28.78z" />
-                    </g>
-                </svg>
-            </button>
+            <OrderBtn @click="sorted = !sorted" classNames="pt-18 pl-4" />
+
             <section class="text-yellow leading-9 px-4 flex flex-col md:h-[70vh] md:overflow-scroll pb-24 md:pt-6">
                 <div v-for="(element, index) in sortedCollection" :key="element._key">
                     <h2
@@ -36,24 +27,22 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { returnThemeClass, selectAll, getNextSiblings, getPreviousSiblings } from '~/mixins/general'
 
-const mainTheme = useState('mainTheme')
 const isMobile = useState('isMobile', () => false)
 const activeProject = useState('activeProject', () => 0)
 const direction = useState('direction', () => 0)
 const sorted = useState('sorted', () => false)
 
 const sanity = useSanity()
-const query = groq`*[_type=="gallery"][0]`
+const query = groq` {
+  "projects": *[_type == "project"],
+}`
 const { data: collection } = await useAsyncData('gallery', async () => sanity.fetch(query))
-const arrowsColor = () => {
-    return mainTheme.value === 'black' ? 'white' : 'black'
-}
 
 const sortedCollection = computed(() => {
-    const abcProjects = [...collection.value.collection]
+    const abcProjects = [...collection.value.projects]
     if (sorted.value) return abcProjects.sort((a, b) => a.title.localeCompare(b.title))
 
-    return collection.value.collection
+    return collection.value.projects
 })
 
 const imagesContainer = ref(null)
@@ -78,7 +67,7 @@ onMounted(() => {
 })
 
 const mouseEnter = (index, element) => {
-    activeProject.value = collection.value.collection.findIndex((img) => img.title === element.title)
+    activeProject.value = collection.value.projects.findIndex((img) => img.title === element.title)
 }
 
 const renderImage = (el, index, setIndex = true) => {
@@ -89,7 +78,7 @@ const renderImage = (el, index, setIndex = true) => {
 
     if (isFirst && direction === 1) {
         tl.to(el, { bottom: -250 })
-        tl.to(el, { zIndex: collection.value.collection.length - index }, '<')
+        tl.to(el, { zIndex: collection.value.projects.length - index }, '<')
 
         tl.to(
             el,
@@ -108,7 +97,7 @@ const renderImage = (el, index, setIndex = true) => {
             bottom: index * OFFSET,
             right: index * OFFSET,
             scale: 1 - index * SCALE,
-            zIndex: collection.value.collection.length - index,
+            zIndex: collection.value.projects.length - index,
             onComplete: () => {
                 if (setIndex) el.setAttribute('data-index', index)
             },
@@ -170,22 +159,13 @@ watch(activeProject, () => {
     })
 
     getPreviousSiblings(activeImage, '[data-index]').forEach((el, i) => {
-        const newIndex = collection.value.collection.length - i - 1
+        const newIndex = collection.value.projects.length - i - 1
         renderImage(el, newIndex)
     })
 })
 </script>
 
 <style scoped>
-.arrows {
-    width: 75px;
-}
-
-.arrows svg {
-    width: 100%;
-    height: 100%;
-}
-
 .gallery {
     min-height: 100vh;
     isolation: isolate;

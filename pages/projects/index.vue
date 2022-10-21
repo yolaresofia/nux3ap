@@ -1,18 +1,9 @@
 <template>
     <article :class="['p-2 md:p-4 pt-24 md:pt-48', returnThemeClass(true, 'purple', mainTheme)]">
-        <!-- //TODO replace with svgs -->
-        <!-- //TODO add functionality -->
-        <button class="order-btn | text-5xl cursor-pointer md:hidden pb-6">
-            <svg height="84" viewBox="0 0 127 84" width="127" xmlns="http://www.w3.org/2000/svg">
-                <g fill="#231f20">
-                    <path d="m126.14 35.42-21.65 21.65v-55.93h-13.93v35.14 20.75l-21.66-21.61-.07 19.31 28.78 28.79 28.63-28.81z" />
-                    <path d="m0 28.8.1 19.3 21.65-21.65v55.93h13.93v-55.9l21.66 21.61.08-19.31-28.79-28.78z" />
-                </g>
-            </svg>
-        </button>
+        <OrderBtn @click="sorted = !sorted" classNames="md:hidden" />
 
         <section class="grid grid-cols-2 gap-x-2 gap-y-4 md:gap-y-2 md:grid-cols-3">
-            <NuxtLink :to="'projects/' + project.slug.current" v-for="project in page.projects" :key="project._id">
+            <NuxtLink :to="'projects/' + project.slug.current" v-for="project in sortedCollection" :key="project._id">
                 <figure class="overflow-hidden">
                     <SanityImage :asset-id="project.mainMedia.image.asset._ref" class="object-cover h-full w-full" />
                 </figure>
@@ -32,11 +23,11 @@ import { returnThemeClass } from '~/mixins/general'
 
 const mainTheme = useState('mainTheme')
 definePageMeta({
-  pageTransition: {
-    mode: "default",
-    appear: true,
-  },
-});
+    pageTransition: {
+        mode: 'default',
+        appear: true,
+    },
+})
 const sanity = useSanity()
 const query = groq` {
   "projects": *[_type == "project"],
@@ -46,6 +37,15 @@ const query = groq` {
 }`
 
 const { data: page } = await useAsyncData('projectIndex', async () => sanity.fetch(query))
+
+const sortedCollection = computed(() => {
+    const abcProjects = [...page.value.projects]
+    if (sorted.value) return abcProjects.sort((a, b) => a.title.localeCompare(b.title))
+
+    return page.value.projects
+})
+
+const sorted = useState('sorted', () => false)
 </script>
 
 <style scoped>
