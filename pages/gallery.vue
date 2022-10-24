@@ -9,14 +9,14 @@
             <OrderBtn @click="sorted = !sorted" classNames="pt-18 pl-4" />
 
             <section class="text-yellow leading-9 px-4 flex flex-col md:h-[70vh] md:overflow-scroll pb-24 md:pt-6">
-                <div v-for="(element, index) in sortedCollection" :key="element._key">
+                <NuxtLink :to="'projects/' + element.slug.current" v-for="(element, index) in sortedCollection" :key="element._key" class="block">
                     <h2
                         :class="['inline-block md:text-5xl text-2_5xl leading-[28px] md:leading-[26px] cursor-pointer', returnThemeClass(false, 'yellow', mainTheme)]"
                         @mouseenter="mouseEnter(index, element)"
                     >
                         {{ element.title }}
                     </h2>
-                </div>
+                </NuxtLink>
             </section>
         </div>
     </article>

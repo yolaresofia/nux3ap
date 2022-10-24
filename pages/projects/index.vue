@@ -3,7 +3,7 @@
         <OrderBtn @click="sorted = !sorted" classNames="md:hidden" />
 
         <section class="grid grid-cols-2 gap-x-2 gap-y-4 md:gap-y-2 md:grid-cols-3">
-            <NuxtLink :to="'projects/' + project.slug.current" v-for="project in sortedCollection" :key="project._id">
+            <NuxtLink :to="'projects/' + project.slug.current" v-for="project in sortedCollection" :key="project._id" class="hover:scale-[0.99] duration-300">
                 <figure class="overflow-hidden">
                     <SanityImage :asset-id="project.mainMedia.image.asset._ref" class="object-cover h-full w-full" />
                 </figure>
