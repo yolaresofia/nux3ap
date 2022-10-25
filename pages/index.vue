@@ -34,7 +34,7 @@
         <h1 :class="['heading-3 text-center', returnThemeClass(false, 'blue', mainTheme)]">
             {{ page.section4.blocks.subHeader }}
         </h1>
-        <Comments @click="showComments = false" />
+        <Comments />
     </div>
 </template>
 
