@@ -6,7 +6,9 @@
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* checking if setting the brightness instead of opacity looks better */
+/* since the page is black by default  */
 .page-enter-from,
 .page-leave-to {
-  opacity: 0;
+  filter: brightness(0);
 }

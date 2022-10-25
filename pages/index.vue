@@ -7,7 +7,7 @@
                 </video>
             </div>
             <div class="flex flex-1 h-full">
-                <p :class="['p-4 heading-3', returnThemeClass(false, 'brown', mainTheme)]">{{ page.section1.blocks.header }}</p>
+                <p :class="['md:p-4 p-2 heading-3', returnThemeClass(false, 'brown', mainTheme)]">{{ page.section1.blocks.header }}</p>
             </div>
         </div>
         <!-- section 2 -->
@@ -34,12 +34,14 @@
         <h1 :class="['heading-3 text-center', returnThemeClass(false, 'blue', mainTheme)]">
             {{ page.section4.blocks.subHeader }}
         </h1>
+        <Comments @click="showComments = false" />
     </div>
 </template>
 
 <script setup>
 import { returnThemeClass } from '~/mixins/general'
 import { useStore } from '~/store/store'
+const showComments = useState('showComments', () => true)
 
 definePageMeta({
     pageTransition: {
@@ -86,11 +88,8 @@ if (lastCheck) {
                 check: true,
             })
         } else {
-             
         }
-    } catch (error) {
-         
-    }
+    } catch (error) {}
 }
 await useAsyncData('comment', async () => {
     const { data } = await clientSB.from('comment').select('*').order('timestamp', { ascending: false })

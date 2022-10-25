@@ -1,6 +1,6 @@
 <template>
   <div :class="[returnThemeClass(true, 'pink', mainTheme)]">
-    <div class="flex flex-col lg:min-h-screen py-20 md:p-4 p-3">
+    <div class="flex flex-col lg:min-h-screen py-20 md:px-4 px-3">
       <p :class="['heading-3', returnThemeClass(false, 'mint', mainTheme)]">
         {{ page.header }}
       </p>

@@ -4,7 +4,7 @@
             <div class="flex flex-col-reverse md:flex-row justify-between md:w-full">
                 <img :class="[mainTheme !== 'black' ? returnFooterLogoColors() : 'invert', 'w-24 md:w-60']" :src="settings.circleLogo" @mouseenter="onEnter" @mouseleave="onLeave" ref="logoimg" />
                 <div class="flex items-end" @click="moveTo()" @mouseenter="onEnterTop" @mouseleave="onLeaveTop" ref="topbtn">
-                    <img class="md:w-28 w-24 pr-4 cursor-pointer" src="~/assets/images/back-to-top.svg" alt="" />
+                    <img :class="[mainTheme !== 'black' && 'invert', 'md:w-28 w-24 pr-4 cursor-pointer']" src="~/assets/images/back-to-top.svg" alt="" />
                 </div>
             </div>
             <div class="flex mt-auto">
@@ -37,7 +37,6 @@ const moveTo = () => {
 watch(
     route,
     (to) => {
-         
         path.value = to.path
         if (path.value.length > 12) {
             path.value = 'projectPage'
@@ -51,7 +50,7 @@ const returnFooterLogoColors = () => {
         '/about': 'logo-darkyellow',
         '/partners': 'logo-fuchsia',
         '/projects': 'logo-fuchsia',
-        projectPage: 'logo-lightpurple',
+        'projectPage': 'logo-fuchsia',
         '/gallery': 'logo-lightpurple',
     }
 
@@ -63,6 +62,7 @@ const returnFooterButtonColors = (isPrimary) => {
         '/about': 'bg-cyan text-darkpurple',
         '/partners': 'bg-green text-cyan',
         '/projects': 'bg-darkgray text-white',
+        'projectPage': 'bg-darkgray text-white',
         '/gallery': 'bg-yellow text-black',
     }
     if (isPrimary) {
@@ -75,7 +75,7 @@ const returnThemeClassFooter = (isBackground, color) => {
         '/about': 'pink',
         '/partners': 'orange',
         '/projects': 'purple',
-        projectPage: 'lime',
+        'projectPage': 'lime',
         '/gallery': 'purple',
     }
     if (isBackground) {

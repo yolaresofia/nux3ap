@@ -3,7 +3,6 @@ import S from '@sanity/desk-tool/structure-builder'
 const hiddenDocTypes = {
 	home: 'Home',
 	settings: 'Settings',
-	gallery: 'Gallery',
 	partners: 'Partners',
 	about: 'About',
 }

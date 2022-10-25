@@ -6,14 +6,13 @@
         <Teleport to="body">
             <Modal :show="isModalOpen" @close="isModalOpen = false" />
         </Teleport>
-        <Comments @click="showComments = false" />
         <Footer />
     </div>
 </template>
 <script setup>
 import { useStore } from '~/store/store'
-
 const isModalOpen = useState('isModalOpen', () => false)
+
 const store = useStore(),
     mainTheme = useState('mainTheme', () => 'black')
 onServerPrefetch(async () => {
@@ -65,5 +64,4 @@ if (process.client) {
                 ;(e.style.opacity = 0), io(e, 'scaleUpC')
             })
 }
-const showComments = useState('showComments', () => true)
 </script>

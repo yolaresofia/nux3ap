@@ -2,10 +2,8 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import createSchema from 'part:@sanity/base/schema-creator'
 import home from './documents/Home'
 import settings from './documents/settings'
-import gallery from './documents/gallery'
 import blockContent from './objects/blockContent'
 import hero from './objects/hero'
-import galleryItem from './objects/galleryItem'
 import media from './objects/media'
 import secondSection from './objects/secondSection'
 import button from './objects/button'
@@ -17,5 +15,5 @@ import partner from './objects/partner'
 
 export default createSchema({
 	name: 'default',
-	types: schemaTypes.concat([hero, media, button, About, project, category, secondSection, galleryItem, partners, partner, gallery, home, settings, blockContent]),
+	types: schemaTypes.concat([hero, media, button, About, project, category, secondSection, partners, partner, home, settings, blockContent]),
 })

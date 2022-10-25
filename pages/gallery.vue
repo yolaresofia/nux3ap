@@ -26,6 +26,7 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { returnThemeClass, selectAll, getNextSiblings, getPreviousSiblings } from '~/mixins/general'
+const mainTheme = useState("mainTheme");
 
 const isMobile = useState('isMobile', () => false)
 const activeProject = useState('activeProject', () => 0)

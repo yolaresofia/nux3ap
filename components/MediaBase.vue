@@ -1,9 +1,9 @@
 <template>
     <div>
         <div v-if="src.indexOf('jpg') === -1" class="w-full h-full relative">
-            <div v-if="!hidePause" class="group">
-                <button class="center z-50 text-8xl" @click="play">
-                    <svg id="Layer_1" fill="white" xmlns="http://www.w3.org/2000/svg" class="w-40" viewBox="0 0 200 200">
+            <div v-if="!hidePause" class="group center">
+                <button class="center z-50" @click="play">
+                    <svg id="Layer_1" fill="white" xmlns="http://www.w3.org/2000/svg" class="w-8 lg:w-40" viewBox="0 0 200 200">
                         <g id="Group_102">
                             <g class="group-hover:opacity-100 opacity-0">
                                 <rect fill="white" v-show="!paused" id="Rectangle_104" class="cls-1" x="65.31" y="56.04" width="32" height="91" rx="2" ry="2" />
@@ -17,7 +17,7 @@
                     </svg>
                 </button>
             </div>
-            <video class="md:w-full h-[70vh]" ref="video" :src="src" loop @click="pause" @canplay="updatePaused" @playing="updatePaused" @pause="updatePaused"></video>
+            <video class="w-full" ref="video" playsinline :src="src" loop @click="pause" @canplay="updatePaused" @playing="updatePaused" @pause="updatePaused"></video>
         </div>
         <div v-else>
             <img class="w-full" :src="src" />

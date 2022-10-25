@@ -53,7 +53,7 @@
                 </h4>
             </div>
 
-            <ProjectSlider :obj="post" />
+            <ProjectSlider :obj="post" v-if="post.res[0].secondSlider" />
 
             <div class="flex flex-col md:flex-row md:flex-wrap">
                 <div class="pb-2 md:p-4 md:w-1/2" v-for="image in post.res[0].secondSlider" :key="image.id">
@@ -70,8 +70,8 @@
                 <div class="flex justify-center xl:justify-between m-auto py-12">
                     <h1 class="text-center px-6 py-4 rounded-full bg-white text-black">SIMILAR</h1>
                 </div>
-                <div class="flex md:flex-row flex-col w-full">
-                    <NuxtLink v-for="project in post.similarProjects" :key="project.id" :to="'/projects/' + project.slug.current" class="flex-1 flex-col m-4 fadeIn">
+                <div class="flex md:grid md:grid-cols-3 flex-col w-full">
+                    <NuxtLink v-for="project in post.similarProjects" :key="project.id" :to="'/projects/' + project.slug.current" class="flex-1 flex-col my-4 md:m-4 fadeIn">
                         <div class="flex h-80 bg-cover bg-center rounded-3xl relative" :style="{ backgroundImage: 'url(' + urlFor(project.mainMedia.image.asset._ref) + ')' }">
                             <CategoryComponent v-for="(category, i) in project.categories" :key="category.id" :title="category.title" :i="i" />
                         </div>
