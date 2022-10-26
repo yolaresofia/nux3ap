@@ -261,6 +261,7 @@ module.exports = {
         ContainerGray: "#f4f4f4",
         primaryYellow: "#FFCE00",
         black: "var(--black)",
+        lightblack: "var(--lightblack)",
         white: "var(--white)",
         mint: "var(--mint)",
         green: "var(--green)",

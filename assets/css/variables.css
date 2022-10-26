@@ -2,7 +2,8 @@
 	/* 
    * Colors 
    */
-	--black: #000000;
+	 --black: #000000;
+	--lightblack: hsla(0, 0%, 0%, 0.703);
 	--white: #ffffff;
 	--mint: #afdb98;
 	--green: #00932d;

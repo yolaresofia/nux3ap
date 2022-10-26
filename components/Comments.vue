@@ -1,32 +1,90 @@
 <template>
-    <div v-if="showComments" class="fixed z-50 w-[30rem] bottom-4 right-4">
+    <div v-if="showComments">
         <div class="flex">
-            <div class="text-2xl fixed bottom-4 right-8 cursor-pointer">
-                <div>
+            <div class="text-2xl fixed bottom-4 right-8 md:right-16 cursor-pointer z-40">
+                <!-- <div>
                     <span v-if="hasNewComments">🆕</span>
                 </div>
                 <div>
                     <span v-if="hasNewComments" @click="stackComments">⬇️</span>
-                </div>
+                </div> -->
+
+                <Transition :css="false" @enter="onDots" @leave="onDotsLeave">
+                    <button v-if="closeStack" @click="closeStack = false" class="translate-y-[200%] flex space-x-2 bg-lightblack p-3 px-4 rounded-full">
+                        <span class="inline-block opacity-0 w-[12px] h-[12px] rounded-full bg-white"></span>
+                        <span class="inline-block opacity-0 w-[12px] h-[12px] rounded-full bg-white"></span>
+                        <span class="inline-block opacity-0 w-[12px] h-[12px] rounded-full bg-white"></span>
+                    </button>
+                </Transition>
             </div>
-            <div class="flex flex-col">
-                <div class="text-sm p-10 rounded-xl bg-black mt-3 fadeInComment font-mono grid text-white" v-for="comment in commentArr" :key="comment">
+
+            <TransitionGroup
+                name="commentsContainer"
+                tag="div"
+                class="flex flex-col cursor-pointer w-full md:w-[30rem] min-h-[250px] fixed bottom-4 md:right-0 items-center md:justify-end md:p-4 md:pr-12 md:pb-0"
+                @enter="onEnter"
+                :css="false"
+                @click="stacked = true"
+                data-comments-container
+            >
+                <div
+                    v-for="(comment, i) in commentArr"
+                    :key="comment"
+                    class="text-sm p-10 rounded-xl bg-lightblack font-mono grid text-white w-[94%] md:w-[30rem] origin-bottom left-4 bottom-4 md:left-auto md:right-12 mt-3"
+                    :class="{ 'fixed pointer-events-none': !stackedFinished, static: stackedFinished, hidden: closeStack }"
+                    data-comment
+                    :data-index="(i - commentArr.length) * -1"
+                    @click="closeStack = true"
+                >
                     <span class="font-mono">From IG </span> <span class="font-mono">{{ comment?.user }} just commented on WOMB post </span> <span class="font-mono">{{ comment?.title }}</span>
                 </div>
-            </div>
+            </TransitionGroup>
         </div>
     </div>
 </template>
 
 <script setup>
 import { useStore } from '~/store/store'
+import { selectAll } from '~~/mixins/general'
+import { gsap } from 'gsap'
 
 const store = useStore()
 const currentComment = useState('currentComment', () => store.comments[0])
 const index = useState('index', () => 0)
+const stacked = useState('stacked', () => false)
+const stackedFinished = useState('stackedFinished', () => false)
+const closeStack = useState('closeStack', () => false)
 const commentArr = useState('commentArr', () => [])
 const showComments = useState('showComments', () => false)
 const hasNewComments = useState('hasNewComments', () => false)
+
+const onEnter = (el, done) => {
+    gsap.fromTo(
+        el,
+        {
+            opacity: 0,
+            y: 40,
+        },
+        {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: 'expo.out',
+            onComplete: done,
+        }
+    )
+}
+
+const onDots = (el, done) => {
+    const dots = selectAll('span', el)
+    dots.forEach((dot, i) => gsap.to(dot, { opacity: 1, delay: i * 0.15 }))
+
+    gsap.to(el, { y: 0, duration: 0.6, ease: 'expo.out', onComplete: done })
+}
+
+const onDotsLeave = (el, done) => {
+    gsap.to(el, { y: '200%', duration: 0.4, ease: 'power4.out', onComplete: done })
+}
 
 let rand = Math.floor(Math.random() * 8 + 5) //Generate Random number between 5 - 10
 if (store.comments.length > 1) {
@@ -54,25 +112,40 @@ if (store.comments.length > 1) {
         }
     }, rand * 1000)
 }
-const stackComments = () => { 
+
+watch(commentArr.value, () => {
+    if (stacked.value) return
+
+    const comments = selectAll('[data-comment]')
+
+    comments.forEach((comment, i) => {
+        gsap.to(comment, { scale: 1 - comment.dataset.index * 0.04, y: comment.dataset.index * -20 })
+    })
+})
+
+watch(stacked, () => {
+    if (!stacked.value) return
+
+    const comments = selectAll('[data-comment]')
+    const MARGIN = 12
+
+    comments.forEach((comment, i) => {
+        gsap.to(comment, { y: 0, scale: 1, duration: 0.2 })
+        gsap.to(comment, {
+            y: (Number(comment.dataset.index) - 1) * (comment.offsetHeight + MARGIN) * -1,
+            delay: 0.2,
+            ease: 'power4.out',
+            duration: 0.6,
+            onComplete: () => {
+                comment.removeAttribute('style')
+                stackedFinished.value = true
+            },
+        })
+    })
+})
+
+const stackComments = () => {
     hasNewComments.value = false
     console.log('stack comments')
- }
+}
 </script>
-<style>
-.fadeInComment {
-    animation: fadeIn ease 1s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-}
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    100% {
-        opacity: 0.93;
-        transform: translateY(0);
-    }
-}
-</style>

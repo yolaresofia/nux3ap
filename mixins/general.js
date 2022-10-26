@@ -9,8 +9,8 @@ const builder = imageUrlBuilder({
 export function urlFor(source) {
   return builder.image(source);
 }
-export function selectAll(selector) {
-  return document.querySelectorAll(selector);
+export function selectAll(selector, container = document) {
+  return container.querySelectorAll(selector);
 }
 export function select(selector) {
   return document.querySelector(selector);
