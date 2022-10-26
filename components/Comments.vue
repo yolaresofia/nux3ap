@@ -86,14 +86,15 @@ const onDotsLeave = (el, done) => {
     gsap.to(el, { y: '200%', duration: 0.4, ease: 'power4.out', onComplete: done })
 }
 
-let rand = Math.floor(Math.random() * 8 + 5) //Generate Random number between 5 - 10
+let rand = Math.floor(Math.random() * 8 + 5)
+let intervalC;
 if (store.comments.length > 1) {
     showComments.value = true
 
     setInterval(() => {
         rand = Math.floor(Math.random() * 8 + 5)
-    }, 5000)
-    setInterval(() => {
+    }, 5000);
+    intervalC = setInterval(() => {
         currentComment.value = store.comments[index.value]
         if (index.value > 20) {
             showComments.value = false
@@ -112,7 +113,9 @@ if (store.comments.length > 1) {
         }
     }, rand * 1000)
 }
-
+onUnmounted(() => {
+    clearInterval(intervalC)
+})
 watch(commentArr.value, () => {
     if (stacked.value) return
 

@@ -26,7 +26,7 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { returnThemeClass, selectAll, getNextSiblings, getPreviousSiblings } from '~/mixins/general'
-const mainTheme = useState("mainTheme");
+const mainTheme = useState('mainTheme')
 
 const isMobile = useState('isMobile', () => false)
 const activeProject = useState('activeProject', () => 0)
@@ -35,15 +35,20 @@ const sorted = useState('sorted', () => false)
 
 const sanity = useSanity()
 const query = groq` {
-  "projects": *[_type == "project"],
+  "projects": *[_type == "project"]| order(date desc),
 }`
 const { data: collection } = await useAsyncData('gallery', async () => sanity.fetch(query))
 
 const sortedCollection = computed(() => {
     const abcProjects = [...collection.value.projects]
-    if (sorted.value) return abcProjects.sort((a, b) => a.title.localeCompare(b.title))
+    if (sorted.value)
+        return abcProjects.sort((a, b) => {
+            return new Date(b.date) - new Date(a.date)
+        })
 
-    return collection.value.projects
+    return abcProjects.sort((a, b) => {
+        return new Date(a.date) - new Date(b.date)
+    })
 })
 
 const imagesContainer = ref(null)
@@ -117,7 +122,6 @@ const initScrollTrigger = () => {
                 if (isActive) activeProject.value = i
             },
         })
-
         if (!isMobile.value) st.disable()
     })
 }

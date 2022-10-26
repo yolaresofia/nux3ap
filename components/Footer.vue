@@ -10,7 +10,7 @@
             <div class="flex mt-auto">
                 <div class="flex flex-col space-y-2 items-end">
                     <img :src="settings.logo" :class="[mainTheme === 'black' && 'invert', 'h-auto w-28 md:w-44']" />
-                    <span class="ml-auto text-4xl hidden md:block text-white">{{ mainTheme === 'black' ? '🌈' : '☁️' }}</span>
+                    <span class="ml-auto text-4xl hidden md:block text-white cursor-pointer" @click="changeTheme">{{ mainTheme === 'black' ? '🌈' : '☁️' }}</span>
                     <ButtonBase :url="settings.contact.link" :btncolors="returnFooterButtonColors(true)"> {{ settings.contact.text }}</ButtonBase>
                     <ButtonBase :url="settings.instagram.link" :btncolors="returnFooterButtonColors(true)"> {{ settings.instagram.text }}</ButtonBase>
                 </div>
@@ -50,7 +50,7 @@ const returnFooterLogoColors = () => {
         '/about': 'logo-darkyellow',
         '/partners': 'logo-fuchsia',
         '/projects': 'logo-fuchsia',
-        'projectPage': 'logo-fuchsia',
+        projectPage: 'logo-fuchsia',
         '/gallery': 'logo-lightpurple',
     }
 
@@ -62,7 +62,7 @@ const returnFooterButtonColors = (isPrimary) => {
         '/about': 'bg-cyan text-darkpurple',
         '/partners': 'bg-green text-cyan',
         '/projects': 'bg-darkgray text-white',
-        'projectPage': 'bg-darkgray text-white',
+        projectPage: 'bg-darkgray text-white',
         '/gallery': 'bg-yellow text-black',
     }
     if (isPrimary) {
@@ -75,7 +75,7 @@ const returnThemeClassFooter = (isBackground, color) => {
         '/about': 'pink',
         '/partners': 'orange',
         '/projects': 'purple',
-        'projectPage': 'lime',
+        projectPage: 'lime',
         '/gallery': 'purple',
     }
     if (isBackground) {
@@ -84,7 +84,9 @@ const returnThemeClassFooter = (isBackground, color) => {
         return mainTheme.value === 'black' ? 'text-white' : `text-${color}`
     }
 }
-
+const changeTheme = () => {
+    mainTheme.value === 'black' ? (mainTheme.value = 'white') : (mainTheme.value = 'black')
+}
 const logoimg = ref(null)
 const topbtn = ref(null)
 

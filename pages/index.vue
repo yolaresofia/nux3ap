@@ -18,7 +18,7 @@
 
         <!-- section 3 -->
         <div class="flex flex-col px-2 py-20">
-            <h1 :class="['heading-3', returnThemeClass(false, 'blue', mainTheme)]">
+            <h1 :class="['heading-3 px-2', returnThemeClass(false, 'blue', mainTheme)]">
                 {{ page.section3.blocks.header }}
             </h1>
             <div class="parent w-full">

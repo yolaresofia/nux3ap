@@ -2,7 +2,7 @@
     <div class="flex space-x-4 justify-center items-center">
         <NuxtLink to="/gallery" class="list relative">
             <List />
-            <span class="active-gallery | absolute inset-0 hidden duration-150">
+            <span v-if="route.path === '/gallery'" class="active-gallery | absolute inset-0 duration-150">
                 <List color="#353636" />
             </span>
         </NuxtLink>
@@ -20,20 +20,19 @@
 
         <NuxtLink to="/projects" class="grid grid-svg | relative">
             <Grid />
-            <span class="active-projects | absolute inset-0 hidden duration-150">
+            <span v-if="route.path === '/projects'" class="active-projects | absolute inset-0 duration-150">
                 <Grid color="#353636" />
             </span>
         </NuxtLink>
     </div>
 </template>
 
-<script>
+<script setup>
 import List from './svgs/List.vue'
 import Grid from './svgs/Grid.vue'
+const route = useRoute()
 
-export default {
-    components: { List, Grid },
-}
+
 </script>
 
 <style scoped>

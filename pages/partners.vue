@@ -34,12 +34,7 @@
 <script setup>
 import { returnThemeClass } from '~/mixins/general'
 const mainTheme = useState('mainTheme')
-definePageMeta({
-    pageTransition: {
-        mode: 'default',
-        appear: true,
-    },
-})
+
 const sanity = useSanity()
 const query = groq`*[_type=="partners"][0]`
 const currentIndex = useState('currentIndex', () => 0)
