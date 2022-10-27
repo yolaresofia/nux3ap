@@ -26,12 +26,12 @@
             </div>
         </div>
         <!-- section 4 -->
-        <div class="flex flex-col  py-4">
+        <div class="flex flex-col py-4">
             <div class="flex w-full">
                 <ProjectComponent v-for="project in page.section4.projects" :key="project.id" :project="project" />
             </div>
         </div>
-        <h1 :class="['heading-3 text-center pb-20 pt-10 md:pb-2', returnThemeClass(false, 'blue', mainTheme)]">
+        <h1 :class="['heading-3 text-center pb-20 pt-10 md:pb-2 px-1', returnThemeClass(false, 'blue', mainTheme)]">
             {{ page.section4.blocks.subHeader }}
         </h1>
         <Comments />

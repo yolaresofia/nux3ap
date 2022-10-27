@@ -1,7 +1,7 @@
 <template>
     <div v-if="showComments">
         <div class="flex">
-            <div class="text-2xl fixed bottom-4 right-8 md:right-16 cursor-pointer z-40">
+            <div class="text-2xl fixed bottom-4 right-8 md:right-16 cursor-pointer z-50">
                 <!-- <div>
                     <span v-if="hasNewComments">🆕</span>
                 </div>
@@ -25,7 +25,7 @@
             <TransitionGroup
                 name="commentsContainer"
                 tag="div"
-                :class="['flex flex-col cursor-pointer w-full md:w-[30rem] fixed bottom-4 md:right-0 items-center md:justify-end md:p-4 md:pr-12 md:pb-0', stacked ? 'min-h-[20px]' : 'min-h-[250px]']"
+                :class="['flex flex-col cursor-pointer w-full md:w-[30rem] fixed bottom-4 md:right-0 z-40 items-center md:justify-end md:p-4 md:pr-12 md:pb-0', stacked ? 'min-h-[20px]' : 'min-h-[250px]']"
                 @enter="onEnter"
                 :css="false"
                 @click="stacked = true"

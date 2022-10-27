@@ -172,7 +172,7 @@ nav {
 #overlay-button .black:after {
     height: 3px;
     width: 35px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
     position: absolute;
     content: '';
     transition: all 0.2s ease-in-out;
