@@ -34,8 +34,8 @@
                 <div
                     v-for="(comment, i) in commentArr"
                     :key="comment"
-                    class="text-sm p-10 rounded-xl bg-lightblack font-mono grid text-white w-[94%] md:w-[30rem] origin-bottom left-4 bottom-4 md:left-auto md:right-8 mt-3"
-                    :class="{ 'fixed pointer-events-none': !stackedFinished, static: stackedFinished, hidden: closeStack }"
+                    class="text-sm p-10 rounded-xl bg-lightblack font-mono grid text-white w-[93%] md:w-[30rem] origin-bottom left-4 bottom-4 md:left-auto md:right-8 mt-3"
+                    :class="{ 'fixed pointer-events-none': !stackedFinished, 'static md:mr-8': stackedFinished, hidden: closeStack }"
                     data-comment
                     :data-index="(i - commentArr.length) * -1"
                     @click="closeStack = true"
