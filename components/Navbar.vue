@@ -4,14 +4,14 @@
             backdropFilter: toggle ? ' blur(10px)' : '',
             filter: toggle && 'brightness(150%);',
         }"
-        :class="['fixed top-0 z-10 flex flex-wrap justify-between items-center w-full py-1']"
+        :class="['fixed top-0 z-[60] flex flex-wrap justify-between items-center w-full py-1']"
     >
-        <div class="flex items-center flex-shrink-0 mr-6 ml-2">
+        <div class="flex items-center flex-shrink-0 mr-6 ml-2 h-10 mx-1 md:my-4 my-0">
             <NuxtLink to="/">
-                <img :src="settings.logo" alt="" :class="[mainTheme === 'black' && 'invert', 'w-30 h-auto mx-1 md:my-4 my-0']" />
+                <img :src="settings.logo" alt="" :class="[mainTheme === 'black' && 'invert', `${toggle && 'hidden'} w-30 `]" />
             </NuxtLink>
         </div>
-        <div :class="[toggle ? 'sm:circleMenu' : 'sm:circleMenu2']">
+        <div :class="[toggle ? 'white' : 'black', 'relative top-[-38px]']">
             <div class="block lg:hidden cursor-pointer">
                 <input type="checkbox" id="overlay-input" />
                 <label for="overlay-input" @click="toggleNav" id="overlay-button" class="absolute">
@@ -24,7 +24,7 @@
             <ProjectsSwitcher v-if="route.path === '/gallery' || route.path === '/projects'" />
         </div>
 
-        <div :class="[toggle ? 'h-screen' : 'h-0', 'w-full flex lg:items-center lg:w-auto items-center']" id="nav-content">
+        <div :class="[toggle ? 'h-screen' : 'h-0', 'z-[60] w-full flex lg:items-center lg:w-auto items-center']" id="nav-content">
             <ul
                 id="link-list"
                 :class="[
@@ -36,7 +36,9 @@
                     <li class="text-center md:text-left px-8 md:px-0">
                         <NuxtLink to="/gallery" class="inline-block md:py-2 py-1 no-underline transition-all w-full duration-200 lg:mx-2 hover:text-green">
                             <div class="flex flex-col md:w-28 group text-center md:text-left">
-                                <span :class="['md:mr-auto   md:text-white text-[2.5rem] md:text-xs md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg', returnNavColors('projects')]">Projects</span>
+                                <span :class="['md:mr-auto   md:text-white text-[2.5rem] md:text-xs md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg', returnNavColors('projects')]"
+                                    >Projects</span
+                                >
                                 <h4 class="text-xxs hidden group-hover:text-white md:flex text-gray-700">A vast range of projects</h4>
                             </div>
                         </NuxtLink>
@@ -172,7 +174,7 @@ nav {
 #overlay-button .black:after {
     height: 3px;
     width: 35px;
-    background-color: #000;
+    background-color: rgb(255, 255, 255);
     position: absolute;
     content: '';
     transition: all 0.2s ease-in-out;
@@ -212,11 +214,11 @@ input[type='checkbox']:checked ~ #overlay-button span {
 }
 
 input[type='checkbox']:checked ~ #overlay-button span:before {
-    transform: rotate(45deg) translate(7px, 5px);
+    transform: rotate(35deg) translate(4px, -2px);
     opacity: 1;
 }
 
 input[type='checkbox']:checked ~ #overlay-button span:after {
-    transform: rotate(-45deg) translate(9px, -9px);
+    transform: rotate(-35deg) translate(9px, -5px);
 }
 </style>

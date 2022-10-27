@@ -15,7 +15,7 @@ export default {
         },
         color: {
             type: Boolean,
-            default: true,
+            default: false,
         },
     },
 }

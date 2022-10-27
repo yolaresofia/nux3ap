@@ -18,10 +18,14 @@
                 </Transition>
             </div>
 
+            <!-- setting dynamic min-h since if you scroll to bottom
+                 you can't click on the buttons or themeswitcher
+                maybe there's a better way?
+            -->
             <TransitionGroup
                 name="commentsContainer"
                 tag="div"
-                class="flex flex-col cursor-pointer w-full md:w-[30rem] min-h-[250px] fixed bottom-4 md:right-0 items-center md:justify-end md:p-4 md:pr-12 md:pb-0"
+                :class="['flex flex-col cursor-pointer w-full md:w-[30rem] fixed bottom-4 md:right-0 items-center md:justify-end md:p-4 md:pr-12 md:pb-0', stacked ? 'min-h-[20px]' : 'min-h-[250px]']"
                 @enter="onEnter"
                 :css="false"
                 @click="stacked = true"
@@ -87,13 +91,13 @@ const onDotsLeave = (el, done) => {
 }
 
 let rand = Math.floor(Math.random() * 8 + 5)
-let intervalC;
+let intervalC
 if (store.comments.length > 1) {
     showComments.value = true
 
     setInterval(() => {
         rand = Math.floor(Math.random() * 8 + 5)
-    }, 5000);
+    }, 5000)
     intervalC = setInterval(() => {
         currentComment.value = store.comments[index.value]
         if (index.value > 20) {

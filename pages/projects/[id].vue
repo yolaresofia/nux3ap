@@ -67,9 +67,7 @@
             </div>
 
             <div class="flex w-full flex-col">
-                <div class="flex justify-center xl:justify-between m-auto py-12">
-                    <h1 class="text-center px-6 py-4 rounded-full bg-white text-black">SIMILAR</h1>
-                </div>
+                <Pill text="SIMILAR" />
                 <div class="flex md:grid md:grid-cols-3 flex-col w-full">
                     <NuxtLink v-for="project in post.similarProjects" :key="project.id" :to="'/projects/' + project.slug.current" class="flex-1 flex-col my-4 md:m-4 fadeIn">
                         <div class="flex h-80 bg-cover bg-center rounded-3xl relative" :style="{ backgroundImage: 'url(' + urlFor(project.mainMedia.image.asset._ref) + ')' }">

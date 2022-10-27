@@ -10,7 +10,7 @@
             <div class="flex mt-auto">
                 <div class="flex flex-col space-y-2 items-end">
                     <img :src="settings.logo" :class="[mainTheme === 'black' && 'invert', 'h-auto w-28 md:w-44']" />
-                    <span class="ml-auto text-4xl hidden md:block text-white cursor-pointer" @click="changeTheme">{{ mainTheme === 'black' ? '🌈' : '☁️' }}</span>
+                    <span class="ml-auto text-4xl text-white cursor-pointer" @click="changeTheme">{{ mainTheme === 'black' ? '🌈' : '☁️' }}</span>
                     <ButtonBase :url="settings.contact.link" :btncolors="returnFooterButtonColors(true)"> {{ settings.contact.text }}</ButtonBase>
                     <ButtonBase :url="settings.instagram.link" :btncolors="returnFooterButtonColors(true)"> {{ settings.instagram.text }}</ButtonBase>
                 </div>
