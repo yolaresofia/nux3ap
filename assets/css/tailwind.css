@@ -194,4 +194,10 @@ li {
 		font-family: "Helveticaheavy";
 		font-size: 36px;
 	}
+	.heading-5 {
+		line-height: 2.1rem;
+		letter-spacing: -2px;
+		font-family: "Helveticaheavy";
+		font-size: 30px;
+	}
   }
