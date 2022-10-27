@@ -92,10 +92,10 @@ li {
 }
 
 .heading-3 {
-	line-height: 2.7rem;
+	line-height: 4.7rem;
 	letter-spacing: -2px;
 	font-family: "Helveticaheavy";
-	font-size: 48px;
+	font-size: 80px;
 }
 
 .heading-4 {
@@ -113,10 +113,17 @@ li {
 }
 
 .heading-2 {
-    line-height: 2.8rem;
+    line-height: 2.9rem;
     letter-spacing: -2px;
     font-family: "Helveticaheavy";
     font-size: 3.5rem;
+}
+
+.heading-5 {
+    line-height: 2.9rem;
+    letter-spacing: -2px;
+    font-family: "Helveticaheavy";
+    font-size: 48px;
 }
 
 .-letter-spacing-2 {
@@ -175,9 +182,16 @@ li {
 
 @media only screen and (max-width: 780px) {
 	.heading-3 {
-		line-height: 2rem;
+		line-height: 2.6rem;
 		letter-spacing: -2px;
 		font-family: "Helveticaheavy";
-		font-size: 33px;
+		font-size: 42px;
+		text-align: center;
+	}
+	.heading-2 {
+		line-height: 36px;
+		letter-spacing: -2px;
+		font-family: "Helveticaheavy";
+		font-size: 36px;
 	}
   }

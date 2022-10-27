@@ -20,7 +20,7 @@
                 <title>WOMB</title>
             </div>
         </div>
-        <div class="pr-20 md:pr-0 absolute left-[50%] lg:static">
+        <div class="absolute left-[42%] md:left-[50%] lg:static" v-if="!toggle">
             <ProjectsSwitcher v-if="route.path === '/gallery' || route.path === '/projects'" />
         </div>
 
@@ -36,9 +36,7 @@
                     <li class="text-center md:text-left px-8 md:px-0">
                         <NuxtLink to="/gallery" class="inline-block md:py-2 py-1 no-underline transition-all w-full duration-200 lg:mx-2 hover:text-green">
                             <div class="flex flex-col md:w-28 group text-center md:text-left">
-                                <span :class="['md:mr-auto   md:text-white text-[2.5rem] md:text-xs md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg', returnNavColors('projects')]"
-                                    >Projects</span
-                                >
+                                <span :class="['md:mr-auto   md:text-white text-[2.5rem] md:text-xs md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg', returnNavColors('projects')]">Projects</span>
                                 <h4 class="text-xxs hidden group-hover:text-white md:flex text-gray-700">A vast range of projects</h4>
                             </div>
                         </NuxtLink>

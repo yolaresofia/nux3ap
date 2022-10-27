@@ -1,7 +1,7 @@
 <template>
   <div :class="[returnThemeClass(true, 'pink', mainTheme)]">
     <div class="flex flex-col lg:min-h-screen py-20 md:px-4 px-3">
-      <p :class="['heading-3', returnThemeClass(false, 'mint', mainTheme)]">
+      <p :class="['heading-5', returnThemeClass(false, 'mint', mainTheme)]">
         {{ page.header }}
       </p>
       <div class="lg:grid lg:grid-cols-2 lg:p-20 mx-auto">

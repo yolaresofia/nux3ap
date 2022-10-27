@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="flex flex-col space-y-3">
-            <h1 :class="['font-black py-4 text-xl leading-none text-left', returnThemeClass(false, 'brown', mainTheme)]">{{ project.title }}</h1>
+            <h1 :class="['font-black py-4 text-2xl leading-none text-left', returnThemeClass(false, 'brown', mainTheme)]">{{ project.title }}</h1>
             <div class="flex space-x-3">
                 <div v-if="showCategories" class="flex">
                     <h4 v-for="(category, i) in project.categories" :key="category.id" :class="['font-mono text-xs uppercase', returnThemeClass(false, 'lime', mainTheme)]">

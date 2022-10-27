@@ -1,8 +1,8 @@
 <template>
-    <footer :class="[returnThemeClassFooter(true), 'w-full pb-4 px-2 md:px-4']">
+    <footer :class="[returnThemeClassFooter(true), 'w-full pb-4 px-4']">
         <div class="flex justify-between w-full">
             <div class="flex flex-col-reverse md:flex-row justify-between md:w-full">
-                <img :class="[mainTheme !== 'black' ? returnFooterLogoColors() : 'invert', 'w-24 md:w-60']" :src="settings.circleLogo" @mouseenter="onEnter" @mouseleave="onLeave" ref="logoimg" />
+                <img :class="[mainTheme !== 'black' ? returnFooterLogoColors() : 'invert', 'w-24 md:w-60 relative top-[35px] md:top-0']" :src="settings.circleLogo" @mouseenter="onEnter" @mouseleave="onLeave" ref="logoimg" />
                 <div class="flex items-end" @click="moveTo()" @mouseenter="onEnterTop" @mouseleave="onLeaveTop" ref="topbtn">
                     <img :class="[mainTheme !== 'black' && 'invert', 'md:w-28 w-24 pr-4 cursor-pointer']" src="~/assets/images/back-to-top.svg" alt="" />
                 </div>
@@ -16,7 +16,7 @@
                 </div>
             </div>
         </div>
-        <div class="flex w-full flex-col text-right md:flex-row md:justify-between text-xs py-3">
+        <div class="flex w-full flex-col text-right md:flex-row md:justify-between text-xxsm  py-3">
             <h4 class="font-mono">WOMB PRODUCTION COMPANY 2022 ®</h4>
             <h4 class="font-mono">PRIVACY POLICY / FAQ / TERMS & CONDITIONS</h4>
         </div>
@@ -170,5 +170,13 @@ const onLeaveTop = () => {
 }
 .logo-lightpurple {
     filter: invert(47%) sepia(26%) saturate(328%) hue-rotate(288deg) brightness(95%) contrast(91%);
+}
+.text-xxsm{
+    font-size: 0.7rem;
+}
+@media (min-width: 1024px) {
+    .text-xxsm{
+        font-size: 0.8rem;
+    }
 }
 </style>

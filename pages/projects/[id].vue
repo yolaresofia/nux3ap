@@ -28,7 +28,7 @@
                 </div>
                 <div v-if="post.res[0].mainSlider">
                     <div
-                        class="flex h-120 bg-cover bg-center rounded-3xl"
+                        class="flex h-[760px] bg-cover bg-center rounded-3xl"
                         :style="{
                             backgroundImage: 'url(' + post.res[0].mainSlider[phIndex].asset.url + ')',
                         }"
@@ -39,7 +39,7 @@
                 <div class="hidden md:block">
                     <h4>Text by {{ post.res[0].author }}</h4>
                 </div>
-                <div class="flex justify-between w-full" v-if="post.res[0].mainSlider">
+                <div class="flex justify-between w-full py-2" v-if="post.res[0].mainSlider">
                     <div>{{ phIndex + 1 }} of {{ post.res[0].mainSlider.length }}</div>
                     <div @click="nextSlide(post.res[0].mainSlider.length)" class="cursor-pointer">slide</div>
                 </div>
@@ -58,7 +58,7 @@
             <div class="flex flex-col md:flex-row md:flex-wrap">
                 <div class="pb-2 md:p-4 md:w-1/2" v-for="image in post.res[0].secondSlider" :key="image.id">
                     <div
-                        class="flex h-120 bg-cover bg-center rounded-3xl"
+                        class="flex h-[120] bg-cover bg-center rounded-3xl"
                         :style="{
                             backgroundImage: 'url(' + urlFor(image.asset._ref) + ')',
                         }"

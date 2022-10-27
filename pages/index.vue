@@ -1,13 +1,13 @@
 <template>
     <div :class="[returnThemeClass(true, 'primaryYellow', mainTheme)]">
         <div class="flex flex-col">
-            <div class="static" style="height: 70vh; overflow: hidden">
+            <div class="static lg:h-[69vh] overflow-hidden">
                 <video playsinline autoplay muted loop id="bgvideo" class="w-screen">
                     <source :src="page.section1.blocks.video" type="video/mp4" />
                 </video>
             </div>
             <div class="flex flex-1 h-full">
-                <p :class="['md:p-4 p-2 heading-3', returnThemeClass(false, 'brown', mainTheme)]">{{ page.section1.blocks.header }}</p>
+                <p :class="['md:p-4 p-4 heading-2', returnThemeClass(false, 'brown', mainTheme)]">{{ page.section1.blocks.header }}</p>
             </div>
         </div>
         <!-- section 2 -->
@@ -17,7 +17,7 @@
         </div>
 
         <!-- section 3 -->
-        <div class="flex flex-col px-2 py-20">
+        <div class="flex flex-col px-2 py-4">
             <h1 :class="['heading-3 px-2', returnThemeClass(false, 'blue', mainTheme)]">
                 {{ page.section3.blocks.header }}
             </h1>
@@ -26,12 +26,12 @@
             </div>
         </div>
         <!-- section 4 -->
-        <div class="flex flex-col px-2 py-20">
+        <div class="flex flex-col  py-4">
             <div class="flex w-full">
                 <ProjectComponent v-for="project in page.section4.projects" :key="project.id" :project="project" />
             </div>
         </div>
-        <h1 :class="['heading-3 text-center', returnThemeClass(false, 'blue', mainTheme)]">
+        <h1 :class="['heading-3 text-center pb-20 pt-10 md:pb-2', returnThemeClass(false, 'blue', mainTheme)]">
             {{ page.section4.blocks.subHeader }}
         </h1>
         <Comments />
