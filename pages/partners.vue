@@ -7,7 +7,7 @@
             <div class="grid grid-cols-2 lg:grid-cols-3">
                 <div v-for="(element, index) in page.collection" :key="index" class="-my-1">
                     <h2
-                        :class="[index === currentIndex ? 'text-white' : returnThemeClass(false, 'blue', mainTheme), 'text-[15px] leading-6 md:text-2xl font-black cursor-pointer min-w-18']"
+                        :class="[index === currentIndex ? 'text-white' : returnThemeClass(false, 'blue', mainTheme), 'text-[0.95rem] partner-text leading-6 md:text-2xl font-black cursor-pointer min-w-18']"
                         @click="currentIndex = index"
                     >
                         {{ element.name }}
@@ -40,3 +40,12 @@ const query = groq`*[_type=="partners"][0]`
 const currentIndex = useState('currentIndex', () => 0)
 const { data: page } = await useAsyncData('partners', async () => sanity.fetch(query))
 </script>
+<style>
+/* query for max-width 375 */
+@media only screen and (max-width: 375px) {
+    .partner-text {
+        font-size: 0.87rem;
+    }
+}
+
+</style>
