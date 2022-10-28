@@ -11,9 +11,9 @@
                     <div class="flex relative pl-10 pb-12">
                         <CategoryComponent v-for="(category, i) in post.res[0].categories" :key="category.id" :title="category.title" :i="i" />
                     </div>
-                    <h4 v-for="category in post.res[0].categories" :key="category.id" :class="[returnThemeClass(false, 'white', mainTheme), 'font-mono text-[10px] md:text-xs uppercase']">
+                    <h2 v-for="category in post.res[0].categories" :key="category.id" :class="[returnThemeClass(false, 'white', mainTheme), 'font-mono text-[10px] md:text-xs uppercase']">
                         {{ category.title }}
-                    </h4>
+                    </h2>
                 </div>
                 <div>
                     <h4 :class="[returnThemeClass(false, 'white', mainTheme), 'font-mono text-[10px] md:text-xs uppercase']">{{ post.res[0].date }}</h4>
@@ -24,7 +24,7 @@
                     <SanityContent :blocks="post.res[0].mainInformation" />
                 </div>
                 <div class="md:hidden block soehne text-xs">
-                    <h4>Text by {{ post.res[0].author }}</h4>
+                    <h3>Text by {{ post.res[0].author }}</h3>
                 </div>
                 <div v-if="post.res[0].mainSlider">
                     <div

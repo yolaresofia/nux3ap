@@ -4,9 +4,9 @@
             By continuing to browse this site, you agree to the use of cookies to identify your session and to remember your login after you close the browser (authentication cookies).
         </p>
         <div class="mt-2 ml-auto">
-            <button @click="openModal" class="px-2 pb-1 pt-2 mx-1 rounded-3xl bg-white text-black">Learn more</button>
+            <button @click="openModal" class="px-2 pt-1 mx-1 rounded-3xl bg-white text-black">Learn more</button>
 
-            <button @click="isCookiesOpen = false" class="px-2 pb-1 pt-2 mx-1 rounded-3xl bg-black text-white">Agree & close</button>
+            <button @click="isCookiesOpen = false" class="px-2 pt-1 mx-1 rounded-3xl bg-black text-white">Agree & close</button>
         </div>
     </div>
 </template>

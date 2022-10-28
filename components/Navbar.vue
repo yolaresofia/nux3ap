@@ -8,7 +8,7 @@
     >
         <div class="flex items-center flex-shrink-0 mr-6 ml-2 h-10 mx-1 md:my-4 my-0">
             <NuxtLink to="/">
-                <img :src="settings.logo" alt="" :class="[mainTheme === 'black' && 'invert', `${toggle && 'hidden'} w-30 `]" />
+                <img :src="settings.logo" width="120px" alt="logo" :class="[mainTheme === 'black' && 'invert', `${toggle && 'hidden'} w-30 `]" />
             </NuxtLink>
         </div>
         <div :class="[toggle ? 'white' : 'black', 'relative top-[-38px]']">
@@ -25,14 +25,14 @@
         </div>
 
         <div :class="[toggle ? 'h-screen' : 'h-0', 'z-[60] w-full flex lg:items-center lg:w-auto items-center']" id="nav-content">
-            <ul
+            <div
                 id="link-list"
                 :class="[
                     linkse ? 'opacity-100' : 'opacity-0 hidden',
                     'pt-4 lg:pt-0 lg:opacity-100 list-reset lg:flex justify-end flex-1 items-center md:uppercase lg:text-xs text-5xl lg:text-center text-left text-white lg:text-black ',
                 ]"
             >
-                <div class="grid lg:flex">
+                <ul class="grid lg:flex">
                     <li class="text-center md:text-left px-8 md:px-0">
                         <NuxtLink to="/gallery" class="inline-block md:py-2 py-1 no-underline transition-all w-full duration-200 lg:mx-2 hover:text-green">
                             <div class="flex flex-col md:w-28 group text-center md:text-left">
@@ -59,8 +59,8 @@
                             </div>
                         </NuxtLink>
                     </li>
-                </div>
-            </ul>
+                </ul>
+            </div>
         </div>
     </nav>
 </template>
