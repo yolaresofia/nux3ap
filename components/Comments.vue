@@ -25,7 +25,10 @@
             <TransitionGroup
                 name="commentsContainer"
                 tag="div"
-                :class="['flex flex-col cursor-pointer w-full md:w-[30rem] fixed bottom-4 md:right-0 z-40 items-center md:justify-end md:p-4 md:pr-12 md:pb-0', stacked ? 'min-h-[20px]' : 'min-h-[250px]']"
+                :class="[
+                    'flex flex-col cursor-pointer w-full md:w-[30rem] fixed bottom-4 md:right-0 items-center md:justify-end md:p-4 md:pr-12 md:pb-0',
+                    stacked ? 'min-h-[20px] z-50' : 'min-h-[250px] z-40',
+                ]"
                 @enter="onEnter"
                 :css="false"
                 @click="stacked = true"
@@ -34,7 +37,7 @@
                 <div
                     v-for="(comment, i) in commentArr"
                     :key="comment"
-                    class="comment-width text-sm p-10 rounded-xl bg-lightblack font-mono grid text-white md:w-[30rem] origin-bottom left-4 bottom-4 md:left-auto md:right-8 mt-3"
+                    class="comment-width text-sm p-10 rounded-xl bg-lightblack font-mono grid text-white md:w-[30rem] origin-bottom left-4 bottom-[150px] md:bottom-4 md:left-auto md:right-8 mt-3"
                     :class="{ 'comment-width | fixed pointer-events-none': !stackedFinished, 'static md:mr-8': stackedFinished, hidden: closeStack }"
                     data-comment
                     :data-index="(i - commentArr.length) * -1"
@@ -49,7 +52,7 @@
 
 <script setup>
 import { useStore } from '~/store/store'
-import { selectAll } from '~~/mixins/general'
+import { select, selectAll } from '~~/mixins/general'
 import { gsap } from 'gsap'
 
 const store = useStore()
@@ -131,10 +134,17 @@ watch(commentArr.value, () => {
 })
 
 watch(stacked, () => {
+    let mm = gsap.matchMedia()
+
     if (!stacked.value) return
 
+    const commentContainer = select('[data-comments-container]')
     const comments = selectAll('[data-comment]')
     const MARGIN = 12
+
+    mm.add('(max-width: 640px)', () => {
+        gsap.to(commentContainer, { y: 150, duration: 0.2 })
+    })
 
     comments.forEach((comment, i) => {
         gsap.to(comment, { y: 0, scale: 1, duration: 0.2 })
@@ -144,6 +154,8 @@ watch(stacked, () => {
             ease: 'power4.out',
             duration: 0.6,
             onComplete: () => {
+                gsap.set(commentContainer, { y: 0 })
+                gsap.set(comment, { bottom: '1rem' })
                 comment.removeAttribute('style')
                 stackedFinished.value = true
             },
