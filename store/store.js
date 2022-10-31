@@ -9,6 +9,10 @@ export const useStore = defineStore('main', () => {
     function SET_comments(s) {
         comments = s
     }
+    let cookieBannerClosed = ref(false)
+    function SET_cookieBannerClosed(s) {
+        cookieBannerClosed = s
+    }
 
-    return { settings, SET_settings, comments, SET_comments }
+    return { settings, SET_settings, comments, SET_comments, cookieBannerClosed, SET_cookieBannerClosed }
 })

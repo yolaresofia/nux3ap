@@ -167,6 +167,18 @@ const stackComments = () => {
     hasNewComments.value = false
     console.log('stack comments')
 }
+
+watch(store, () => {
+    if (store.cookieBannerClosed) {
+        let mm = gsap.matchMedia()
+
+        const commentContainer = select('[data-comments-container]')
+
+        mm.add('(max-width: 640px)', () => {
+            gsap.to(commentContainer, { y: 150, duration: 0.2 })
+        })
+    }
+})
 </script>
 
 <style scoped>
