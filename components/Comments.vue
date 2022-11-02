@@ -101,9 +101,9 @@ if (store.comments.length > 1) {
             index.value++
         }
         commentArr.value.push(store.comments[index.value])
-        if (commentArr.value.length > 3) {
-            commentArr.value.shift()
-        }
+        // if (commentArr.value.length > 3) {
+        //     commentArr.value.shift()
+        // }
         if (!hasNewComments.value && showComments.value) {
             hasNewComments.value = true
         }

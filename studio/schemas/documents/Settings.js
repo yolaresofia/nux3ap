@@ -5,6 +5,11 @@ export default {
     __experimental_actions: ['update', 'publish', 'create', 'delete'],
     fields: [
         {
+            name: 'isUnderConstruction',
+            title: 'is Under Construction',
+            type: 'boolean',
+        },
+        {
             name: 'titulo',
             title: 'title',
             type: 'string',
