@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="duration-150" :class="{ 'opacity-0 pointer-events-none': hideCommentsAtBottom }">
         <Transition name="close-btn">
             <button
                 v-if="open && !closeStack && !isCaughtUp"
@@ -60,6 +60,7 @@
 import { useStore } from '~/store/store'
 import { select, selectAll } from '~~/mixins/general'
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 const store = useStore()
 const currentComment = useState('currentComment', () => store.comments[0])
@@ -71,6 +72,7 @@ const commentArr = useState('commentArr', () => [])
 const showComments = useState('showComments', () => false)
 const hasNewComments = useState('hasNewComments', () => false)
 const isCaughtUp = useState('isCaughtUp', () => false)
+const hideCommentsAtBottom = useState('hideCommentsAtBottom', () => false)
 
 const onEnter = (el, done) => {
     gsap.fromTo(
@@ -136,11 +138,31 @@ if (store.comments.length > 1) {
         if (!hasNewComments.value && showComments.value) {
             hasNewComments.value = true
         }
-    }, rand * 500)
+    }, rand * 1000)
 }
+
+let st
+
+onMounted(() => {
+    gsap.registerPlugin(ScrollTrigger)
+
+    st = ScrollTrigger.create({
+        onUpdate: ({ progress }) => {
+            console.log(progress)
+            if (progress > 0.9) {
+                hideCommentsAtBottom.value = true
+            } else {
+                hideCommentsAtBottom.value = false
+            }
+        },
+    })
+
+    setTimeout(() => st.refresh(), 2000)
+})
 
 onUnmounted(() => {
     clearInterval(intervalC)
+    st.kill()
 })
 
 const scrollCommentsToTop = () => {
