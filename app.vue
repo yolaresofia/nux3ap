@@ -40,7 +40,7 @@
             </div>
             <div class="absolute flex justify-center w-full bottom-[40px]">
                 <div class="lg:text-6xl text-4xl text-center helvetica-heavy coming-text px-20">
-                    <h1>Something big is coming up!</h1>
+                    <h1>Something we love is coming soon.</h1>
                 </div>
             </div>
         </div>
