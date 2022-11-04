@@ -1,6 +1,6 @@
 <template>
     <div>
-        <!-- <div v-if="true" class="grid overflow-x-hidden fadeIn"> -->
+        <!-- <div v-if="true" class="grid overflow-x-hidden fadeIn">  -->
         <div v-if="!store.settings.isUnderConstruction" class="grid overflow-x-hidden fadeIn">
             <Navbar />
             <NuxtPage />
