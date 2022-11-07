@@ -15,11 +15,10 @@
      {props.children}
    </span>
  );
- const htmlRender = ({ value }) => {
-   const { code } = value;
- 
-   return <div dangerouslySetInnerHTML={{ __html: code + '' }}/>;
- };
+
+ const space = () => {
+  return <div style={{ height: '10px' }}/>;
+};
  
  export default {
    title: "Block Content",
@@ -77,31 +76,27 @@
          ],
        },
      },
+    {
+      name: 'break',
+      type: 'object',
+      title: 'Break',
+      fields: [
+        {
+          name: 'style',
+          type: 'string',
+          options: {
+            list: ['break']
+          }
+        }
+      ]
+    },
      // You can add additional types here. Note that you can't use
      // primitive types such as 'string' and 'number' in the same array
      // as a block type.
      {
        type: "image",
        options: { hotspot: true },
-     },
-     {
-       name: "html",
-       title: "html",
-       type: "object",
-       preview: {
-         select: {
-           code: 'code'
-         },
-         component: htmlRender
-       },
-       fields: [
-         {
-           name: "code",
-           type: "text",
-           title: "code",
-         },
-       ],
-     },
+     }
    ],
  };
  

@@ -97,7 +97,7 @@ const returnNavColors = (routeNav) => {
         partners: 'bg-orange text-blue',
     }
     return mainTheme.value === 'black' ? 'bg-white text-black' : primaryColors[routeNav]
-}
+};
 </script>
 
 <style>
@@ -141,7 +141,7 @@ nav {
 }
 
 #overlay-button .white {
-    height: 3px;
+    height: 4.5px;
     width: 35px;
     background-color: white;
     position: relative;
@@ -151,7 +151,7 @@ nav {
 
 #overlay-button .white:before,
 #overlay-button .white:after {
-    height: 3px;
+    height: 4.5px;
     width: 35px;
     background-color: white;
     position: absolute;
@@ -179,12 +179,12 @@ nav {
 }
 
 #overlay-button span:before {
-    top: 10px;
+    top: 9px;
     visibility: visible;
 }
 
 #overlay-button span:after {
-    top: 19px;
+    top: 18px;
     visibility: visible;
 }
 

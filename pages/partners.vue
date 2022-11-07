@@ -18,7 +18,7 @@
                 <h3 class="md:text-2xl text-base">
                     {{ page.collection[currentIndex].jobDescription }}
                 </h3>
-                <h4 class="soehne text-xs leading-4 tracking-normal md:text-lg md:leading-5">
+                <h4 class="soehne text-xs lg:text-[16px] leading-4 tracking-normal md:leading-5">
                     {{ page.collection[currentIndex].text }}
                 </h4>
             </div>

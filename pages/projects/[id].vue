@@ -28,7 +28,7 @@
                 </div>
                 <div v-if="post.res[0].mainSlider">
                     <div
-                        class="flex h-[760px] bg-cover bg-center rounded-3xl"
+                        class="flex h-[760px] aspect-[5/4] bg-cover bg-center rounded-3xl"
                         :style="{
                             backgroundImage: 'url(' + post.res[0].mainSlider[phIndex].asset.url + ')',
                         }"
@@ -121,10 +121,14 @@ const nextSlide = (length) => {
     } else {
         phIndex.value = 0
     }
-}
+};
 </script>
 
-<style>
+<style scoped>
+.formattedRichText {
+    padding-bottom: 10px;
+}
+
 .sans-serif,
 .sans-serif * {
     font-family: sans-serif;

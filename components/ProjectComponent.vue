@@ -1,6 +1,9 @@
 <template>
     <NuxtLink :to="'projects/' + project.slug.current" class="flex-1 flex-col m-4 fadeIn">
-        <div class="flex h-120 transition-all duration-300 transform hover:scale-[0.99] bg-cover bg-center rounded-3xl relative border border-gray-900 " :style="{ backgroundImage: project.mainMedia.isVideo ? '' : 'url(' + urlFor(project.mainMedia.image.asset._ref).format('webp').width(1400).url() + ')' }">
+        <div
+            class="flex transition-all duration-300 transform hover:scale-[0.99] aspect-[5/4] bg-cover bg-center rounded-3xl relative border border-gray-900"
+            :style="{ backgroundImage: project.mainMedia.isVideo ? '' : 'url(' + urlFor(project.mainMedia.image.asset._ref).format('webp').width(1400).url() + ')' }"
+        >
             <video playsinline autoplay muted loop class="rounded-3xl h-full">
                 <source :src="project.mainVideo" type="video/mp4" />
             </video>
@@ -17,7 +20,9 @@
                     </h4>
                 </div>
             </div>
-            <SanityContent :blocks="project.information" />
+            <div class="leading-[20px]">
+                <SanityContent :blocks="project.information" />
+            </div>
         </div>
     </NuxtLink>
 </template>
