@@ -41,14 +41,9 @@ const { data: collection } = await useAsyncData('gallery', async () => sanity.fe
 
 const sortedCollection = computed(() => {
     const abcProjects = [...collection.value.projects]
-    if (sorted.value)
-        return abcProjects.sort((a, b) => {
-            return new Date(b.date) - new Date(a.date)
-        })
+    if (sorted.value) return abcProjects.sort((a, b) => a.title.localeCompare(b.title))
 
-    return abcProjects.sort((a, b) => {
-        return new Date(a.date) - new Date(b.date)
-    })
+    return collection.value.projects
 })
 
 const imagesContainer = ref(null)
