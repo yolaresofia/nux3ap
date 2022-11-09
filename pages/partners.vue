@@ -7,7 +7,7 @@
             <div class="grid grid-cols-2 lg:grid-cols-3">
                 <div v-for="(element, index) in page.collection" :key="index" class="-my-1">
                     <h2
-                        :class="[index === currentIndex ? 'text-white' : returnThemeClass(false, 'blue', mainTheme), 'text-[0.95rem] partner-text leading-6 md:text-2xl font-black cursor-pointer min-w-18']"
+                        :class="[index === currentIndex ? 'text-white' : returnThemeClass(false, 'blue', mainTheme), 'text-[14.6px] partner-text leading-6 md:text-2xl font-black cursor-pointer min-w-18']"
                         @click="currentIndex = index"
                     >
                         {{ element.name }}
@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="grid md:pt-10 md:pb-10 pt-4 pb-2 min-h-26 md:min-h-44 h-full">
-                <h3 class="md:text-2xl text-base">
+                <h3 :class="[returnThemeClass(false, 'yellow', mainTheme),'md:text-2xl text-base']">
                     {{ page.collection[currentIndex].jobDescription }}
                 </h3>
                 <h4 class="soehne text-xs lg:text-[16px] leading-4 tracking-normal md:leading-5">
@@ -23,7 +23,7 @@
                 </h4>
             </div>
             <div class="">
-                <div class="w-full">
+                <div class="w-full pb-5">
                     <SanityImage :asset-id="page.collection[currentIndex].image.asset._ref" class="rounded-3xl" format="webp" />
                 </div>
             </div>

@@ -1,18 +1,18 @@
 <template>
-    <NuxtLink :to="'projects/' + project.slug.current" class="flex-1 flex-col m-4 fadeIn">
+    <NuxtLink :to="'projects/' + project.slug.current" class="flex-1 flex-col  m-4 fadeIn">
         <div
-            class="flex transition-all duration-300 transform hover:scale-[0.99] aspect-[5/4] bg-cover bg-center rounded-3xl relative border border-gray-900"
+            class="flex transition-all duration-300 transform hover:scale-[0.99] aspect-square lg:aspect-[5/4] bg-cover bg-center rounded-3xl relative border border-gray-900"
             :style="{ backgroundImage: project.mainMedia.isVideo ? '' : 'url(' + urlFor(project.mainMedia.image.asset._ref).format('webp').width(1400).url() + ')' }"
         >
-            <video playsinline autoplay muted loop class="rounded-3xl h-full">
+            <video v-if="project.mainVideo" playsinline autoplay muted loop class="rounded-3xl h-full">
                 <source :src="project.mainVideo" type="video/mp4" />
             </video>
             <div v-if="showCategories">
                 <CategoryComponent v-for="(category, i) in project.categories" :key="category.id" :title="category.title" :i="i" />
             </div>
         </div>
-        <div class="flex flex-col space-y-3">
-            <h1 :class="['font-black py-4 text-2xl leading-none text-left', returnThemeClass(false, 'brown', mainTheme)]">{{ project.title }}</h1>
+        <div class="flex flex-col md:space-y-3 space-y-2">
+            <h1 :class="['font-black md:py-4 pt-4 text-2xl leading-none text-left', returnThemeClass(false, 'brown', mainTheme)]">{{ project.title }}</h1>
             <div class="flex space-x-3">
                 <div v-if="showCategories" class="flex">
                     <h4 v-for="(category, i) in project.categories" :key="category.id" :class="['font-mono text-xs uppercase', returnThemeClass(false, 'lime', mainTheme)]">

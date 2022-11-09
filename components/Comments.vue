@@ -148,7 +148,6 @@ onMounted(() => {
 
     st = ScrollTrigger.create({
         onUpdate: ({ progress }) => {
-            console.log(progress)
             if (progress > 0.9) {
                 hideCommentsAtBottom.value = true
             } else {

@@ -6,10 +6,10 @@
         }"
         :class="['fixed top-0 z-[60] flex flex-wrap justify-between items-center w-full py-1']"
     >
-        <div class="flex items-center flex-shrink-0 mr-6 ml-2 h-10 mx-1 md:my-4 my-0">
-            <NuxtLink to="/">
-                <img :src="settings.logo" width="120px" alt="logo" :class="[mainTheme === 'black' && 'invert', `${toggle && 'hidden'} w-30 `]" />
-            </NuxtLink>
+        <div :class="[toggle ? 'blur' : '', 'flex items-center flex-shrink-0 mr-6 ml-2 h-10 mx-1 md:my-4 my-0']">
+            <div @click="router.push('/')">
+                <img :src="settings.logo" width="120px" alt="logo" :class="[mainTheme === 'black' && 'invert', 'w-30']" />
+            </div>
         </div>
         <div :class="[toggle ? 'white' : 'black', 'relative top-[-38px]']">
             <div class="block lg:hidden cursor-pointer">
@@ -36,7 +36,7 @@
                     <li class="text-center md:text-left px-8 md:px-0">
                         <NuxtLink to="/gallery" class="inline-block md:py-2 py-1 no-underline transition-all w-full duration-200 lg:mx-2 hover:text-green">
                             <div class="flex flex-col md:w-28 group text-center md:text-left">
-                                <span :class="['md:mr-auto   md:text-white text-[2.5rem] md:text-xs md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg', returnNavColors('projects')]">Projects</span>
+                                <span :class="['md:mr-auto md:text-white text-[2.5rem] md:text-xs md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg', returnNavColors('projects')]">Projects</span>
                                 <h4 class="text-xxs hidden group-hover:text-white md:flex text-gray-700">A vast range of projects</h4>
                             </div>
                         </NuxtLink>
@@ -71,6 +71,8 @@ let { settings } = useStore()
 const mainTheme = useState('mainTheme')
 let toggle = ref(false)
 let linkse = ref(false)
+const router = useRouter();
+
 const route = useRoute()
 onMounted(() => {
     if (process.client) {
@@ -97,10 +99,19 @@ const returnNavColors = (routeNav) => {
         partners: 'bg-orange text-blue',
     }
     return mainTheme.value === 'black' ? 'bg-white text-black' : primaryColors[routeNav]
-};
+}
 </script>
 
 <style>
+.router-link-exact-active * {
+    background-color: black !important;
+    color: white !important;
+    border-radius: 10px;
+}
+
+.blur {
+    filter: blur(4px);
+}
 h4 {
     line-height: 1.1;
 }
@@ -114,7 +125,7 @@ h4 {
 }
 
 nav {
-    transition: all 0.08s;
+    transition: all 0.2s;
     position: fixed;
     top: 0;
 }
@@ -160,7 +171,7 @@ nav {
 }
 
 #overlay-button .black {
-    height: 3px;
+    height: 5px;
     width: 35px;
     background-color: #000;
     position: relative;
@@ -170,7 +181,7 @@ nav {
 
 #overlay-button .black:before,
 #overlay-button .black:after {
-    height: 3px;
+    height: 5px;
     width: 35px;
     background-color: rgb(0, 0, 0);
     position: absolute;

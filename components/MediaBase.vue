@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div :class="[isCentered ? 'center w-full': '']">
+        <div v-if="isCentered && isMobile" class="w-full absolute bg-black opacity-70 h-[200vh] -top-[40vh] " ></div>
         <div v-if="src.indexOf('jpg') === -1" class="w-full h-full relative">
             <div v-if="!hidePause" class="group center">
                 <button class="center z-50" @click="play">
@@ -36,11 +37,25 @@ defineProps({
         default: false,
     },
 })
+// check if is mobile on mounted⁄¡
+
+const isMobile = useState('isMobile', () => false)
+const isCentered = useState('isCentered', () => false)
+onMounted(() => {
+    if (window.innerWidth < 768) {
+        isMobile.value = true
+    }
+})
+
 const paused = ref(true)
 const video = ref(null)
 const play = () => {
+    if (isMobile && !isCentered.value) {
+        isCentered.value = true
+    } else {
+        isCentered.value = false
+    }
     video.value.paused ? video.value.play() : video.value.pause()
-
 }
 const pause = () => {
     video.value.pause()

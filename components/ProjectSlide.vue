@@ -1,5 +1,5 @@
 <template>
-    <div class="pr-2 md:p-4 aspect-[4/5] flex-none" :class="[large ? 'mobile-width md:w-1/2' : 'mobile-width md:w-1/3']" :data-slide="Boolean(large)">
+    <div class="pr-2 md:p-4 lg:aspect-[4/5] flex-none" :class="[large ? 'mobile-width md:w-1/2' : 'mobile-width md:w-1/3']" :data-slide="Boolean(large)">
         <div
             class="flex h-120 bg-cover bg-center rounded-3xl"
             :style="{

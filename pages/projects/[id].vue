@@ -28,7 +28,7 @@
                 </div>
                 <div v-if="post.res[0].mainSlider">
                     <div
-                        class="flex h-[760px] aspect-[5/4] bg-cover bg-center rounded-3xl"
+                        class="flex h-[467px] mt-5 md:mt-1 lg:h-[800px]  bg-cover bg-center rounded-3xl"
                         :style="{
                             backgroundImage: 'url(' + post.res[0].mainSlider[phIndex].asset.url + ')',
                         }"

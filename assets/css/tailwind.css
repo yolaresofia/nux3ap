@@ -35,6 +35,7 @@ body::-webkit-scrollbar {
 @font-face {
     font-family: 'Helveticabold';
     src: local('Helveticabold'), url(~/assets/fonts/Helveticabold.otf) format('truetype');
+    descent-override: 0%;
 }
 
 html {
@@ -160,7 +161,7 @@ li {
 
 .center {
     position: absolute;
-    z-index: 99;
+    z-index: 51;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -179,14 +180,14 @@ li {
         line-height: 2.6rem;
         letter-spacing: -2px;
         font-family: 'Helveticaheavy';
-        font-size: 41px;
+        font-size: 40px;
         text-align: center;
     }
     .heading-2 {
         line-height: 36px;
         letter-spacing: -2px;
         font-family: 'Helveticaheavy';
-        font-size: 36px;
+        font-size: 35px;
     }
     .heading-5 {
         line-height: 2.1rem;
