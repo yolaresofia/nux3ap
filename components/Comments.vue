@@ -49,9 +49,9 @@
             </button>
         </Transition>
 
-        <div v-if="isCaughtUp" class="fixed bottom-4 right-4 md:right-8 flex space-x-2 z-50">
-            <p class="bg-lightblack pt-2 pb-1 px-3 rounded-full">👍</p>
-            <p class="bg-lightblack pt-2 pb-1 px-3 rounded-full">You're all caught up!</p>
+        <div v-if="isCaughtUp" class="fixed z-50 flex space-x-2 bottom-4 right-4 md:right-8">
+            <p class="px-3 pt-2 pb-1 rounded-full bg-lightblack">👍</p>
+            <p class="px-3 pt-2 pb-1 rounded-full bg-lightblack">You're all caught up!</p>
         </div>
     </section>
 </template>
@@ -125,16 +125,17 @@ if (store.comments.length > 1) {
         currentComment.value = store.comments[index.value]
         if (index.value > 20) {
             showComments.value = false
+        } else {
+            commentArr.value.push(store.comments[index.value])
         }
         if (index.value === store.comments.length - 1) {
             index.value = 0
         } else {
             index.value++
         }
-        commentArr.value.push(store.comments[index.value])
-        // if (commentArr.value.length > 3) {
-        //     commentArr.value.shift()
-        // }
+        if (commentArr.value.length > 12) {
+            commentArr.value.shift()
+        }
         if (!hasNewComments.value && showComments.value) {
             hasNewComments.value = true
         }
@@ -169,7 +170,11 @@ const scrollCommentsToTop = () => {
         select('[data-index="1"]').scrollIntoView({ block: 'end' })
     }, 10)
 }
-
+watch(index, ()=> {
+    if (index.value === 12) {
+        clearInterval(intervalC)
+    }
+})
 watch(commentArr.value, () => {
     isCaughtUp.value = false
 
@@ -253,5 +258,9 @@ watch(store, () => {
     .comment-width {
         width: calc(100% - 2rem);
     }
+}
+.sans-serif,
+.sans-serif * {
+    font-family: sans-serif;
 }
 </style>

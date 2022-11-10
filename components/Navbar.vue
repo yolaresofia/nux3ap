@@ -4,7 +4,7 @@
             backdropFilter: toggle ? ' blur(10px)' : '',
             filter: toggle && 'brightness(150%);',
         }"
-        :class="['fixed top-0 z-[60] flex flex-wrap justify-between items-center w-full py-1']"
+        :class="['fixed top-0 z-[51] flex flex-wrap justify-between items-center w-full py-1']"
     >
         <div :class="[toggle ? 'blur' : '', 'flex items-center flex-shrink-0 mr-6 ml-2 h-10 mx-1 md:my-4 my-0']">
             <div @click="router.push('/')">
@@ -12,7 +12,7 @@
             </div>
         </div>
         <div :class="[toggle ? 'white' : 'black', 'relative top-[-38px]']">
-            <div class="block lg:hidden cursor-pointer">
+            <div class="block cursor-pointer lg:hidden">
                 <input type="checkbox" id="overlay-input" />
                 <label for="overlay-input" @click="toggleNav" id="overlay-button" class="absolute">
                     <span :class="[mainTheme === 'black' ? 'white' : 'black']"></span>
@@ -33,29 +33,29 @@
                 ]"
             >
                 <ul class="grid lg:flex">
-                    <li class="text-center md:text-left px-8 md:px-0">
-                        <NuxtLink to="/gallery" class="inline-block md:py-2 py-1 no-underline transition-all w-full duration-200 lg:mx-2 hover:text-green">
-                            <div class="flex flex-col md:w-28 group text-center md:text-left">
+                    <li class="px-8 text-center md:text-left md:px-0">
+                        <NuxtLink to="/gallery" class="inline-block w-full py-1 no-underline transition-all duration-200 md:py-2 lg:mx-2 hover:text-green">
+                            <div class="flex flex-col text-center md:w-28 group md:text-left">
                                 <span :class="['md:mr-auto md:text-white text-[2.5rem] md:text-xs md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg', returnNavColors('projects')]">Projects</span>
-                                <h4 class="text-xxs hidden group-hover:text-white md:flex text-gray-700">A vast range of projects</h4>
+                                <h4 class="hidden text-gray-700 text-xxs group-hover:text-white md:flex">A vast range of projects</h4>
                             </div>
                         </NuxtLink>
                     </li>
-                    <li class="text-center md:text-left px-8 md:px-0">
-                        <NuxtLink to="/partners" class="inline-block md:py-2 py-1 no-underline w-full transition-all duration-200 lg:mx-2 hover:text-green">
-                            <div class="flex flex-col group text-center md:text-left">
+                    <li class="px-8 text-center md:text-left md:px-0">
+                        <NuxtLink to="/partners" class="inline-block w-full py-1 no-underline transition-all duration-200 md:py-2 lg:mx-2 hover:text-green">
+                            <div class="flex flex-col text-center group md:text-left">
                                 <span :class="['md:mr-auto md:text-white text-[2.5rem] md:text-xs md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg', returnNavColors('partners')]">Partners</span>
-                                <h4 class="text-xxs hidden group-hover:text-white md:flex text-gray-700 w-28">Our diverse</h4>
-                                <h4 class="text-xxs hidden group-hover:text-white md:flex text-gray-700">network of collaborators</h4>
+                                <h4 class="hidden text-gray-700 text-xxs group-hover:text-white md:flex w-28">Our diverse</h4>
+                                <h4 class="hidden text-gray-700 text-xxs group-hover:text-white md:flex">network of collaborators</h4>
                             </div>
                         </NuxtLink>
                     </li>
-                    <li class="text-center md:text-left px-8 md:px-0">
-                        <NuxtLink to="/about" class="inline-block md:py-2 py-1 no-underline w-full transition-all duration-200 lg:mx-2 hover:text-green">
-                            <div class="flex flex-col group text-center md:text-left">
+                    <li class="px-8 text-center md:text-left md:px-0">
+                        <NuxtLink to="/about" class="inline-block w-full py-1 no-underline transition-all duration-200 md:py-2 lg:mx-2 hover:text-green">
+                            <div class="flex flex-col text-center group md:text-left">
                                 <span :class="['md:mr-auto md:text-white text-[2.5rem] md:text-xs md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg', returnNavColors('about')]">About</span>
-                                <h4 class="text-xxs hidden group-hover:text-white md:flex text-gray-700 w-28">Learn more</h4>
-                                <h4 class="text-xxs hidden group-hover:text-white md:flex text-gray-700">about our process</h4>
+                                <h4 class="hidden text-gray-700 text-xxs group-hover:text-white md:flex w-28">Learn more</h4>
+                                <h4 class="hidden text-gray-700 text-xxs group-hover:text-white md:flex">about our process</h4>
                             </div>
                         </NuxtLink>
                     </li>
@@ -103,11 +103,9 @@ const returnNavColors = (routeNav) => {
 </script>
 
 <style>
-.router-link-exact-active * {
-    background-color: black !important;
-    color: white !important;
-    border-radius: 10px;
-}
+ /* media query for mobile nav */
+
+
 
 .blur {
     filter: blur(4px);
@@ -134,6 +132,12 @@ nav {
     nav * {
         font-family: 'Helveticabold';
     }
+    .router-link-exact-active * {
+    background-color: black !important;
+    color: white !important;
+    border-radius: 10px;
+}
+
 }
 
 @media (min-width: 768px) {
