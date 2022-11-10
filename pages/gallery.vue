@@ -103,8 +103,7 @@ const initScrollTrigger = () => {
             trigger: headline,
             start: 'top 10%',
             end: 'bottom 10%',
-            markers: true,
-            onToggle: ({ isActive, direction }) => {
+            onToggle: ({ isActive }) => {
                 if (isActive) {
                     var elementPos = imagesCollection.value
                         .map((item) => {
