@@ -1,18 +1,24 @@
 <template>
     <article :class="['gallery | relative', returnThemeClass(true, 'purple', mainTheme)]">
-        <section class="images-section | absolute px-4 bottom-[10rem] h-screen w-full md:transform md:-translate-x-4 opacity-0" ref="imagesContainer">
-            <figure v-for="(element, index) in sortedCollection" :key="element._key" :data-index="index" class="img | overflow-hidden absolute">
+        <TransitionGroup tag="section" class="absolute px-4 bottom-[10rem] h-screen w-full md:transform md:-translate-x-4 pointer-events-none z-[-1]">
+            <figure
+                v-for="(element, i) in imagesCollection"
+                :key="element"
+                :data-index="i"
+                class="img | overflow-hidden absolute duration-300 ease-out"
+                :style="{ bottom: `${i * 50}px`, right: `${i * 50}px`, transform: `scale(${1 - i * 0.04})`, zIndex: `${collection.projects.length - i}` }"
+            >
                 <SanityImage :asset-id="element.mainMedia.image.asset._ref" class="object-cover h-full w-full" />
             </figure>
-        </section>
+        </TransitionGroup>
         <div>
-            <OrderBtn @click="sorted = !sorted" classNames="pt-18 pl-4" />
+            <OrderBtn @click="reversed = !reversed" classNames="pt-18 pl-4" />
 
             <section class="text-yellow leading-9 px-4 flex flex-col md:h-[70vh] md:overflow-scroll pb-24 md:pt-6">
-                <NuxtLink :to="'projects/' + element.slug.current" v-for="(element, index) in sortedCollection" :key="element._key" class="block">
+                <NuxtLink :to="'projects/' + element.slug.current" v-for="element in sortedCollection" :key="element._key" class="block">
                     <h2
                         :class="['inline-block md:text-5xl text-2_5xl leading-[28px] md:leading-[26px] cursor-pointer', returnThemeClass(false, 'yellow', mainTheme)]"
-                        @mouseenter="mouseEnter(index, element)"
+                        @mouseenter="mouseEnter(element.title)"
                     >
                         {{ element.title }}
                     </h2>
@@ -25,154 +31,119 @@
 <script setup>
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { returnThemeClass, selectAll, getNextSiblings, getPreviousSiblings } from '~/mixins/general'
+import { returnThemeClass, selectAll, select } from '~/mixins/general'
+import move from 'lodash-move'
 const mainTheme = useState('mainTheme')
 
 const isMobile = useState('isMobile', () => false)
-const activeProject = useState('activeProject', () => 0)
-const direction = useState('direction', () => 0)
 const sorted = useState('sorted', () => false)
+const reversed = useState('reversed', () => false)
 
 const sanity = useSanity()
 const query = groq` {
-  "projects": *[_type == "project"]| order(date desc),
+    "projects": *[_type == "project"]| order(date desc),
 }`
 const { data: collection } = await useAsyncData('gallery', async () => sanity.fetch(query))
 
 const sortedCollection = computed(() => {
+    if (reversed.value) return collection.value.projects.reverse()
+
     const abcProjects = [...collection.value.projects]
     if (sorted.value) return abcProjects.sort((a, b) => a.title.localeCompare(b.title))
 
     return collection.value.projects
 })
 
-const imagesContainer = ref(null)
-
-const OFFSET = 50
-const SCALE = 0.04
+const imagesCollection = ref(collection.value.projects)
 
 onMounted(() => {
+    const listBtn = select('[data-gallery-list-btn]')
+
+    listBtn?.addEventListener('click', () => {
+        sorted.value = !sorted.value
+    })
+
     gsap.registerPlugin(ScrollTrigger)
 
     checkMobile()
     window.addEventListener('resize', resize)
 
     setTimeout(() => {
-        gsap.to(imagesContainer.value, { opacity: 1, duration: 0.2, delay: 0.35 })
-
-        const images = selectAll('figure')
-        images.forEach((img, index) => renderImage(img, index, false, true))
-
         initScrollTrigger()
     }, 100)
 })
 
-const mouseEnter = (index, element) => {
-    activeProject.value = collection.value.projects.findIndex((img) => img.title === element.title)
-}
+onUnmounted(() => {
+    window.removeEventListener('resize', resize)
+})
 
-const renderImage = (el, index, setIndex = true) => {
-    gsap.killTweensOf(el)
-    const isFirst = el.dataset.index == 0
-
-    const tl = gsap.timeline({ defaults: { ease: 'power4.out', duration: 0.8 } })
-
-    if (isFirst && direction === 1) {
-        tl.to(el, { bottom: -250 })
-        tl.to(el, { zIndex: collection.value.projects.length - index }, '<')
-
-        tl.to(
-            el,
-            {
-                bottom: index * OFFSET,
-                right: index * OFFSET,
-                scale: 1 - index * SCALE,
-                onComplete: () => {
-                    if (setIndex) el.setAttribute('data-index', index)
-                },
-            },
-            '<20%'
-        )
-    } else {
-        tl.to(el, {
-            bottom: index * OFFSET,
-            right: index * OFFSET,
-            scale: 1 - index * SCALE,
-            zIndex: collection.value.projects.length - index,
-            onComplete: () => {
-                if (setIndex) el.setAttribute('data-index', index)
-            },
+const mouseEnter = (title) => {
+    var elementPos = imagesCollection.value
+        .map((item) => {
+            return item.title
         })
-    }
+        .indexOf(title)
+
+    imagesCollection.value = move(imagesCollection.value, elementPos, 0)
+
+    if (elementPos === 0) return
+
+    const els = selectAll(`[data-index`)
+    const el = select(`[data-index="${elementPos}"]`)
+
+    els.forEach((el) => gsap.killTweensOf(el))
+    gsap.fromTo(el, { bottom: -100 }, { bottom: 0 })
 }
+
 const initScrollTrigger = () => {
     const headlines = selectAll('h2')
 
     headlines.forEach((headline, i) => {
         const st = ScrollTrigger.create({
             trigger: headline,
-            start: 'top top',
+            start: 'top 10%',
+            end: 'bottom 10%',
+            markers: true,
             onToggle: ({ isActive, direction }) => {
-                direction = direction
-                if (isActive) activeProject.value = i
+                if (isActive) {
+                    var elementPos = imagesCollection.value
+                        .map((item) => {
+                            return item.title
+                        })
+                        .indexOf(headline.textContent)
+
+                    imagesCollection.value = move(imagesCollection.value, elementPos, 0)
+
+                    if (elementPos === 0) return
+
+                    const els = selectAll(`[data-index`)
+                    const el = select(`[data-index="${elementPos}"]`)
+
+                    els.forEach((el) => gsap.killTweensOf(el))
+                    gsap.fromTo(el, { bottom: 100 }, { bottom: 0 })
+                }
             },
         })
+
         if (!isMobile.value) st.disable()
     })
 }
+
 const checkMobile = () => {
     isMobile.value = window.innerWidth < 768
 }
+
 const resize = () => {
     checkMobile()
     ScrollTrigger.getAll().forEach((st) => st.kill())
     initScrollTrigger()
 }
-watch(activeProject, () => {
-    const images = selectAll('figure')
-    const activeImage = images[activeProject.value]
-
-    const isSecondImage = Number(activeImage.dataset.index) === 1
-
-    gsap.killTweensOf(activeImage)
-
-    const tl = gsap.timeline({ defaults: { ease: 'power4.out', duration: 0.4 } })
-
-    if (!isSecondImage) tl.to(activeImage, { bottom: -200 })
-    tl.set(activeImage, { zIndex: images.length - 0 }, isSecondImage ? '' : '<20%')
-    tl.to(activeImage, { bottom: 0 * OFFSET }, '<')
-    tl.to(
-        activeImage,
-        {
-            right: 0 * OFFSET,
-            scale: 1 - 0 * SCALE,
-            onComplete: () => {
-                activeImage.setAttribute('data-index', 0)
-            },
-        },
-        '<'
-    )
-
-    getNextSiblings(activeImage, '[data-index]').forEach((el, i) => {
-        const newIndex = i + 1
-        renderImage(el, newIndex)
-    })
-
-    getPreviousSiblings(activeImage, '[data-index]').forEach((el, i) => {
-        const newIndex = collection.value.projects.length - i - 1
-        renderImage(el, newIndex)
-    })
-})
 </script>
 
 <style scoped>
 .gallery {
     min-height: 100vh;
     isolation: isolate;
-}
-
-.images-section {
-    z-index: -1;
 }
 
 figure {
