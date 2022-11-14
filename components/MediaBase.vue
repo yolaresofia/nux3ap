@@ -173,8 +173,11 @@ const updatePaused = () => {
     position: fixed;
     width: 100vh;
     height: 100vw;
-    top: 27vh;
-    left: -58vw;
+    transform-origin: bottom left;
+  width: 100vh;
+  height: 100vw;
+  margin-top: -100vw;
+  object-fit: cover;
 }
 /* add query for max width 768  */
 @media (max-width: 768px) {
