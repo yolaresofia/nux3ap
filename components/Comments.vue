@@ -133,7 +133,7 @@ if (store.comments.length > 1) {
         } else {
             index.value++
         }
-        if (commentArr.value.length > 12) {
+        if (commentArr.value.length > 7) {
             commentArr.value.shift()
         }
         if (!hasNewComments.value && showComments.value) {
@@ -171,7 +171,7 @@ const scrollCommentsToTop = () => {
     }, 10)
 }
 watch(index, ()=> {
-    if (index.value === 12) {
+    if (index.value === 7) {
         clearInterval(intervalC)
     }
 })

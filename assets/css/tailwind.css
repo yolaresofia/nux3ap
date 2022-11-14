@@ -105,10 +105,10 @@ li {
 }
 
 .heading-2 {
-    line-height: 2.9rem;
+    line-height: 40px;
     letter-spacing: -2px;
     font-family: 'Helveticaheavy';
-    font-size: 3.5rem;
+    font-size: 45px;
 }
 
 .heading-5 {

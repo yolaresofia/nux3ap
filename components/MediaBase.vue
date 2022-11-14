@@ -33,6 +33,7 @@
                         </g>
                     </svg>
                 </div>
+                <!-- rotate -->
                 <div v-if="isMobile && !isRotated && isCentered" class="absolute z-50 w-[3.4rem] lg:w-40 top-[70px] lg:right-[3px] right-[15px]" @click="rotate">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.92 58.29">
                         <g>
@@ -59,7 +60,7 @@
                     </svg>
                 </div>
                 <!-- close -->
-                <div v-if="isCentered" class="absolute z-50 w-30 lg:w-40 -top-4 lg:right-[3px] -right-[20px]" @click="toggleFullScreen">
+                <div v-if="isCentered" class="absolute z-50 w-30 lg:w-40 -top-4 lg:right-[3px] -right-[20px]" @click="close">
                     <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
                         <path
                             class="cls-1 fill-white"
@@ -69,7 +70,7 @@
                 </div>
 
                 <video
-                    :class="[isCentered && !isRotated ? 'fixedVideo' : isRotated && isCentered ? 'rotate' : 'w-full']"
+                    :class="[!isCentered && !isRotated ? 'w-full' : isRotated && isCentered && !isMobile ? 'fixedVideo' : !isRotated && isCentered && isMobile ? 'fixed-center' : isRotated && isCentered && isMobile? 'rotate': 'fixedVideo']"
                     ref="video"
                     playsinline
                     :src="src"
@@ -98,7 +99,6 @@ defineProps({
         default: false,
     },
 })
-// check if is mobile on mounted⁄¡
 
 const isMobile = useState('isMobile', () => false)
 const isCentered = useState('isCentered', () => false)
@@ -109,8 +109,8 @@ onMounted(() => {
     }
 })
 
-const rotate = ()=> {
-    isRotated.value = !isRotated.value
+const rotate = () => {
+    isRotated.value = true
 }
 
 const toggleFullScreen = () => {
@@ -119,25 +119,27 @@ const toggleFullScreen = () => {
     } else {
         isCentered.value = false
     }
-    rotate()
+    // rotate()
     video.value.play()
+}
+const close = () => {
+    isCentered.value = false
+    isRotated.value = false
+    video.value.pause()
 }
 
 const paused = ref(true)
 const video = ref(null)
 const play = () => {
-
     center()
-  
+
     video.value.paused ? video.value.play() : video.value.pause()
-    
 }
 const center = () => {
     if (!isMobile.value || isCentered.value) {
         return
     }
     isCentered.value = !isCentered.value
-    
 }
 const pause = () => {
     video.value.pause()
@@ -160,7 +162,7 @@ const updatePaused = () => {
 }
 .fixed-center {
     position: fixed;
-    max-width: none !important;
+    max-width: 100vw !important;
     z-index: 51;
     left: 50%;
     top: 56%;
@@ -189,14 +191,12 @@ const updatePaused = () => {
         transform: translate(-50%, -50%);
     }
     video {
-    max-width: none !important;
+        max-width: none !important;
     }
 }
 video {
     max-width: 100vw;
     max-height: 100vh;
     object-fit: cover;
-   
 }
-
 </style>

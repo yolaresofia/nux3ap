@@ -1,7 +1,7 @@
 <template>
     <div :class="[returnThemeClass(true, 'primaryYellow', mainTheme)]">
         <div class="flex flex-col">
-            <div class="static lg:h-[69vh] overflow-hidden">
+            <div class="static lg:h-[71vh] overflow-hidden">
                 <video playsinline autoplay muted loop id="bgvideo" class="w-screen">
                     <source :src="page.section1.blocks.video" type="video/mp4" />
                 </video>
