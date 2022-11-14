@@ -60,7 +60,7 @@
                     </svg>
                 </div>
                 <!-- close -->
-                <div v-if="isCentered" class="absolute z-50 w-30 lg:w-40 -top-4 lg:right-[3px] -right-[20px]" @click="close">
+                <div v-if="isCentered" :class="[isRotated ? 'top-[70vh] -right-[10px]' : '-top-4 -right-[20px]', 'absolute z-50 w-30 lg:w-40 lg:right-[3px] ']" @click="close">
                     <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
                         <path
                             class="cls-1 fill-white"
@@ -70,7 +70,17 @@
                 </div>
 
                 <video
-                    :class="[!isCentered && !isRotated ? 'w-full' : isRotated && isCentered && !isMobile ? 'fixedVideo' : !isRotated && isCentered && isMobile ? 'fixed-center' : isRotated && isCentered && isMobile? 'rotate': 'fixedVideo']"
+                    :class="[
+                        !isCentered && !isRotated
+                            ? 'w-full'
+                            : isRotated && isCentered && !isMobile
+                            ? 'fixedVideo'
+                            : !isRotated && isCentered && isMobile
+                            ? 'fixed-center'
+                            : isRotated && isCentered && isMobile
+                            ? 'rotate'
+                            : 'fixedVideo',
+                    ]"
                     ref="video"
                     playsinline
                     :src="src"
@@ -111,8 +121,14 @@ onMounted(() => {
 
 const rotate = () => {
     isRotated.value = true
+    // prevent scroll
+    document.body.style.overflow = 'hidden'
+    document.addEventListener('touchmove', preventDefault, { passive: false })
 }
 
+const preventDefault = (e) => {
+    e.preventDefault()
+}
 const toggleFullScreen = () => {
     if (!isCentered.value) {
         isCentered.value = true
@@ -126,7 +142,11 @@ const close = () => {
     isCentered.value = false
     isRotated.value = false
     video.value.pause()
+    // allow scroll
+    document.body.style.overflow = 'auto'
+    document.removeEventListener('touchmove', preventDefault, { passive: false })
 }
+
 
 const paused = ref(true)
 const video = ref(null)
@@ -174,10 +194,10 @@ const updatePaused = () => {
     width: 100vh;
     height: 100vw;
     transform-origin: bottom left;
-  width: 100vh;
-  height: 100vw;
-  margin-top: -100vw;
-  object-fit: cover;
+    width: 100vh;
+    height: 100vw;
+    margin-top: -100vw;
+    object-fit: cover;
 }
 /* add query for max width 768  */
 @media (max-width: 768px) {
