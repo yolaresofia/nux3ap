@@ -5,7 +5,7 @@
             <div v-if="src.indexOf('jpg') === -1" class="relative w-full h-full">
                 <!-- play button -->
                 <div v-if="!hidePause" :class="[isCentered ? 'fixed-center' : 'center', 'group']">
-                    <button class="z-50" @click="play">
+                    <button :class="['z-50', isRotated ? 'rotate-90':'rotate-0' ]" @click="play">
                         <svg id="Layer_1" fill="white" xmlns="http://www.w3.org/2000/svg" class="w-20 lg:w-40" viewBox="0 0 200 200">
                             <g id="Group_102">
                                 <g class="opacity-0 group-hover:opacity-100">
@@ -13,6 +13,7 @@
                                     <rect fill="white" v-show="!paused && !isMobile" id="Rectangle_105" class="cls-1" x="105.31" y="56.04" width="32" height="91" rx="3" ry="3" />
                                 </g>
                                 <path
+                                class=""
                                     v-show="paused"
                                     d="M134,98.27c.96,.55,1.29,1.77,.73,2.73-.18,.31-.43,.56-.73,.73l-65.99,38.04c-.96,.55-2.18,.22-2.73-.73-.18-.3-.27-.65-.27-1V61.96c0-1.1,.89-2,2-2,.35,0,.7,.09,1,.27l65.99,38.04Z"
                                 />
@@ -34,7 +35,7 @@
                     </svg>
                 </div>
                 <!-- rotate -->
-                <div v-if="isMobile && !isRotated && isCentered" class="absolute z-50 w-[3.4rem] lg:w-40 top-[70px] lg:right-[3px] right-[15px]" @click="rotate">
+                <div v-if="isMobile && !isRotated && isCentered" class="absolute z-50 w-[3.4rem] lg:w-40 top-[85px] lg:right-[3px] right-[15px]" @click="rotate">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.92 58.29">
                         <g>
                             <path
@@ -90,6 +91,9 @@
                     @playing="updatePaused"
                     @pause="updatePaused"
                 ></video>
+                <div v-show="isRotated && isMobile && isCentered && paused" class="w-full rotate-bar h-2 bg-gray-200 rounded-full opacity-60">
+                    <div id="progress" class="bg-gray-600 h-3 rounded-full" style="width: 45%"></div>
+                </div>
             </div>
             <div v-else>
                 <img class="w-full" :src="src" />
@@ -99,6 +103,8 @@
 </template>
 
 <script setup>
+import { select } from '~~/mixins/general';
+
 defineProps({
     src: {
         type: String,
@@ -116,12 +122,19 @@ const isRotated = useState('isRotated', () => false)
 onMounted(() => {
     if (window.innerWidth < 768) {
         isMobile.value = true
+        const video = select('video');
+        video.ontimeupdate = function() {
+            const percent = (video.currentTime / video.duration) * 100;
+            select('#progress').style.width = `${percent}%`;
+        };
+
+
     }
 })
 
+
 const rotate = () => {
     isRotated.value = true
-    // prevent scroll
     document.body.style.overflow = 'hidden'
     document.addEventListener('touchmove', preventDefault, { passive: false })
 }
@@ -135,24 +148,20 @@ const toggleFullScreen = () => {
     } else {
         isCentered.value = false
     }
-    // rotate()
     video.value.play()
 }
 const close = () => {
     isCentered.value = false
     isRotated.value = false
     video.value.pause()
-    // allow scroll
     document.body.style.overflow = 'auto'
     document.removeEventListener('touchmove', preventDefault, { passive: false })
 }
-
 
 const paused = ref(true)
 const video = ref(null)
 const play = () => {
     center()
-
     video.value.paused ? video.value.play() : video.value.pause()
 }
 const center = () => {
@@ -177,7 +186,6 @@ const updatePaused = () => {
     transform: translate(-50%, -50%);
     width: 93%;
     height: 85%;
-    /* object-fit: cover; */
     border-radius: 20px;
 }
 .fixed-center {
@@ -194,12 +202,21 @@ const updatePaused = () => {
     width: 100vh;
     height: 100vw;
     transform-origin: bottom left;
-    width: 100vh;
-    height: 100vw;
     margin-top: -100vw;
     object-fit: cover;
 }
-/* add query for max width 768  */
+.rotate-bar {
+    transform: rotate(90deg);
+    position: fixed;
+    width: 96vh;
+    height: 3vw;
+    transform-origin: bottom left;
+    margin-left: 2vh;
+    margin-top: 1vw;
+}
+#progress {
+    transition: width 0.5s;
+}
 @media (max-width: 768px) {
     .fixedVideo {
         height: 25%;
