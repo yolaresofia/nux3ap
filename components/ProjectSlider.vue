@@ -24,8 +24,6 @@
     </section>
 </template>
 
-
-
 <script setup>
 import { urlFor } from '~/mixins/general'
 import { gsap } from 'gsap'
