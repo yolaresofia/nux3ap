@@ -14,7 +14,7 @@ body {
     /* IE and Edge */
     scrollbar-width: none;
     /* Firefox */
-    font-family: 'Helveticaheavy';
+    /* font-family: 'Helveticaheavy'; */
 }
 
 body::-webkit-scrollbar {
@@ -42,11 +42,11 @@ html {
     scroll-behavior: smooth;
 }
 
-.helvetica-heavy {
+.helvetica-heavy, .helvetica-heavy * {
     font-family: 'Helveticaheavy';
 }
 
-.helvetica-bold {
+.helvetica-bold, .helvetica-bold * {
     font-family: 'Helveticabold';
 }
 

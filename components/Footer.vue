@@ -1,5 +1,5 @@
 <template>
-    <footer :class="[returnThemeClassFooter(true), 'w-full pb-4 px-2 relative bottom-[1px] scale-y-[1.01] ']">
+    <footer :class="[returnThemeClassFooter(true), 'w-full pb-4 px-2 relative bottom-[1px]']">
         <div class="flex justify-between w-full">
             <div class="flex flex-col-reverse md:flex-row justify-between md:w-full">
                 <img :class="[mainTheme !== 'black' ? returnFooterLogoColors() : 'invert', 'w-[90px] md:w-60 relative top-[35px] md:top-0']" :src="settings.circleLogo" @mouseenter="onEnter" @mouseleave="onLeave" ref="logoimg" />

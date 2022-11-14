@@ -51,7 +51,7 @@
 
         <div v-if="isCaughtUp" class="fixed z-50 flex space-x-2 bottom-4 right-4 md:right-8">
             <p class="px-3 pt-2 pb-1 rounded-full bg-lightblack">👍</p>
-            <p class="px-3 pt-2 pb-1 rounded-full bg-lightblack">You're all caught up!</p>
+            <p class="px-3 pt-2 pb-1 rounded-full bg-lightblack helvetica-heavy">You're all caught up!</p>
         </div>
     </section>
 </template>

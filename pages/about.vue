@@ -15,7 +15,7 @@
                 </div>
             </div>
             <Pill text="clients" :color="mainTheme === 'black' ? false : true" />
-            <div :class="['text-[32px] leading-8 text-center', returnThemeClass(false, 'mint', mainTheme)]">
+            <div :class="['text-[32px] helvetica-heavy leading-8 text-center', returnThemeClass(false, 'mint', mainTheme)]">
                 <SanityContent :blocks="page.clients" />
             </div>
             <div class="hidden md:block">

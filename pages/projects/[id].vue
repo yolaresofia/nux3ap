@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="flex flex-col md:py-32 py-20">
-                <h1 :class="[returnThemeClass(false, 'yellow', mainTheme), 'md:text-6xl text-[39px] pb-7 leading-8 text-center']">
+                <h1 :class="[returnThemeClass(false, 'yellow', mainTheme), 'md:text-6xl helvetica-heavy text-[39px] pb-7 leading-8 text-center']">
                     {{ post.res[0].quote }}
                 </h1>
                 <h4 class="m-auto sans-serif text-xs">

@@ -20,7 +20,7 @@
                     </h4>
                 </div>
             </div>
-            <div class="leading-[20px]">
+            <div class="leading-[20px] helvetica-heavy">
                 <SanityContent :blocks="project.information" />
             </div>
         </div>

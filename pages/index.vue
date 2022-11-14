@@ -18,10 +18,10 @@
 
         <!-- section 3 -->
         <div class="flex flex-col px-2 py-4">
-            <h1 :class="['heading-3 px-2', returnThemeClass(false, 'blue', mainTheme)]">
+            <h1 :class="['heading-3 py-8 px-2', returnThemeClass(false, 'blue', mainTheme)]">
                 {{ page.section3.blocks.header }}
             </h1>
-            <div class="parent w-full">
+            <div class="parent w-full pt-2">
                 <ProjectComponent v-for="project in page.section3.projects" :key="project.id" :project="project" showCategories />
             </div>
         </div>

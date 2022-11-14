@@ -6,7 +6,7 @@
         }"
         :class="['fixed top-0 z-[51] flex flex-wrap justify-between items-center w-full py-1']"
     >
-        <div :class="[toggle ? 'blur' : '', 'flex items-center flex-shrink-0 mr-6 ml-2 h-10 mx-1 md:my-4 my-0']">
+        <div :class="[toggle ? 'blur' : '', 'cursor-pointer flex items-center flex-shrink-0 mr-6 ml-2 h-10 mx-1 md:my-4 my-0']">
             <div @click="router.push('/')">
                 <img :src="settings.logo" width="120px" alt="logo" :class="[mainTheme === 'black' && 'invert', 'w-30']" />
             </div>
