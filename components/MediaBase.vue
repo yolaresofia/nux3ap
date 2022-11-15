@@ -61,7 +61,7 @@
                     </svg>
                 </div>
                 <!-- close -->
-                <div v-if="isCentered" :class="[isRotated ? 'top-[70vh] -right-[10px]' : '-top-4 -right-[20px]', 'absolute z-50 w-30 lg:w-40 lg:right-[3px] ']" @click="close">
+                <div v-if="isCentered" :class="[isRotated ? 'fixed bottom-[15px] -right-[10px]' : '-top-4 -right-[20px] absolute', ' z-50 w-30 lg:w-40 lg:right-[3px] ']" @click="close">
                     <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
                         <path
                             class="cls-1 fill-white"
@@ -208,11 +208,11 @@ const updatePaused = () => {
 .rotate-bar {
     transform: rotate(90deg);
     position: fixed;
-    width: 96vh;
+    width: 89vh;
     height: 3vw;
     transform-origin: bottom left;
     margin-left: 2vh;
-    margin-top: 1vw;
+    margin-top: 4vw;
 }
 #progress {
     transition: width 0.5s;
