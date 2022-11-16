@@ -5,7 +5,7 @@
             <div v-if="src.indexOf('jpg') === -1" class="relative w-full h-full">
                 <!-- play button -->
                 <div v-if="!hidePause" :class="[isCentered ? 'fixed-center' : 'center', 'group']">
-                    <button :class="['z-50', isRotated ? 'rotate-90':'rotate-0' ]" @click="play">
+                    <button :class="['z-50', isRotated ? 'rotate-90' : 'rotate-0']" @click="play">
                         <svg id="Layer_1" fill="white" xmlns="http://www.w3.org/2000/svg" class="w-20 lg:w-40" viewBox="0 0 200 200">
                             <g id="Group_102">
                                 <g class="opacity-0 group-hover:opacity-100">
@@ -13,7 +13,7 @@
                                     <rect fill="white" v-show="!paused && !isMobile" id="Rectangle_105" class="cls-1" x="105.31" y="56.04" width="32" height="91" rx="3" ry="3" />
                                 </g>
                                 <path
-                                class=""
+                                    class=""
                                     v-show="paused"
                                     d="M134,98.27c.96,.55,1.29,1.77,.73,2.73-.18,.31-.43,.56-.73,.73l-65.99,38.04c-.96,.55-2.18,.22-2.73-.73-.18-.3-.27-.65-.27-1V61.96c0-1.1,.89-2,2-2,.35,0,.7,.09,1,.27l65.99,38.04Z"
                                 />
@@ -103,7 +103,7 @@
 </template>
 
 <script setup>
-import { select } from '~~/mixins/general';
+import { select } from '~~/mixins/general'
 
 defineProps({
     src: {
@@ -122,16 +122,13 @@ const isRotated = useState('isRotated', () => false)
 onMounted(() => {
     if (window.innerWidth < 768) {
         isMobile.value = true
-        const video = select('video');
-        video.ontimeupdate = function() {
-            const percent = (video.currentTime / video.duration) * 100;
-            select('#progress').style.width = `${percent}%`;
-        };
-
-
+        const video = select('video')
+        video.ontimeupdate = function () {
+            const percent = (video.currentTime / video.duration) * 100
+            select('#progress').style.width = `${percent}%`
+        }
     }
 })
-
 
 const rotate = () => {
     isRotated.value = true
