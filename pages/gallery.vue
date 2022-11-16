@@ -152,6 +152,18 @@ figure {
     left: 1.5rem;
 }
 
+@supports not (aspect-ratio: 3 / 2) {
+    figure {
+        height: 30vh;
+    }
+
+    @media (min-width: 768px) {
+        figure {
+            height: 50vh;
+        }
+    }
+}
+
 @media (min-width: 768px) {
     figure {
         width: 50vw;
