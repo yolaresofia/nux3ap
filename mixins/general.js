@@ -13,7 +13,7 @@ export function selectAll(selector, container = document) {
     return container.querySelectorAll(selector)
 }
 export function select(selector) {
-    return document.querySelector(selector)
+    return document?.querySelector(selector)
 }
 export function matches(elem, filter) {
     if (elem && elem.nodeType === 1) {

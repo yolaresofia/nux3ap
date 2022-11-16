@@ -15,19 +15,35 @@
             <ProjectSlide :item="obj.res[0].secondSlider[2].asset._ref" />
         </div>
 
-        <!-- //TODO replace arrows -->
         <div class="flex justify-between items-center py-6">
-            <button class="heading-4" @click="prevSlide(obj.res[0].secondSlider.length)">←</button>
+            <button class="w-[38px] group" @click="prevSlide(obj.res[0].secondSlider.length)">
+                <svg class="w-full h-full -scale-x-100 group-hover:-translate-x-1 duration-150" enable-background="new 0 0 44.15 58.29" viewBox="0 0 44.15 58.29" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="m24.12 50.97-26.87-26.56 26.87-26.56 11.78 11.64-15.09 14.92 15.09 14.92z"
+                        :fill="mainTheme !== 'black' ? '#f7db0f' : '#fff'"
+                        transform="matrix(-1 0 0 -1 38.651 53.118)"
+                    />
+                </svg>
+            </button>
             <p class="uppercase sans-serif text-xs">explore</p>
-            <button class="heading-4" @click="nextSlide(obj.res[0].secondSlider.length)">→</button>
+            <button class="w-[38px] group" @click="nextSlide(obj.res[0].secondSlider.length)">
+                <svg class="w-full h-full group-hover:translate-x-1 duration-150" enable-background="new 0 0 44.15 58.29" viewBox="0 0 44.15 58.29" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="m24.12 50.97-26.87-26.56 26.87-26.56 11.78 11.64-15.09 14.92 15.09 14.92z"
+                        :fill="mainTheme !== 'black' ? '#f7db0f' : '#fff'"
+                        transform="matrix(-1 0 0 -1 38.651 53.118)"
+                    />
+                </svg>
+            </button>
         </div>
     </section>
 </template>
 
 <script setup>
-import { urlFor } from '~/mixins/general'
+import { returnThemeClass, urlFor } from '~/mixins/general'
 import { gsap } from 'gsap'
 import { Observer } from 'gsap/Observer'
+const mainTheme = useState('mainTheme')
 
 const props = defineProps({
     obj: {

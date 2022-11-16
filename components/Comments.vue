@@ -7,6 +7,7 @@
                 :class="{ 'bottom-[170px]': commentArr.length === 1, 'bottom-[320px] md:bottom-[320px]': commentArr.length === 2, 'bottom-[430px] md:bottom-[360px]': commentArr.length >= 3 }"
                 @click="closeStack = true"
                 data-close-btn
+                ref="closeBtn"
             >
                 Close
             </button>
@@ -16,7 +17,7 @@
             v-if="commentArr.length > 0"
             tag="div"
             name="commentsContainer"
-            class="fixed px-4 md:px-0 md:right-8 flex flex-col-reverse w-full md:w-[30rem]"
+            class="fixed px-4 md:px-0 md:right-8 flex flex-col-reverse w-full md:w-[350px]"
             :class="{ 'cursor-pointer z-40 bottom-4': !open, 'h-[420px] md:h-[350px] z-50 overflow-y-scroll bottom-0': open }"
             :css="false"
             @enter="onEnter"
@@ -25,7 +26,7 @@
             @scroll="handleContainerScroll"
         >
             <div
-                class="text-white sans-serif text-sm rounded-lg bg-lightblack p-2 w-full md:w-[30rem] origin-center mt-3 bottom-[150px] right-4 md:bottom-4 md:right-8"
+                class="text-white sans-serif text-sm rounded-lg bg-lightblack p-2 w-full md:w-[350px] origin-center mt-3 bottom-[150px] right-4 md:bottom-4 md:right-8"
                 :class="{ 'comment-width | fixed': !openFinished, 'static opacity-0': openFinished, hidden: closeStack || isCaughtUp, 'mb-3': 0 === i && openFinished }"
                 v-for="(comment, i) in commentArr"
                 :key="comment"
@@ -34,7 +35,7 @@
             >
                 <p>From IG</p>
                 <p>{{ comment?.user }} just commented on WOMB's post:</p>
-                <p class="pb-10">{{ comment?.title }}</p>
+                <p class="pb-6">{{ comment?.title }}</p>
                 <p class="text-darkgray" :class="{ 'opacity-0': commentArr.length === 1 || open }">
                     {{ commentArr.length - 1 }} {{ commentArr.length === 2 ? 'more notification' : 'more notifications' }}
                 </p>
@@ -73,6 +74,8 @@ const showComments = useState('showComments', () => false)
 const hasNewComments = useState('hasNewComments', () => false)
 const isCaughtUp = useState('isCaughtUp', () => false)
 const hideCommentsAtBottom = useState('hideCommentsAtBottom', () => false)
+
+const closeBtn = ref(null)
 
 const onEnter = (el, done) => {
     gsap.fromTo(
@@ -122,6 +125,8 @@ if (store.comments.length > 1) {
         rand = Math.floor(Math.random() * 8 + 5)
     }, 5000)
     intervalC = setInterval(() => {
+        if (closeBtn.value) gsap.set(closeBtn.value, { pointerEvents: 'none' })
+
         currentComment.value = store.comments[index.value]
         if (index.value > 20) {
             showComments.value = false
@@ -139,6 +144,8 @@ if (store.comments.length > 1) {
         if (!hasNewComments.value && showComments.value) {
             hasNewComments.value = true
         }
+
+        if (closeBtn.value) gsap.set(closeBtn.value, { pointerEvents: 'auto', delay: 0.2 })
     }, rand * 1000)
 }
 
@@ -170,7 +177,7 @@ const scrollCommentsToTop = () => {
         select('[data-index="1"]').scrollIntoView({ block: 'end' })
     }, 10)
 }
-watch(index, ()=> {
+watch(index, () => {
     if (index.value === 7) {
         clearInterval(intervalC)
     }
