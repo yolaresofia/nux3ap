@@ -8,7 +8,7 @@
                     <SanityImage :asset-id="project.mainMedia.image.asset._ref" class="object-cover h-full w-full" />
                 </figure>
 
-                <h2 class="text-yellow leading-4 pt-2 md:hidden">{{ project.title }}</h2>
+                <h2 class="text-yellow leading-4 helvetica-heavy pt-2 md:hidden">{{ project.title }}</h2>
             </NuxtLink>
         </section>
 

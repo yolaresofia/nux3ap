@@ -4,7 +4,7 @@
             backdropFilter: toggle ? ' blur(10px)' : '',
             filter: toggle && 'brightness(150%);',
         }"
-        :class="['fixed top-0 z-[51] flex flex-wrap justify-between items-center w-full py-1']"
+        :class="['fixed top-0 z-[71] flex flex-wrap justify-between items-center w-full py-1']"
     >
         <div :class="[toggle ? 'blur' : '', 'cursor-pointer flex items-center flex-shrink-0 mr-6 ml-2 h-10 mx-1 md:my-4 my-0']">
             <div @click="router.push('/')">
@@ -71,7 +71,7 @@ let { settings } = useStore()
 const mainTheme = useState('mainTheme')
 let toggle = ref(false)
 let linkse = ref(false)
-const router = useRouter();
+const router = useRouter()
 
 const route = useRoute()
 onMounted(() => {
@@ -103,9 +103,7 @@ const returnNavColors = (routeNav) => {
 </script>
 
 <style>
- /* media query for mobile nav */
-
-
+/* media query for mobile nav */
 
 .blur {
     filter: blur(4px);
@@ -130,14 +128,14 @@ nav {
 
 @media (max-width: 768px) {
     nav * {
-        font-family: 'Helveticabold';
+        font-family: 'Helvetica';
+        font-weight: bolder;
     }
     .router-link-exact-active * {
-    background-color: black !important;
-    color: white !important;
-    border-radius: 10px;
-}
-
+        background-color: black !important;
+        color: white !important;
+        border-radius: 10px;
+    }
 }
 
 @media (min-width: 768px) {

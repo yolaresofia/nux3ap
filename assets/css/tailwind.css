@@ -49,7 +49,10 @@ html {
 .helvetica-bold, .helvetica-bold * {
     font-family: 'Helveticabold';
 }
-
+.native-helvetica {
+    font-family: 'Helvetica';
+    font-weight: bolder;
+}
 .soehne,
 .soehne * {
     font-family: 'Soehne';
