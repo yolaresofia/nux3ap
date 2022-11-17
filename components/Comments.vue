@@ -115,10 +115,11 @@ const handleContainerScroll = (e) => {
         }, 500)
     }
 }
+const hadCommentsDisplayed = useState('hadCommentsDisplayed', () => false)
 
 let rand = Math.floor(Math.random() * 8 + 5)
 let intervalC
-if (store.comments.length > 1) {
+if (store.comments.length > 1 && !hadCommentsDisplayed.value) {
     showComments.value = true
 
     setInterval(() => {
@@ -128,8 +129,9 @@ if (store.comments.length > 1) {
         if (closeBtn.value) gsap.set(closeBtn.value, { pointerEvents: 'none' })
 
         currentComment.value = store.comments[index.value]
-        if (index.value > 20) {
-            showComments.value = false
+        if (commentArr.value.length > 7) {
+            hadCommentsDisplayed.value = true
+            clearInterval(intervalC)
         } else {
             commentArr.value.push(store.comments[index.value])
         }
@@ -138,13 +140,12 @@ if (store.comments.length > 1) {
         } else {
             index.value++
         }
-        if (commentArr.value.length > 7) {
-            commentArr.value.shift()
-        }
+        // if (commentArr.value.length > 7) {
+        //     commentArr.value.shift()
+        // }
         if (!hasNewComments.value && showComments.value) {
             hasNewComments.value = true
         }
-
         if (closeBtn.value) gsap.set(closeBtn.value, { pointerEvents: 'auto', delay: 0.2 })
     }, rand * 1000)
 }
@@ -177,8 +178,8 @@ const scrollCommentsToTop = () => {
         select('[data-index="1"]').scrollIntoView({ block: 'end' })
     }, 10)
 }
-watch(index, () => {
-    if (index.value === 7) {
+watch(commentArr, () => {
+    if (commentArr.value.length === 3) {
         clearInterval(intervalC)
     }
 })
