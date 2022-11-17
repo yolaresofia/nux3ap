@@ -1,7 +1,7 @@
 <template>
-    <NuxtLink :to="'projects/' + project.slug.current" class="flex-1 flex-col  m-4 fadeIn">
+    <NuxtLink :to="'projects/' + project.slug.current" class="flex-col m-4 fadeIn">
         <div
-            class="flex transition-all duration-300 transform hover:scale-[0.99] aspect-square lg:aspect-[5/4] w-full h-[350px] lg:h-auto lg:max-h-[600px] bg-cover bg-center rounded-3xl relative border border-gray-900"
+            class="flex transition-all duration-300 transform hover:scale-[0.99] aspect-square lg:aspect-[5/4] w-full h-[350px] lg:h-auto lg:h-[600px] bg-cover bg-center rounded-3xl relative border border-gray-900"
             :style="{ backgroundImage: project.mainMedia.isVideo ? '' : 'url(' + urlFor(project.mainMedia.image.asset._ref) + ')' }"
         >
             <video v-if="project.mainVideo" playsinline autoplay muted loop class="rounded-3xl h-full">
