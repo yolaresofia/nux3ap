@@ -58,10 +58,7 @@ const imagesCollection = ref(collection.value.projects)
 
 onMounted(() => {
     const listBtn = select('[data-gallery-list-btn]')
-
-    listBtn?.addEventListener('click', () => {
-        sorted.value = !sorted.value
-    })
+    listBtn?.addEventListener('click', onListBtnClick)
 
     gsap.registerPlugin(ScrollTrigger)
 
@@ -73,7 +70,14 @@ onMounted(() => {
     }, 100)
 })
 
+const onListBtnClick = () => {
+    return (sorted.value = !sorted.value)
+}
+
 onUnmounted(() => {
+    const listBtn = select('[data-gallery-list-btn]')
+    listBtn?.removeEventListener('click', onListBtnClick)
+
     window.removeEventListener('resize', resize)
 })
 

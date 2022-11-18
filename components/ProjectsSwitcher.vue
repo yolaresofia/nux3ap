@@ -27,7 +27,7 @@
             </div>
         </NuxtLink>
 
-        <NuxtLink to="/projects" class="grid grid-svg | relative">
+        <NuxtLink to="/projects" class="projects-grid grid grid-svg | relative">
             <Grid />
             <span v-if="route.path === '/projects'" class="active-projects | absolute inset-0 duration-150">
                 <Grid color="#353636" />

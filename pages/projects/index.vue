@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { returnThemeClass } from '~/mixins/general'
+import { returnThemeClass, select } from '~/mixins/general'
 
 const mainTheme = useState('mainTheme')
 definePageMeta({
@@ -46,6 +46,20 @@ const sortedCollection = computed(() => {
 })
 
 const sorted = useState('sorted', () => false)
+
+onMounted(() => {
+    const listBtn = select('[data-gallery-list-btn]')
+    listBtn?.addEventListener('click', onListBtnClick)
+})
+
+const onListBtnClick = () => {
+    return (sorted.value = !sorted.value)
+}
+
+onUnmounted(() => {
+    const listBtn = select('[data-gallery-list-btn]')
+    listBtn?.removeEventListener('click', onListBtnClick)
+})
 </script>
 
 <style scoped>
