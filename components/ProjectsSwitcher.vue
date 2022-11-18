@@ -4,8 +4,8 @@
             <List />
         </button>
 
-        <NuxtLink to="/gallery">
-            <div class="eye relative">
+        <NuxtLink to="/gallery" class="gallery-eye">
+            <div class="eye relative w-auto">
                 <svg height="68" viewBox="0 0 109 68" width="109" xmlns="http://www.w3.org/2000/svg">
                     <g fill="#fff">
                         <circle cx="53.57035" cy="34.54886" r="22.3" transform="matrix(.97325912 -.22971002 .22971002 .97325912 -6.503701 13.229513)" />
@@ -55,6 +55,15 @@ svg {
 .eye,
 .grid {
     height: 30px;
+}
+
+.eye {
+    width: 50px;
+}
+
+.grid,
+.list {
+    width: 30px;
 }
 
 .active-gallery {

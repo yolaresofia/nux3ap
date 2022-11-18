@@ -131,7 +131,7 @@ nav {
         font-family: 'Helvetica';
         font-weight: bolder;
     }
-    .router-link-exact-active * {
+    .router-link-exact-active:not(.gallery-eye) * {
         background-color: black !important;
         color: white !important;
         border-radius: 10px;
