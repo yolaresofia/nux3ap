@@ -79,6 +79,8 @@ onUnmounted(() => {
     listBtn?.removeEventListener('click', onListBtnClick)
 
     window.removeEventListener('resize', resize)
+
+    ScrollTrigger.getAll().forEach((st) => st.kill())
 })
 
 const mouseEnter = (title) => {

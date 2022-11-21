@@ -71,7 +71,7 @@ onMounted(() => {
 })
 
 const setSize = () => {
-    width.value = document.querySelector('[data-slide="false"]').offsetWidth + 0.5
+    width.value = document.querySelector('[data-slide="false"]')?.offsetWidth + 0.5
 
     initialPos.value = width.value * 3 * -1
 }
