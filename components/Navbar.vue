@@ -4,7 +4,7 @@
             backdropFilter: toggle ? ' blur(10px)' : '',
             filter: toggle && 'brightness(150%);',
         }"
-        :class="['fixed top-0 z-[71] flex flex-wrap justify-between items-center w-full py-1']"
+        :class="['fixed top-0 z-[65] flex flex-wrap justify-between items-center w-full py-1']"
     >
         <div :class="[toggle ? 'blur' : '', 'cursor-pointer flex items-center flex-shrink-0 mr-6 ml-2 h-10 mx-1 md:my-4 my-0']">
             <div @click="router.push('/')">
