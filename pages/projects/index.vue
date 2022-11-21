@@ -83,4 +83,10 @@ figure {
         aspect-ratio: 442 / 323;
     }
 }
+
+@supports not (aspect-ratio: 3 / 2) {
+    figure {
+        height: 30vh;
+    }
+}
 </style>
