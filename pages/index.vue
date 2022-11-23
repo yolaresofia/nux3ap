@@ -7,17 +7,17 @@
                 </video>
             </div>
             <div class="flex flex-1 h-full">
-                <p :class="['md:p-4 p-4 heading-2', returnThemeClass(false, 'brown', mainTheme)]">{{ page.section1.blocks.header }}</p>
+                <p :class="['md:p-4 py-4 px-2 heading-2', returnThemeClass(false, 'brown', mainTheme)]">{{ page.section1.blocks.header }}</p>
             </div>
         </div>
         <!-- section 2 -->
 
-        <div class=" grid lg:grid-cols-2 w-full px-2 py-2">
+        <div class=" grid lg:grid-cols-2 w-full lg:px-2 py-2">
             <ProjectComponent v-for="project in page.section2.projects" :key="project.id" :project="project" />
         </div>
 
         <!-- section 3 -->
-        <div class="flex flex-col px-2 py-4">
+        <div class="flex flex-col lg:px-2 py-4">
             <h1 :class="['heading-3 py-8 px-2', returnThemeClass(false, 'blue', mainTheme)]">
                 {{ page.section3.blocks.header }}
             </h1>
@@ -31,7 +31,7 @@
                 <ProjectComponent v-for="project in page.section4.projects" :key="project.id" :project="project" />
             </div>
         </div>
-        <h1 :class="['heading-3 text-center pb-20 pt-10 md:pb-2 px-1', returnThemeClass(false, 'blue', mainTheme)]">
+        <h1 :class="['heading-3 text-center pb-20 pt-10 md:pb-2 px-2', returnThemeClass(false, 'blue', mainTheme)]">
             {{ page.section4.blocks.subHeader }}
         </h1>
         <Comments />
