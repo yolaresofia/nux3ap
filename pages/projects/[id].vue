@@ -28,7 +28,7 @@
                 </div>
                 <div v-if="post.res[0].mainSlider">
                     <div
-                        class="flex h-[467px] mt-5 md:mt-1 lg:h-[800px]  bg-cover bg-center rounded-3xl"
+                        class="flex h-[467px] mt-5 md:mt-1 lg:h-[800px]  bg-cover bg-center rounded-[34px]"
                         :style="{
                             backgroundImage: 'url(' + post.res[0].mainSlider[phIndex].asset.url + ')',
                         }"
@@ -58,7 +58,7 @@
             <div class="flex flex-col md:flex-row md:flex-wrap">
                 <div class="pb-2 md:p-4 md:w-1/2" v-for="image in post.res[0].secondSlider" :key="image.id">
                     <div
-                        class="flex h-[120] bg-cover bg-center rounded-3xl"
+                        class="flex h-[120] bg-cover bg-center rounded-[34px]"
                         :style="{
                             backgroundImage: 'url(' + urlFor(image.asset._ref) + ')',
                         }"
@@ -69,8 +69,8 @@
             <div class="flex w-full flex-col">
                 <Pill text="SIMILAR" />
                 <div class="flex md:grid md:grid-cols-3 flex-col w-full">
-                    <NuxtLink v-for="project in post.similarProjects.splice(0, 3)" :key="project.id" :to="'/projects/' + project.slug.current" class="flex-1 flex-col my-4 md:m-4 fadeIn">
-                        <div class="flex h-80 bg-cover bg-center rounded-3xl relative" :style="{ backgroundImage: 'url(' + urlFor(project.mainMedia.image.asset._ref) + ')' }">
+                    <NuxtLink v-for="project in post.similarProjects.splice(0, 3)" :key="project.id" :to="'/projects/' + project.slug.current" class="flex-1 flex-col my-4 md:mx-2 fadeIn">
+                        <div class="flex h-80 bg-cover bg-center rounded-[34px] relative" :style="{ backgroundImage: 'url(' + urlFor(project.mainMedia.image.asset._ref) + ')' }">
                             <CategoryComponent v-for="(category, i) in project.categories" :key="category.id" :title="category.title" :i="i" />
                         </div>
                     </NuxtLink>
