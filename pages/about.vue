@@ -18,15 +18,15 @@
             <div :class="['text-[32px] helvetica-heavy leading-8 text-center', returnThemeClass(false, 'mint', mainTheme)]">
                 <SanityContent :blocks="page.clients" />
             </div>
-            <div class="hidden md:block">
+            <div class="hidden md:block py-10">
                 <Pill text="services" :color="mainTheme === 'black' ? false : true" />
                 <div class="grid grid-cols-3 w-full">
-                    <div v-for="service in page.services" :key="service.id" class="flex-1 flex-col m-4 fadeIn">
+                    <div v-for="service in page.services" :key="service.id" class="flex-1 flex-col my-4 mx-1 fadeIn">
                         <h1 :class="['font-black py-4 text-xl leading-none text-left', returnThemeClass(false, 'teal', mainTheme)]">
                             {{ service.name }}
                         </h1>
                         <div
-                            class="flex aspect-[4/3] bg-cover bg-center rounded-3xl relative"
+                            class="flex aspect-[4/3] bg-cover bg-center rounded-[34px] relative"
                             :style="{
                                 backgroundImage: 'url(' + urlFor(service.image.asset._ref) + ')',
                             }"
@@ -34,6 +34,7 @@
                     </div>
                 </div>
             </div>
+            
             <Pill text="awards" :color="mainTheme === 'black' ? false : true" />
             <div class="soehne column-split text-xs columns">
                 <SanityContent :blocks="page.awards" :serializers="serializers" />

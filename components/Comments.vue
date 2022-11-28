@@ -51,15 +51,15 @@
         </Transition>
 
         <div v-if="isCaughtUp" class="fixed z-50 flex space-x-2 bottom-4 right-4 md:right-8">
-            <p class="px-3 pt-2 pb-1 rounded-full bg-lightblack">👍</p>
-            <p class="px-3 pt-2 pb-1 rounded-full bg-lightblack helvetica-heavy">You're all caught up!</p>
+            <p class="px-3 pt-1 pb-1 rounded-full bg-lightblack">👍</p>
+            <p :class="[returnThemeClass(false, 'white', mainTheme), 'px-3 pt-1 pb-1 rounded-full bg-lightblack native-helvetica']">You're all caught up!</p>
         </div>
     </section>
 </template>
 
 <script setup>
 import { useStore } from '~/store/store'
-import { select, selectAll } from '~~/mixins/general'
+import { select, selectAll, returnThemeClass } from '~~/mixins/general'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 

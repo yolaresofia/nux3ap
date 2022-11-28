@@ -27,7 +27,7 @@
         </div>
         <!-- section 4 -->
         <div class="flex flex-col py-4">
-            <div class="flex w-full">
+            <div class="flex w-full px-2">
                 <ProjectComponent v-for="project in page.section4.projects" :key="project.id" :project="project" />
             </div>
         </div>

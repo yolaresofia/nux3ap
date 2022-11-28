@@ -1,5 +1,5 @@
 <template>
-    <div :class="['absolute top-4 border border-white h-3 w-3 rounded-full', returnCategoryClass(title)]" :style="{ left: 5 + i * 10 + 'px' }"></div>
+    <div :class="['absolute top-4 border border-gray-500 h-[13px] w-[13px] rounded-full', returnCategoryClass(title)]" :style="{ left: 14 + i * 7.5 + 'px' }"></div>
 </template>
 
 <script setup>

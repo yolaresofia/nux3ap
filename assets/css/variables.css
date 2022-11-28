@@ -2,7 +2,7 @@
 	/* 
    * Colors 
    */
-	 --black: #000000;
+	--black: #000000;
 	--lightblack: hsla(0, 0%, 0%, 0.703);
 	--white: #ffffff;
 	--mint: #afdb98;
@@ -11,6 +11,7 @@
 	--blue: #0e63c1;
 	--darkblue: #2e26ff;
 	--yellow: #f7db0f;
+	--newyellow: #FFF701;
 	--darkyellow: #99904c;
 	--pink: #fa5af1;
 	--purple: #a97cff;
@@ -23,4 +24,5 @@
 	--magenta: #AA1BB2;
 	--darkgray: #707070;
 	--midgray: #dbdbdb;
+	--midblue: #2680EB;
 }

@@ -2,7 +2,13 @@
     <footer :class="[returnThemeClassFooter(true), 'w-full pb-4 px-2 relative bottom-[1px]']">
         <div class="flex justify-between w-full">
             <div class="flex flex-col-reverse md:flex-row justify-between md:w-full">
-                <img :class="[mainTheme !== 'black' ? returnFooterLogoColors() : 'invert', 'w-[90px] md:w-60 relative top-[35px] md:top-0']" :src="settings.circleLogo" @mouseenter="onEnter" @mouseleave="onLeave" ref="logoimg" />
+                <img
+                    :class="[mainTheme !== 'black' ? returnFooterLogoColors() : 'invert', 'w-[90px] md:w-60 relative top-[35px] md:top-0']"
+                    :src="settings.circleLogo"
+                    @mouseenter="onEnter"
+                    @mouseleave="onLeave"
+                    ref="logoimg"
+                />
                 <div class="flex items-end relative top-[85px] lg:top-0" @click="moveTo()" @mouseenter="onEnterTop" @mouseleave="onLeaveTop" ref="topbtn">
                     <img :class="[mainTheme !== 'black' && 'invert', 'md:w-28 w-20 pr-4 cursor-pointer']" src="~/assets/images/back-to-top.svg" alt="back-to-top" />
                 </div>
@@ -12,11 +18,11 @@
                     <img :src="settings.logo" :class="[mainTheme === 'black' && 'invert', 'h-auto w-28 md:w-44']" />
                     <span class="ml-auto text-4xl text-white cursor-pointer" @click="changeTheme">{{ mainTheme === 'black' ? '🌈' : '☁️' }}</span>
                     <ButtonBase :url="settings.contact.link" :btncolors="returnFooterButtonColors(true)"> {{ settings.contact.text }}</ButtonBase>
-                    <ButtonBase :url="settings.instagram.link" :btncolors="returnFooterButtonColors(true)"> {{ settings.instagram.text }}</ButtonBase>
+                    <ButtonBase :url="settings.instagram.link" :btncolors="returnFooterButtonColors(false)"> {{ settings.instagram.text }}</ButtonBase>
                 </div>
             </div>
         </div>
-        <div class="flex w-full flex-col text-right md:flex-row md:justify-between text-xxsm  py-3">
+        <div class="flex w-full flex-col text-right md:flex-row md:justify-between text-xxsm py-3">
             <h4 class="font-mono">WOMB PRODUCTION COMPANY 2022 ®</h4>
             <h4 class="font-mono">PRIVACY POLICY / FAQ / TERMS & CONDITIONS</h4>
         </div>
@@ -57,6 +63,8 @@ const returnFooterLogoColors = () => {
     return mainTheme.value === 'black' ? 'bg-white text-black' : primaryColors[path.value]
 }
 const returnFooterButtonColors = (isPrimary) => {
+
+  
     const primaryColors = {
         '/': 'bg-brown text-lime',
         '/about': 'bg-cyan text-darkpurple',
@@ -65,9 +73,13 @@ const returnFooterButtonColors = (isPrimary) => {
         projectPage: 'bg-darkgray text-white',
         '/gallery': 'bg-yellow text-black',
     }
-    if (isPrimary) {
+    if (isPrimary || !isPrimary && path.value !== '/partners') {
         return mainTheme.value === 'black' ? 'bg-white text-black' : primaryColors[path.value]
     }
+    else {
+        return mainTheme.value === 'black' ? 'bg-white text-black' : 'bg-blue text-green'
+    }
+    
 }
 const returnThemeClassFooter = (isBackground, color) => {
     const colors = {
@@ -78,6 +90,7 @@ const returnThemeClassFooter = (isBackground, color) => {
         projectPage: 'lime',
         '/gallery': 'purple',
     }
+
     if (isBackground) {
         return mainTheme.value === 'black' ? 'bg-black text-white' : `bg-${colors[path.value]}`
     } else {
@@ -148,6 +161,7 @@ const onLeaveTop = () => {
     text-teal
     text-blue
     text-yellow
+    text-newyellow
     text-darkyellow
     text-purple
     text-darkpurple
@@ -158,6 +172,8 @@ const onLeaveTop = () => {
     bg-cyan bg-magenta
     text-magenta
     text-lime
+    bg-midblue
+    text-midblue
 */
 .logo-fuchsia {
     filter: invert(19%) sepia(98%) saturate(2877%) hue-rotate(291deg) brightness(112%) contrast(136%);
@@ -171,11 +187,11 @@ const onLeaveTop = () => {
 .logo-lightpurple {
     filter: invert(47%) sepia(26%) saturate(328%) hue-rotate(288deg) brightness(95%) contrast(91%);
 }
-.text-xxsm{
+.text-xxsm {
     font-size: 0.7rem;
 }
 @media (min-width: 1024px) {
-    .text-xxsm{
+    .text-xxsm {
         font-size: 0.8rem;
     }
 }

@@ -1,13 +1,13 @@
 <template>
     <div :class="[returnThemeClass(true, 'orange', mainTheme), 'min-h-screen p-2 md:p-4']">
-        <h1 :class="['md:py-20 pt-24 pb-8 helvetica-heavy text-3_5xl md:text-8xl leading-7 tracking-tight md:leading-[4.5rem] md:tracking-[0.05rem]', returnThemeClass(false, 'green', mainTheme)]">
+        <h1 :class="['md:py-20 pt-24 pb-8 helvetica-heavy text-3_5xl md:text-8xl leading-7 tracking-tight md:leading-[4.5rem] md:tracking-[-1.6px]', returnThemeClass(false, 'green', mainTheme)]">
             {{ page.title }}
         </h1>
         <div class="">
             <div class="grid grid-cols-2 lg:grid-cols-3">
                 <div v-for="(element, index) in page.collection" :key="index" class="-my-1">
                     <h2
-                        :class="[index === currentIndex ? 'text-white' : returnThemeClass(false, 'blue', mainTheme), 'text-[14.6px] partner-text leading-6 md:text-2xl font-black cursor-pointer min-w-18']"
+                        :class="[index === currentIndex ? 'text-white' : returnThemeClass(false, 'midblue', mainTheme), 'text-[14.6px] partner-text leading-[40px] md:text-[32px] font-black cursor-pointer min-w-18 helvetica-heavy']"
                         @click="currentIndex = index"
                     >
                         {{ element.name }}
@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="grid md:pt-10 md:pb-10 pt-4 pb-2 min-h-26 md:min-h-44 h-full">
-                <h3 :class="[returnThemeClass(false, 'yellow', mainTheme),'md:text-2xl text-base']">
+                <h3 :class="[returnThemeClass(false, 'newyellow', mainTheme),'md:text-[32px] text-base helvetica-heavy']">
                     {{ page.collection[currentIndex].jobDescription }}
                 </h3>
                 <h4 class="soehne text-xs lg:text-[16px] leading-4 tracking-normal md:leading-5">
