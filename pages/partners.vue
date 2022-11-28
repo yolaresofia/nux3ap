@@ -1,6 +1,6 @@
 <template>
     <div :class="[returnThemeClass(true, 'orange', mainTheme), 'min-h-screen p-2 md:p-4']">
-        <h1 :class="['md:py-20 pt-24 pb-8 helvetica-heavy text-3_5xl md:text-8xl leading-7 tracking-tight md:leading-[4.5rem] md:tracking-[-1.6px]', returnThemeClass(false, 'green', mainTheme)]">
+        <h1 :class="['md:py-20 pt-24 pb-8 helvetica-heavy text-3_5xl md:text-8xl leading-7 md:leading-[4.5rem] tracking-[-0.64px] md:tracking-[-1.6px]', returnThemeClass(false, 'green', mainTheme)]">
             {{ page.title }}
         </h1>
         <div class="">
