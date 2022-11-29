@@ -26,8 +26,14 @@
             @scroll="handleContainerScroll"
         >
             <div
-                class="text-white sans-serif text-sm rounded-lg bg-lightblack p-2 w-full md:w-[350px] origin-center mt-3 bottom-[150px] right-4 md:bottom-4 md:right-8"
-                :class="{ 'comment-width | fixed': !openFinished, 'static opacity-0': openFinished, hidden: closeStack || isCaughtUp, 'mb-3': 0 === i && openFinished }"
+                class="text-white sans-serif text-sm rounded-lg bg-lightblack p-2 w-full md:w-[350px] origin-center mt-3 right-4 md:bottom-4 md:right-8"
+                :class="{
+                    'comment-width | fixed': !openFinished,
+                    'static opacity-0': openFinished,
+                    hidden: closeStack || isCaughtUp,
+                    'mb-3': 0 === i && openFinished,
+                    'bottom-[150px]': !store.cookieBannerClosed,
+                }"
                 v-for="(comment, i) in commentArr"
                 :key="comment"
                 data-comment
@@ -237,18 +243,6 @@ watch(open, () => {
             },
         })
     })
-})
-
-watch(store, () => {
-    if (store.cookieBannerClosed) {
-        let mm = gsap.matchMedia()
-
-        const commentContainer = select('[data-comments-container]')
-
-        mm.add('(max-width: 768px)', () => {
-            gsap.to(commentContainer, { y: 150, duration: 0.2 })
-        })
-    }
 })
 </script>
 
