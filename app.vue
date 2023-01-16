@@ -22,6 +22,7 @@
                 </div>
                 <Navbar />
                 <NuxtPage />
+                <ColorPopup />
                 <Cookies />
                 <Teleport to="body">
                     <Modal :show="isModalOpen" @close="isModalOpen = false" />

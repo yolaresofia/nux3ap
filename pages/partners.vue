@@ -7,8 +7,8 @@
             <div class="grid grid-cols-2 lg:grid-cols-3">
                 <div v-for="(element, index) in page.collection" :key="index" class="-my-1">
                     <h2
-                        :class="[index === currentIndex ? 'text-white' : returnThemeClass(false, 'midblue', mainTheme), ' partner-text tracking-[-0.64px] leading-[24px] sm:leading-[40px] md:text-[32px] font-black cursor-pointer min-w-18 native-helvetica']"
-                        @click="currentIndex = index"
+                        :class="[index === currentIndex ? 'text-gray-400' : returnThemeClass(false, 'midblue', mainTheme), ' partner-text tracking-[-0.64px] leading-[24px] sm:leading-[40px] md:text-[32px] font-black cursor-pointer min-w-18 native-helvetica']"
+                        @mouseover="currentIndex = index"
                     >
                         {{ element.name }}
                     </h2>

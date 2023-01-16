@@ -1,7 +1,7 @@
 <template>
     <div
         v-if="isCookiesOpen"
-        :class="['fixed  flex flex-col z-40 md:w-[30rem] bottom-4 left-4 right-4 md:right-auto py-4 px-2 rounded-xl', mainTheme === 'black' ? 'bg-midgray' : returnThemeClass(true, 'lime', mainTheme)]"
+        :class="['fixed  flex flex-col z-[60] md:w-[30rem] bottom-4 left-4 right-4 md:right-auto py-4 px-2 rounded-xl', mainTheme === 'black' ? 'bg-midgray' : returnThemeClass(true, 'lime', mainTheme)]"
     >
         <p class="text-xs soehne">
             By continuing to browse this site, you agree to the use of cookies to identify your session and to remember your login after you close the browser (authentication cookies).

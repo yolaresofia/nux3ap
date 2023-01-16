@@ -170,6 +170,12 @@ onMounted(() => {
             }
         },
     })
+    if (window) {
+        if (window.innerWidth) {
+            console.log(window.innerWidth, closeStack.value)
+            closeStack.value = true
+        }
+    }
 
     setTimeout(() => st.refresh(), 2000)
 })
