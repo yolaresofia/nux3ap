@@ -18,7 +18,7 @@
             <div :class="['text-[32px] helvetica-heavy leading-8 text-center', returnThemeClass(false, 'mint', mainTheme)]">
                 <SanityContent :blocks="page.clients" />
             </div>
-            <div class="hidden md:block py-10">
+            <!-- <div class="hidden md:block py-10">
                 <Pill text="services" :color="mainTheme === 'black' ? false : true" />
                 <div class="grid grid-cols-3 w-full">
                     <div v-for="service in page.services" :key="service.id" class="flex-1 flex-col my-4 mx-1 fadeIn">
@@ -33,7 +33,7 @@
                         ></div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             
             <Pill text="awards" :color="mainTheme === 'black' ? false : true" />
             <div class="soehne column-split text-xs columns">

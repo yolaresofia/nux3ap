@@ -10,8 +10,8 @@
         <p class="text-[32px] helvetica-heavy text-center">your mood*</p>
         <p class="font-mono text-[10px]">You can find the option again at the bottom of the page</p>
         <div class="flex py-1 font-sans m-auto space-x-3">
-            <p class="text-5xl">☁️</p>
-            <p class="text-[35px] relative bottom-[5px]">🌈</p>
+            <p class="text-5xl cursor-pointer" @click="mainTheme = 'black'">☁️</p>
+            <p class="text-[35px] relative bottom-[5px] cursor-pointer" @click="mainTheme = 'white'">🌈</p>
         </div>
         <p class="helvetica-bold text-[12px] text-center">*B&W for Cloud emoji Colourful for Rainbow emoji</p>
     </div>
@@ -21,7 +21,9 @@
 import { returnThemeClass } from '~/mixins/general'
 const mainTheme = useState('mainTheme')
 const isColorOpen = useState('isColorOpen', () => true)
-
+const changeTheme = () => {
+    mainTheme.value === 'black' ? (mainTheme.value = 'white') : (mainTheme.value = 'black')
+}
 const closeBanner = () => {
     isColorOpen.value = false
 }
