@@ -5,6 +5,7 @@ const hiddenDocTypes = {
 	settings: 'Settings',
 	partners: 'Partners',
 	about: 'About',
+	guide: 'Guide',
 }
 
 export default () =>

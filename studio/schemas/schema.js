@@ -9,11 +9,12 @@ import secondSection from './objects/secondSection'
 import button from './objects/button'
 import project from './documents/Project'
 import partners from './documents/Partners'
+import guide from './documents/Guide'
 import About from './documents/About'
 import category from './objects/category'
 import partner from './objects/partner'
 
 export default createSchema({
-	name: 'default',
-	types: schemaTypes.concat([hero, media, button, About, project, category, secondSection, partners, partner, home, settings, blockContent]),
+    name: 'default',
+    types: schemaTypes.concat([hero, guide, media, button, About, project, category, secondSection, partners, partner, home, settings, blockContent]),
 })

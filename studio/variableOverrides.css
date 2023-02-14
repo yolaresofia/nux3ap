@@ -1,0 +1,10 @@
+#iframe-guide {
+    height: 80vh !important;
+    width: 80vw !important;
+}
+[data-testid="input-$root"] iframe {
+    height: 81vh !important;
+    width: 77vw !important;
+    position: relative;
+    left: -17vw;
+}
