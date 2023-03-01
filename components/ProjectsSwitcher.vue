@@ -1,8 +1,8 @@
 <template>
     <div class="flex space-x-4 justify-center items-center">
-        <button class="list relative" data-gallery-list-btn>
+        <!-- <button class="list relative" data-gallery-list-btn>
             <List />
-        </button>
+        </button> -->
 
         <NuxtLink to="/gallery" class="gallery-eye">
             <div class="eye relative w-auto">

@@ -8,14 +8,15 @@
                 class="img | overflow-hidden absolute duration-300 ease-out"
                 :style="{ bottom: `${i * 50}px`, right: `${i * 50}px`, transform: `scale(${1 - i * 0.04})`, zIndex: `${collection.projects.length - i}` }"
             >
-                <SanityImage :asset-id="element.mainMedia.image.asset._ref" class="object-cover h-full w-full" />
+                <SanityImage v-if="element?.mainMedia?.image" :asset-id="element?.mainMedia?.image?.asset?._ref" class="object-cover h-full w-full" />
+                <div v-else class="bg-gray-900 h-full w-full"></div>
             </figure>
         </TransitionGroup>
         <div>
             <OrderBtn @click="reversed = !reversed" classNames="pt-18 pl-4" />
 
             <section class="text-yellow leading-9 px-4 flex flex-col md:h-[70vh] md:overflow-scroll pb-24 md:pt-6">
-                <NuxtLink :to="'projects/' + element.slug.current" v-for="element in sortedCollection" :key="element._key" class="block">
+                <NuxtLink :to="'projects/' + element?.slug?.current" v-for="element in sortedCollection" :key="element._key" class="block">
                     <h2
                         :class="['inline-block md:text-5xl text-2_5xl helvetica-heavy leading-[28px] md:leading-[26px] cursor-pointer', returnThemeClass(false, 'newyellow', mainTheme)]"
                         @mouseenter="mouseEnter(element.title)"
@@ -53,7 +54,6 @@ const sortedCollection = computed(() => {
 
     return collection.value.projects
 })
-
 const imagesCollection = ref(collection.value.projects)
 
 onMounted(() => {

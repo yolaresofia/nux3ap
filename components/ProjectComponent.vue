@@ -4,7 +4,7 @@
             class="flex transition-all duration-300 transform hover:scale-[0.99] aspect-square lg:aspect-[5/4] w-full h-[329px] lg:h-auto lg:h-[600px] bg-cover bg-center rounded-[34px] relative border border-gray-900"
             :style="{ backgroundImage: project.mainMedia.isVideo ? '' : 'url(' + urlFor(project.mainMedia.image.asset._ref) + ')' }"
         >
-            <video v-if="project.mainVideo" playsinline autoplay muted loop class="rounded-[34px] h-full">
+            <video v-if="project.mainVideo" playsinline autoplay muted loop class="rounded-[34px] h-full w-full">
                 <source :src="project.mainVideo" type="video/mp4" />
             </video>
             <div v-if="showCategories">
