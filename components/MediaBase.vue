@@ -2,7 +2,7 @@
     <div :class="[isCentered && isMobile ? 'h-screen' : '']">
         <div :class="[isCentered ? 'fixed  w-full z-[65]' : '']">
             <div v-if="isCentered" class="w-full fixed bg-black opacity-70 h-[200vh] -top-[40vh]"></div>
-            <div v-if="src.indexOf('jpg') === -1" class="relative w-full h-full">
+            <div v-if="src?.indexOf('jpg') === -1" class="relative w-full h-full">
                 <!-- play button -->
                 <div v-if="!hidePause" :class="[isCentered ? 'fixed-center' : 'center', 'group']">
                     <button :class="['z-50', isRotated ? 'rotate-90' : 'rotate-0']" @click="play">

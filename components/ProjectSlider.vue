@@ -2,21 +2,21 @@
     <section class="w-full">
         <div class="flex" ref="wrapper">
             <!-- // clone last 3 items to the end -->
-            <ProjectSlide :item="obj.res[0].secondSlider[obj.res[0].secondSlider.length - 3].asset._ref" />
-            <ProjectSlide :item="obj.res[0].secondSlider[obj.res[0].secondSlider.length - 2].asset._ref" />
-            <ProjectSlide :item="obj.res[0].secondSlider[obj.res[0].secondSlider.length - 1].asset._ref" />
+            <ProjectSlide :item="obj?.res[0]?.secondSlider[obj?.res[0]?.secondSlider?.length - 3]?.asset?._ref" />
+            <ProjectSlide :item="obj?.res[0]?.secondSlider[obj?.res[0]?.secondSlider?.length - 2]?.asset?._ref" />
+            <ProjectSlide :item="obj?.res[0]?.secondSlider[obj?.res[0]?.secondSlider?.length - 1]?.asset?._ref" />
 
             <!-- // actual items -->
-            <ProjectSlide v-for="image in obj.res[0].secondSlider" :key="image.id" :item="image.asset._ref" />
+            <ProjectSlide v-for="image in obj?.res[0]?.secondSlider" :key="image?.id" :item="image?.asset?._ref" />
 
             <!-- // clone first 3 items to the end -->
-            <ProjectSlide :item="obj.res[0].secondSlider[0].asset._ref" />
-            <ProjectSlide :item="obj.res[0].secondSlider[1].asset._ref" />
-            <ProjectSlide :item="obj.res[0].secondSlider[2].asset._ref" />
+            <ProjectSlide :item="obj?.res[0]?.secondSlider[0]?.asset?._ref" />
+            <ProjectSlide :item="obj?.res[0]?.secondSlider[1]?.asset?._ref" />
+            <ProjectSlide :item="obj?.res[0]?.secondSlider[2]?.asset?._ref" />
         </div>
 
         <div class="flex justify-between items-center py-6">
-            <button class="w-[38px] group" @click="prevSlide(obj.res[0].secondSlider.length)">
+            <button class="w-[38px] group" @click="prevSlide(obj?.res[0]?.secondSlider?.length)">
                 <svg class="w-full h-full -scale-x-100 group-hover:-translate-x-1 duration-150" enable-background="new 0 0 44.15 58.29" viewBox="0 0 44.15 58.29" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="m24.12 50.97-26.87-26.56 26.87-26.56 11.78 11.64-15.09 14.92 15.09 14.92z"
@@ -26,7 +26,7 @@
                 </svg>
             </button>
             <p class="uppercase sans-serif text-xs">explore</p>
-            <button class="w-[38px] group" @click="nextSlide(obj.res[0].secondSlider.length)">
+            <button class="w-[38px] group" @click="nextSlide(obj?.res[0]?.secondSlider?.length)">
                 <svg class="w-full h-full group-hover:translate-x-1 duration-150" enable-background="new 0 0 44.15 58.29" viewBox="0 0 44.15 58.29" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="m24.12 50.97-26.87-26.56 26.87-26.56 11.78 11.64-15.09 14.92 15.09 14.92z"

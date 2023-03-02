@@ -7,6 +7,7 @@ const builder = imageUrlBuilder({
 })
 
 export function urlFor(source) {
+    if (!source) return
     return builder.image(source)
 }
 export function selectAll(selector, container = document) {
