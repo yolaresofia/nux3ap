@@ -22,7 +22,7 @@ export default {
 						{
 							name: 'header',
 							title: 'Header',
-							type: 'text',
+							type: 'blockContent',
 						},
 					],
 					preview: {
