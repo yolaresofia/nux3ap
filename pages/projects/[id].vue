@@ -11,7 +11,7 @@
                     <div class="flex relative pl-10 pb-12">
                         <CategoryComponent v-for="(category, i) in post?.res[0]?.categories" :key="category?.id" :title="category?.title" :i="i" />
                     </div>
-                    <h2 v-for="category in post?.res[0]?.categories" :key="category?.id" :class="[returnThemeClass(false, 'white', mainTheme), 'font-mono text-[10px] md:text-xs uppercase']">
+                    <h2 v-for="category in post?.res[0]?.categories" :key="category?.id" :class="[returnThemeClass(false, 'white', mainTheme), 'font-mono text-[10px] pl-2 md:text-xs uppercase']">
                         {{ category?.title }}
                     </h2>
                 </div>
@@ -28,6 +28,7 @@
                 </div>
                 <div v-if="post?.res[0]?.mainSlider">
                     <div
+                        @click="nextSlide(post?.res[0]?.mainSlider?.length)"
                         class="flex h-[467px] mt-5 md:mt-1 lg:h-[800px] bg-cover bg-center rounded-[34px]"
                         :style="{
                             backgroundImage: 'url(' + post?.res[0]?.mainSlider[phIndex]?.asset?.url + ')',

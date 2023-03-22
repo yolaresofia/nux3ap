@@ -7,12 +7,15 @@
                 </video>
             </div>
             <div class="flex flex-1 h-full">
-                <p :class="['md:p-4 py-4 px-2 heading-2', returnThemeClass(false, 'brown', mainTheme)]">{{ page.section1.blocks.header }}</p>
+                <!-- <p>{{ page.section1.blocks.header }}</p> -->
+                <div :class="['md:p-4 py-4 px-2 heading-2 spaced-paragraph', returnThemeClass(false, 'brown', mainTheme)]">
+                    <SanityContent :blocks="page.section1.blocks.header" />
+                </div>
             </div>
         </div>
         <!-- section 2 -->
 
-        <div class=" grid lg:grid-cols-2 w-full lg:px-2 py-2">
+        <div class="grid lg:grid-cols-2 w-full lg:px-2 py-2">
             <ProjectComponent v-for="project in page.section2.projects" :key="project.id" :project="project" />
         </div>
 
@@ -41,8 +44,16 @@
 <script setup>
 import { returnThemeClass } from '~/mixins/general'
 import { useStore } from '~/store/store'
+import Break from '~/components/break.vue'
 const showComments = useState('showComments', () => true)
 
+// const serializers = useState('serializers', () => {
+//     return {
+//         types: {
+//             break: Break
+//         },
+//     }
+// })
 definePageMeta({
     pageTransition: {
         mode: 'default',
@@ -118,4 +129,8 @@ video {
 .parent2 a {
     flex: 1 1 490px;
 }
+.spaced-paragraph p {
+    margin-bottom: 1rem;
+}
+
 </style>
