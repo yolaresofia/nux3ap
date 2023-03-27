@@ -6,7 +6,7 @@ export default {
 		{
 			name: 'header',
 			title: 'Header',
-			type: 'text',
+			type: 'blockContent',
 		},
 		{
 			name: 'authors',

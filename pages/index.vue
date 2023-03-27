@@ -8,9 +8,8 @@
             </div>
             <div class="flex flex-1 h-full">
                 <!-- <p>{{ page.section1.blocks.header }}</p> -->
-                <div :class="['md:p-4 py-4 px-2 heading-2 spaced-paragraph', returnThemeClass(false, 'brown', mainTheme)]">
-                    <SanityContent :blocks="page.section1.blocks.header" />
-                </div>
+
+                <p :class="['md:p-4 py-4 px-2 heading-2', returnThemeClass(false, 'brown', mainTheme)]">{{ page.section1.blocks.header }}</p>
             </div>
         </div>
         <!-- section 2 -->
@@ -128,9 +127,6 @@ video {
 }
 .parent2 a {
     flex: 1 1 490px;
-}
-.spaced-paragraph p {
-    margin-bottom: 1rem;
 }
 
 </style>

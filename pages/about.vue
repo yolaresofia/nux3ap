@@ -1,9 +1,10 @@
 <template>
     <div :class="[returnThemeClass(true, 'pink', mainTheme)]">
         <div class="flex flex-col lg:min-h-screen py-20 md:px-4 px-3">
-            <p :class="['heading-5', returnThemeClass(false, 'mint', mainTheme)]">
-                {{ page.header }}
-            </p>
+            <div :class="['heading-5 spaced-paragraph', returnThemeClass(false, 'mint', mainTheme)]">
+                <SanityContent :blocks="page.header" />
+            </div>
+
             <div class="lg:grid lg:grid-cols-2 lg:p-20 mx-auto">
                 <div v-for="author in page.authors" :key="author.id" class="m-4 fadeIn">
                     <div class="flex flex-col text-center lg:px-8 px-0">
@@ -34,7 +35,7 @@
                     </div>
                 </div>
             </div> -->
-            
+
             <Pill text="awards" :color="mainTheme === 'black' ? false : true" />
             <div class="soehne column-split text-xs columns">
                 <SanityContent :blocks="page.awards" :serializers="serializers" />
@@ -44,14 +45,13 @@
 </template>
 
 <script setup>
-
 import { returnThemeClass, urlFor } from '~/mixins/general'
 import Break from '~/components/break.vue'
 
 const serializers = useState('serializers', () => {
     return {
         types: {
-            break: Break
+            break: Break,
         },
     }
 })
@@ -76,4 +76,5 @@ const { data: page } = await useAsyncData('about', async () => sanity.fetch(quer
         column-count: 1;
     }
 }
+
 </style>
