@@ -199,6 +199,11 @@ li {
         font-size: 30px;
     }
 }
+/* select first child and remove margin-bottom */
+
+.spaced-paragraph p:first-child {
+    margin-bottom: 0 !important;
+}
 .spaced-paragraph p {
     margin-bottom: 1rem !important;
 }
