@@ -38,6 +38,11 @@ export default {
 			type: 'blockContent',
 		},
 		{
+			type: 'image',
+			name: 'mainImage',
+			title: 'Main Image',
+		},
+		{
 			type: 'media',
 			name: 'mainMedia',
 			title: 'Main Media',

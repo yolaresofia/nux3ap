@@ -8,7 +8,9 @@
                 class="img | overflow-hidden absolute duration-300 ease-out"
                 :style="{ bottom: `${i * 50}px`, right: `${i * 50}px`, transform: `scale(${1 - i * 0.04})`, zIndex: `${collection.projects.length - i}` }"
             >
-                <SanityImage v-if="element?.mainMedia?.image" :asset-id="element?.mainMedia?.image?.asset?._ref" class="object-cover h-full w-full" />
+                <div v-if="element?.mainImage">
+                    <SanityImage v-if="element?.mainImage" :asset-id="element?.mainImage?.asset?._ref" class="object-cover h-full w-full" />
+                </div>
                 <div v-else class="bg-gray-900 h-full w-full"></div>
             </figure>
         </TransitionGroup>
