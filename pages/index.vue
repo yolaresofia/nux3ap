@@ -81,26 +81,26 @@ const HOUR = 1000 * 60 * 60
 const anHourAgo = Date.now() - HOUR
 const lastCheck = new Date(data[0].created_at) < new Date(anHourAgo)
 
-if (lastCheck) {
-    const { data: comments } = await useFetch('/api/igcomments')
+// if (lastCheck) {
+//     const { data: comments } = await useFetch('/api/igcomments')
 
-    try {
-        if (comments._rawValue.data.length) {
-            await clientSB.from('comment').delete().neq('id', 0)
-            comments._rawValue.data.forEach(async (item) => {
-                await clientSB.from('comment').upsert({
-                    title: item.text,
-                    user: item.user,
-                    timestamp: item.timestamp,
-                })
-            })
-            await clientSB.from('lastcheck').upsert({
-                check: true,
-            })
-        } else {
-        }
-    } catch (error) {}
-}
+//     try {
+//         if (comments._rawValue.data.length) {
+//             await clientSB.from('comment').delete().neq('id', 0)
+//             comments._rawValue.data.forEach(async (item) => {
+//                 await clientSB.from('comment').upsert({
+//                     title: item.text,
+//                     user: item.user,
+//                     timestamp: item.timestamp,
+//                 })
+//             })
+//             await clientSB.from('lastcheck').upsert({
+//                 check: true,
+//             })
+//         } else {
+//         }
+//     } catch (error) {}
+// }
 await useAsyncData('comment', async () => {
     const { data } = await clientSB.from('comment').select('*').order('timestamp', { ascending: false })
     store.comments = data

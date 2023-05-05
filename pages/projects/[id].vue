@@ -71,7 +71,7 @@
                 <Pill text="SIMILAR" />
                 <div class="flex md:grid md:grid-cols-3 flex-col w-full">
                     <NuxtLink v-for="project in post?.similarProjects?.splice(0, 3)" :key="project?.id" :to="'/projects/' + project?.slug?.current" class="flex-1 flex-col my-4 md:mx-2 fadeIn">
-                        <div class="flex h-80 bg-cover bg-center rounded-[34px] relative" :style="{ backgroundImage: 'url(' + urlFor(project?.mainMedia?.image?.asset?._ref) + ')' }">
+                        <div class="flex h-80 bg-cover bg-center rounded-[34px] relative" :style="{ backgroundImage: 'url(' + urlFor(project?.mainImage?.asset?._ref) + ')' }">
                             <CategoryComponent v-for="(category, i) in project?.categories" :key="category?.id" :title="category?.title" :i="i" />
                         </div>
                     </NuxtLink>

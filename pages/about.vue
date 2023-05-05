@@ -76,5 +76,4 @@ const { data: page } = await useAsyncData('about', async () => sanity.fetch(quer
         column-count: 1;
     }
 }
-
 </style>

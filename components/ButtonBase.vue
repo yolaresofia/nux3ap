@@ -1,5 +1,5 @@
 <template>
-    <a :href="url" class="w-full">
+    <a :href="url" class="w-full" :target="[url.includes('instagram') ? '_blank' : '']">
         <button :class="['rounded-lg native-helvetica border px-7 pb-2 pt-2 text-2_5xl scaleUp w-full border-none', btncolors]">
             <h4 class="mx-auto" style="width: max-content">
                 <slot class="text-4xl w-full"></slot>
