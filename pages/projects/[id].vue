@@ -106,7 +106,7 @@ const { data: post } = await useAsyncData(id, async () => {
         ids = []
 
     filteredProjects.forEach((element) => {
-        const isDuplicate = ids.includes(element._id)
+        const isDuplicate = ids.includes(element._id) || element._id === res[0]._id
         if (!isDuplicate) {
             similarProjects.push(element)
             ids.push(element._id)
