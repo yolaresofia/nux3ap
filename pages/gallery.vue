@@ -5,13 +5,19 @@
                 v-for="(element, i) in imagesCollection"
                 :key="element"
                 :data-index="i"
-                class="img | overflow-hidden absolute duration-300 ease-out"
-                :style="{ bottom: `${i * 50}px`, right: `${i * 50}px`, transform: `scale(${1 - i * 0.04})`, zIndex: `${collection.projects.length - i}` }"
+                class="img | overflow-hidden absolute duration-300 ease-out bg-center bg-cover bg-no-repeat pointer-events-none overflow-clip"
+                :style="{
+                    backgroundImage: 'url(' + urlFor(element?.mainImage?.asset?._ref) + ')',
+                    bottom: `${i * 50}px`,
+                    right: `${i * 50}px`,
+                    transform: `scale(${1 - i * 0.04})`,
+                    zIndex: `${collection.projects.length - i}`,
+                }"
             >
-                <div v-if="element?.mainImage">
+                <!-- <div v-if="element?.mainImage">
                     <SanityImage v-if="element?.mainImage" :asset-id="element?.mainImage?.asset?._ref" class="object-cover h-full w-full" />
                 </div>
-                <div v-else class="bg-gray-900 h-full w-full"></div>
+                <div v-else class="bg-gray-900 h-full w-full"></div> -->
             </figure>
         </TransitionGroup>
         <div>
@@ -34,7 +40,7 @@
 <script setup>
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { returnThemeClass, selectAll, select } from '~/mixins/general'
+import { returnThemeClass, selectAll, select, urlFor } from '~/mixins/general'
 import move from 'lodash-move'
 const mainTheme = useState('mainTheme')
 
@@ -154,8 +160,10 @@ const resize = () => {
 }
 
 figure {
-    aspect-ratio: 4 / 2.5;
-    width: calc(100vw - 3rem);
+    aspect-ratio: 2.1 / 1.5;
+    /* height: 30vh; */
+
+    width: calc(100vw - 5rem);
     border-radius: 37px;
     left: 1.5rem;
 }
