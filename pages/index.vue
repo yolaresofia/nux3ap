@@ -3,7 +3,7 @@
         <div class="flex flex-col">
             <div class="static lg:h-[71vh] overflow-hidden">
                 <video playsinline autoplay muted loop id="bgvideo" class="w-screen">
-                    <source :src="page.section1.blocks.video" type="video/mp4" />
+                    <source :src="page.section1.blocks.video" type="video/webm" />
                 </video>
             </div>
             <div class="flex flex-1 h-full">
@@ -128,5 +128,4 @@ video {
 .parent2 a {
     flex: 1 1 490px;
 }
-
 </style>
