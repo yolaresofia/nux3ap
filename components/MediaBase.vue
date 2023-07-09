@@ -86,10 +86,13 @@
                     playsinline
                     :src="src"
                     loop
+                    muted
+                    autoplay
                     @click="pause"
                     @canplay="updatePaused"
                     @playing="updatePaused"
                     @pause="updatePaused"
+                    :type="src.includes('mp4') ? 'video/mp4' : 'video/webm'"
                 ></video>
                 <div v-show="isRotated && isMobile && isCentered && paused" class="w-full rotate-bar h-2 bg-gray-200 rounded-full opacity-60">
                     <div id="progress" class="bg-gray-600 h-3 rounded-full" style="width: 45%"></div>
@@ -159,7 +162,7 @@ const paused = ref(true)
 const video = ref(null)
 const play = () => {
     center()
-    video.value.paused ? video.value.play() : video.value.pause()
+    video.value?.paused ? video.value.play() : video.value.pause()
 }
 const center = () => {
     if (!isMobile.value || isCentered.value) {
@@ -168,10 +171,10 @@ const center = () => {
     isCentered.value = !isCentered.value
 }
 const pause = () => {
-    video.value.pause()
+    video.value?.paused ? video.value.play() : video.value.pause()
 }
 const updatePaused = () => {
-    paused.value = video.value.paused
+    paused.value = video.value?.paused
 }
 </script>
 
@@ -185,6 +188,7 @@ const updatePaused = () => {
     height: 85%;
     border-radius: 20px;
 }
+
 .fixed-center {
     position: fixed;
     max-width: 100vw !important;
@@ -193,6 +197,7 @@ const updatePaused = () => {
     top: 56%;
     transform: translate(-50%, -50%);
 }
+
 .rotate {
     transform: rotate(90deg);
     position: fixed;
@@ -202,6 +207,7 @@ const updatePaused = () => {
     margin-top: -100vw;
     object-fit: cover;
 }
+
 .rotate-bar {
     transform: rotate(90deg);
     position: fixed;
@@ -211,15 +217,18 @@ const updatePaused = () => {
     margin-left: 2vh;
     margin-top: 4vw;
 }
+
 #progress {
     transition: width 0.5s;
 }
+
 @media (max-width: 768px) {
     .fixedVideo {
         height: 25%;
         width: 96%;
         top: 50%;
     }
+
     .fixed-center {
         position: fixed;
         z-index: 51;
@@ -227,10 +236,12 @@ const updatePaused = () => {
         top: 50%;
         transform: translate(-50%, -50%);
     }
+
     video {
         max-width: none !important;
     }
 }
+
 video {
     max-width: 100vw;
     max-height: 100vh;

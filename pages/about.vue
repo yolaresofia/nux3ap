@@ -46,13 +46,13 @@
 
 <script setup>
 import { returnThemeClass, urlFor } from '~/mixins/general'
-import Break from '~/components/break.vue'
+// import Break from '~/components/break.vue'
 
 const serializers = useState('serializers', () => {
     return {
-        types: {
-            break: Break,
-        },
+        // types: {
+        //     break: Break,
+        // },
     }
 })
 

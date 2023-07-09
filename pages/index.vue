@@ -3,7 +3,7 @@
         <div class="flex flex-col">
             <div class="static lg:h-[71vh] overflow-hidden">
                 <video playsinline autoplay muted loop id="bgvideo" class="w-screen">
-                    <source :src="page.section1.blocks.video" type="video/webm" />
+                    <source :src="page.section1.blocks.video" :type="page.section1.blocks.video.includes('mp4') ? 'video/mp4' : 'video/webm'" />
                 </video>
             </div>
             <div class="flex flex-1 h-full">
@@ -46,13 +46,13 @@ import { useStore } from '~/store/store'
 import Break from '~/components/break.vue'
 const showComments = useState('showComments', () => true)
 
-// const serializers = useState('serializers', () => {
-//     return {
-//         types: {
-//             break: Break
-//         },
-//     }
-// })
+const serializers = useState('serializers', () => {
+    return {
+        types: {
+            break: Break,
+        },
+    }
+})
 definePageMeta({
     pageTransition: {
         mode: 'default',

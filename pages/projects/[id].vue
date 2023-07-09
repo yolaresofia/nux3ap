@@ -1,6 +1,6 @@
 <template>
     <div :class="[returnThemeClass(true, 'lime', mainTheme), 'min-h-screen']">
-        <MediaBase :src="post?.res[0]?.video?.url" />
+        <MediaBase v-if="post?.res[0]?.video?.url" :src="post?.res[0]?.video?.url" />
         <div class="md:p-4 p-2">
             <h1 class="md:text-9xl text-[2rem] helvetica-bold">{{ post?.res[0]?.title }}</h1>
             <div class="md:w-3/4 sans-serif text-[10px] md:text-xs">
@@ -70,7 +70,7 @@
             <div class="flex w-full flex-col">
                 <Pill text="SIMILAR" />
                 <div class="flex md:grid md:grid-cols-3 flex-col w-full">
-                    <NuxtLink v-for="project in post?.similarProjects?.splice(0, 3)" :key="project?.id" :to="'/projects/' + project?.slug?.current" class="flex-1 flex-col my-4 md:mx-2 fadeIn">
+                    <NuxtLink v-for="project in post?.similarProjects.slice(0, 3)" :key="project?.id" :to="'/projects/' + project?.slug?.current" class="flex-1 flex-col my-4 md:mx-2 fadeIn">
                         <div class="flex h-80 bg-cover bg-center rounded-[34px] relative" :style="{ backgroundImage: 'url(' + urlFor(project?.mainImage?.asset?._ref) + ')' }">
                             <CategoryComponent v-for="(category, i) in project?.categories" :key="category?.id" :title="category?.title" :i="i" />
                         </div>
@@ -114,7 +114,7 @@ const { data: post } = await useAsyncData(id, async () => {
         }
         return false
     })
-    return { res: res, similarProjects }
+    return { res: res, similarProjects: filteredProjects }
 })
 const nextSlide = (length) => {
     if (phIndex.value < length - 1) {

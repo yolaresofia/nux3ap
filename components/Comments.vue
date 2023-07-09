@@ -186,7 +186,9 @@ onUnmounted(() => {
 
 const scrollCommentsToTop = () => {
     setTimeout(() => {
-        select('[data-index="1"]').scrollIntoView({ block: 'end' })
+        if (select('[data-index="1"]')) {
+            select('[data-index="1"]').scrollIntoView({ block: 'end' })
+        }
     }, 10)
 }
 watch(commentArr, () => {

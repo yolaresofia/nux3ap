@@ -5,7 +5,7 @@
             :style="{ backgroundImage: project?.mainMedia?.isVideo ? '' : 'url(' + urlFor(project?.mainMedia?.image?.asset?._ref) + ')' }"
         >
             <video v-if="project?.mainVideo" playsinline autoplay muted loop class="rounded-[34px] h-full w-full">
-                <source :src="project?.mainVideo" type="video/mp4" />
+                <source :src="project?.mainVideo" :type="project?.mainVideo.includes('mp4') ? 'video/mp4' : 'video/webm'" />
             </video>
             <div v-if="showCategories">
                 <CategoryComponent v-for="(category, i) in project?.categories" :key="category.id" :title="category.title" :i="i" />

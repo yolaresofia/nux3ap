@@ -34,7 +34,7 @@
             >
                 <ul class="grid lg:flex">
                     <li class="px-8 text-center md:text-left md:px-0">
-                        <NuxtLink to="/gallery" class="inline-block w-full py-1 no-underline transition-all duration-200 md:py-2 lg:mx-2 hover:text-green">
+                        <NuxtLink to="/projects" class="inline-block w-full py-1 no-underline transition-all duration-200 md:py-2 lg:mx-2 hover:text-green">
                             <div class="flex flex-col text-center md:w-28 group md:text-left">
                                 <span :class="['md:mr-auto md:text-white text-[2.5rem] md:text-xs md:bg-transparent pt-4 pb-4 md:pt-0 md:pb-0 rounded-lg', returnNavColors('projects')]">Projects</span>
                                 <h4 class="hidden text-gray-700 text-xxs group-hover:text-white md:flex">A vast range of projects</h4>
