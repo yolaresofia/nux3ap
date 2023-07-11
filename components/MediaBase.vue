@@ -86,7 +86,6 @@
                     playsinline
                     :src="src"
                     loop
-                    muted
                     autoplay
                     @click="pause"
                     @canplay="updatePaused"

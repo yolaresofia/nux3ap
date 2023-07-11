@@ -2,7 +2,7 @@
     <div :class="[returnThemeClass(true, 'primaryYellow', mainTheme)]">
         <div class="flex flex-col">
             <div class="static lg:h-[71vh] overflow-hidden">
-                <video playsinline autoplay muted loop id="bgvideo" class="w-screen">
+                <video playsinline autoplay loop id="bgvideo" class="w-screen">
                     <source :src="page.section1.blocks.video" :type="page.section1.blocks.video.includes('mp4') ? 'video/mp4' : 'video/webm'" />
                 </video>
             </div>
