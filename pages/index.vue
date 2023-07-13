@@ -2,14 +2,16 @@
     <div :class="[returnThemeClass(true, 'primaryYellow', mainTheme)]">
         <div class="flex flex-col">
             <div class="static lg:h-[71vh] overflow-hidden">
-                <video playsinline autoplay loop id="bgvideo" class="w-screen">
-                    <source :src="page.section1.blocks.video" :type="page.section1.blocks.video.includes('mp4') ? 'video/mp4' : 'video/webm'" />
+                <video playsinline autoplay muted loop id="bgvideo" class="w-screen">
+                    <source :src="page.section1.blocks.video"
+                        :type="page.section1.blocks.video.includes('mp4') ? 'video/mp4' : 'video/webm'" />
                 </video>
             </div>
             <div class="flex flex-1 h-full">
                 <!-- <p>{{ page.section1.blocks.header }}</p> -->
 
-                <p :class="['md:p-4 py-4 px-2 heading-2', returnThemeClass(false, 'brown', mainTheme)]">{{ page.section1.blocks.header }}</p>
+                <p :class="['md:p-4 py-4 px-2 heading-2', returnThemeClass(false, 'brown', mainTheme)]">{{
+                    page.section1.blocks.header }}</p>
             </div>
         </div>
         <!-- section 2 -->
@@ -18,13 +20,13 @@
             <ProjectComponent v-for="project in page.section2.projects" :key="project.id" :project="project" />
         </div>
 
-        <!-- section 3 -->
         <div class="flex flex-col lg:px-2 py-4">
             <h1 :class="['heading-3 py-8 px-2', returnThemeClass(false, 'blue', mainTheme)]">
                 {{ page.section3.blocks.header }}
             </h1>
             <div class="grid lg:grid-cols-3 w-full pt-2">
-                <ProjectComponent v-for="project in page.section3.projects" :key="project.id" :project="project" showCategories />
+                <ProjectComponent v-for="project in page.section3.projects" :key="project.id" :project="project"
+                    showCategories />
             </div>
         </div>
         <!-- section 4 -->
@@ -112,12 +114,14 @@ await useAsyncData('comment', async () => {
 video {
     object-fit: cover;
 }
+
 .parent,
 .parent2 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    & > a {
+
+    &>a {
         margin: 10px;
     }
 }
@@ -125,6 +129,7 @@ video {
 .parent a {
     flex: 1 1 380px;
 }
+
 .parent2 a {
     flex: 1 1 490px;
 }
