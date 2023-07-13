@@ -87,6 +87,7 @@
 
 <script setup>
 import { returnThemeClass, urlFor } from '~/mixins/general'
+import VimeoBase from '~~/components/VimeoBase.vue'
 
 definePageMeta({
     pageTransition: {
