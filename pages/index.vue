@@ -14,7 +14,7 @@
                     page.section1.blocks.header }}</p>
             </div>
         </div>
-        <!-- section 2 -->
+        <!-- section 2w -->
 
         <div class="grid lg:grid-cols-2 w-full lg:px-2 py-2">
             <ProjectComponent v-for="project in page.section2.projects" :key="project.id" :project="project" />
