@@ -1,16 +1,15 @@
 <template>
-    <iframe title="vimeo-player" id="vimeo" v-if="isVimeo"
-        src="https://player.vimeo.com/video/446954587?h=eb549becf9&autoplay=1&muted=1&loop=1" :class="[
-            !isCentered && !isRotated
-                ? 'w-full'
-                : isRotated && isCentered && !isMobile
-                    ? 'fixedVideo'
-                    : !isRotated && isCentered && isMobile
-                        ? 'fixed-center'
-                        : isRotated && isCentered && isMobile
-                            ? 'rotate'
-                            : 'fixedVideo',
-        ]" allow="autoplay" muted playsinline loop="1" autoplay="1" frameborder="0" allowfullscreen></iframe>
+    <iframe title="vimeo-player" id="vimeo" v-if="isVimeo" :src="src + '&autoplay=1&muted=1&loop=1'" :class="[
+        !isCentered && !isRotated
+            ? 'w-full'
+            : isRotated && isCentered && !isMobile
+                ? 'fixedVideo'
+                : !isRotated && isCentered && isMobile
+                    ? 'fixed-center'
+                    : isRotated && isCentered && isMobile
+                        ? 'rotate'
+                        : 'fixedVideo',
+    ]" allow="autoplay" muted playsinline loop="1" autoplay="1" frameborder="0" allowfullscreen></iframe>
 </template>
 
 <script setup>
