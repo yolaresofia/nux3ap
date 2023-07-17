@@ -11,14 +11,14 @@
                 <source :src="project?.mainVideo" :type="project?.mainVideo.includes('mp4') ? 'video/mp4' : 'video/webm'" />
             </video>
             <div v-if="showCategories">
-                <CategoryComponent v-for="(  category, i  ) in   project?.categories  " :key="category.id"
+                <CategoryComponent v-for="( category, i ) in project?.categories " :key="category.id"
                     :title="category.title" :i="i" />
             </div>
         </div>
         <div class="flex flex-col md:space-y-1 space-y-2">
             <div v-if="showCategories" class="flex space-x-3 md:pt-3 pt-4">
                 <div class="flex">
-                    <h4 v-for="(  category, i  ) in   project?.categories  " :key="category.id"
+                    <h4 v-for="( category, i ) in project?.categories " :key="category.id"
                         :class="['font-mono text-xs uppercase', returnThemeClass(false, 'lime', mainTheme)]">
                         <span v-if="i > 0">,</span> {{ category.title }}
                     </h4>
@@ -26,7 +26,8 @@
             </div>
             <h1
                 :class="['font-black pt-4  text-2xl md:text-[28px] leading-none text-left helvetica-bold', returnThemeClass(false, 'brown', mainTheme)]">
-                {{ project?.title }}</h1>
+                {{ project?.title }}
+            </h1>
             <div class="leading-[20px] helvetica-heavy pt-2">
                 <SanityContent :blocks="project?.information" />
             </div>
@@ -65,7 +66,7 @@ defineProps({
     top: 50%;
     left: 50%;
     width: 200%;
-    height: 100%;
+    height: 130%;
     transform: translate(-50%, -50%);
 }
 </style>

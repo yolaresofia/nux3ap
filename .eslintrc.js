@@ -19,5 +19,7 @@ module.exports = {
         'vue/html-indent': 'off',
         'vue/require-explicit-emits': 'off',
         'vue/attribute-hyphenation': 'off',
+        'vue/first-attribute-linebreak': 'off',
+        'vue/html-closing-bracket-newline': 'off',
     },
 }

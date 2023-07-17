@@ -119,7 +119,7 @@ const { data: post } = await useAsyncData(id, async () => {
         }
         return false
     })
-    return { res: res, similarProjects: filteredProjects }
+    return { res: res, similarProjects: filteredProjects.filter(prj => prj._id !== res[0]._id) }
 })
 const nextSlide = (length) => {
     if (phIndex.value < length - 1) {
