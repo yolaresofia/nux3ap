@@ -17,7 +17,7 @@
         <!-- section 2w -->
 
         <div class="grid lg:grid-cols-2 w-full lg:px-2 py-2">
-            <ProjectComponent v-for="project in page.section2.projects" :key="project.id" :project="project" />
+            <LazyProjectComponent v-for="project in page.section2.projects" :key="project.id" :project="project" />
         </div>
 
         <div class="flex flex-col lg:px-2 py-4">
@@ -25,14 +25,14 @@
                 {{ page.section3.blocks.header }}
             </h1>
             <div class="grid lg:grid-cols-3 w-full pt-2">
-                <ProjectComponent v-for="project in page.section3.projects" :key="project.id" :project="project"
+                <LazyProjectComponent v-for="project in page.section3.projects" :key="project.id" :project="project"
                     showCategories />
             </div>
         </div>
         <!-- section 4 -->
         <div class="flex flex-col py-4">
             <div class="flex w-full px-2">
-                <ProjectComponent v-for="project in page.section4.projects" :key="project.id" :project="project" />
+                <LazyProjectComponent v-for="project in page.section4.projects" :key="project.id" :project="project" />
             </div>
         </div>
         <h1 :class="['heading-3 text-center pb-20 pt-10 md:pb-2 px-2', returnThemeClass(false, 'blue', mainTheme)]">
