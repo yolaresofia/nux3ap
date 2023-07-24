@@ -23,6 +23,7 @@
         "instagram-without-api-node": "^1.0.8",
         "lazysizes": "^5.3.2",
         "lodash": "^4.17.21",
-        "lodash-move": "^1.1.1"
+        "lodash-move": "^1.1.1",
+        "vue-vimeo-player": "^1.1.2"
     }
 }
