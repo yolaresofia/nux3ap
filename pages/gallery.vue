@@ -5,12 +5,12 @@
                 v-for="(element, i) in imagesCollection"
                 :key="element"
                 :data-index="i"
-                class="img | overflow-hidden absolute duration-300 ease-out bg-center bg-cover bg-no-repeat pointer-events-none overflow-clip"
+                class="img | absolute duration-300 ease-out bg-center bg-cover bg-no-repeat pointer-events-none overflow-clip mx-auto left-0 right-0"
                 :style="{
                     backgroundImage: 'url(' + urlFor(element?.mainImage?.asset?._ref) + ')',
-                    bottom: `${i * 50}px`,
-                    right: `${i * 50}px`,
-                    transform: `scale(${1 - i * 0.04})`,
+                    bottom: isMobile ? `${i * 50}px` : `${i * 60}px`,
+                    right: isMobile ? '' : `${i * 70}px`,
+                    width: isMobile ? `calc(85vw * ${1 - i * 0.04})` : isXL ? `calc(40vw * ${1 - i * 0.04})` : `calc(60vw * ${1 - i * 0.04})`,
                     zIndex: `${collection.projects.length - i}`,
                 }"
             >
@@ -45,6 +45,7 @@ import move from 'lodash-move'
 const mainTheme = useState('mainTheme')
 
 const isMobile = useState('isMobile', () => false)
+const isXL = useState('isXL', () => false)
 const sorted = useState('sorted', () => false)
 const reversed = useState('reversed', () => false)
 
@@ -144,6 +145,7 @@ const initScrollTrigger = () => {
 
 const checkMobile = () => {
     isMobile.value = window.innerWidth < 768
+    isXL.value = window.innerWidth > 1920
 }
 
 const resize = () => {
@@ -165,7 +167,7 @@ figure {
 
     width: calc(100vw - 5rem);
     border-radius: 37px;
-    left: 1.5rem;
+    /* left: 1.5rem; */
 }
 
 @supports not (aspect-ratio: 3 / 2) {
