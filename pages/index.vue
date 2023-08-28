@@ -16,9 +16,9 @@
         </div>
         <!-- section 2w -->
 
-        <div class="grid lg:grid-cols-2 w-full lg:px-2 py-2">
+        <!-- <div class="grid lg:grid-cols-2 w-full lg:px-2 py-2">
             <LazyProjectComponent v-for="project in page.section2.projects" :key="project.id" :project="project" />
-        </div>
+        </div> -->
 
         <div class="flex flex-col lg:px-2 py-4">
             <h1 :class="['heading-3 py-8 px-2', returnThemeClass(false, 'blue', mainTheme)]">
@@ -38,7 +38,7 @@
         <h1 :class="['heading-3 text-center pb-20 pt-10 md:pb-2 px-2', returnThemeClass(false, 'blue', mainTheme)]">
             {{ page.section4.blocks.subHeader }}
         </h1>
-        <Comments />
+        <!-- <Comments /> -->
     </div>
 </template>
 
@@ -77,11 +77,11 @@ const { data: page } = await useAsyncData('index', async () => sanity.fetch(quer
 
 const clientSB = useSupabaseClient()
 
-const { data } = await clientSB.from('lastcheck').select('*').order('created_at', { ascending: false })
+// const { data } = await clientSB.from('lastcheck').select('*').order('created_at', { ascending: false })
 
 const HOUR = 1000 * 60 * 60
 const anHourAgo = Date.now() - HOUR
-const lastCheck = new Date(data[0].created_at) < new Date(anHourAgo)
+// const lastCheck = new Date(data[0].created_at) < new Date(anHourAgo)
 
 // if (lastCheck) {
 //     const { data: comments } = await useFetch('/api/igcomments')
@@ -103,11 +103,11 @@ const lastCheck = new Date(data[0].created_at) < new Date(anHourAgo)
 //         }
 //     } catch (error) {}
 // }
-await useAsyncData('comment', async () => {
-    const { data } = await clientSB.from('comment').select('*').order('timestamp', { ascending: false })
-    store.comments = data
-    return data
-})
+// await useAsyncData('comment', async () => {
+//     const { data } = await clientSB.from('comment').select('*').order('timestamp', { ascending: false })
+//     store.comments = data
+//     return data
+// })
 </script>
 
 <style lang="postcss">
