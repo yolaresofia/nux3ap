@@ -3,12 +3,22 @@
         <OrderBtn @click="sorted = !sorted" classNames="md:hidden" />
 
         <section class="grid grid-cols-2 gap-x-2 gap-y-4 md:gap-y-2 md:grid-cols-3">
-            <NuxtLink :to="'projects/' + project?.slug?.current" v-for="project in sortedCollection" :key="project?._id" class="hover:scale-[0.99] duration-300">
+            <NuxtLink :to="'projects/' + project?.slug?.current" v-for="project in sortedCollection" :key="project?._id"
+                class="hover:scale-[0.99] duration-300 relative group">
                 <figure class="overflow-hidden">
-                    <SanityImage v-if="project?.mainImage" :asset-id="project?.mainImage?.asset?._ref" class="object-cover h-full w-full" />
+                    <SanityImage v-if="project?.mainImage" :asset-id="project?.mainImage?.asset?._ref"
+                        class="object-cover h-full w-full" />
+                    <div class="absolute bottom-0 w-full bg-white rounded-b-xl hidden md:group-hover:flex">
+
+                        <h2
+                            :class="['leading-4 helvetica-heavy m-auto text-2xl py-5 !text-black', returnThemeClass(false, 'yellow', mainTheme)]">
+                            {{
+                                project?.title }}</h2>
+                    </div>
                 </figure>
 
-                <h2 :class="['leading-4 helvetica-heavy pt-2 md:hidden', returnThemeClass(false, 'yellow', mainTheme)]">{{ project?.title }}</h2>
+                <h2 :class="['leading-4 helvetica-heavy pt-2 md:hidden', returnThemeClass(false, 'yellow', mainTheme)]">{{
+                    project?.title }}</h2>
             </NuxtLink>
         </section>
 

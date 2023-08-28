@@ -10,7 +10,7 @@
                     backgroundImage: 'url(' + urlFor(element?.mainImage?.asset?._ref) + ')',
                     bottom: isMobile ? `${i * 50}px` : `${i * 60}px`,
                     right: isMobile ? '' : `${i * 70}px`,
-                    width: isMobile ? `calc(85vw * ${1 - i * 0.04})` : isXL ? `calc(40vw * ${1 - i * 0.04})` : `calc(60vw * ${1 - i * 0.04})`,
+                    width: isMobile ? `calc(85vw * ${1 - i * 0.04})` : isXL ? `calc(40vw * ${1 - i * 0.04})` : `calc(40vw * ${1 - i * 0.04})`,
                     zIndex: `${collection.projects.length - i}`,
                 }"
             >
