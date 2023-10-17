@@ -8,6 +8,7 @@ export default defineNuxtConfig({
             meta: [{ name: 'description', content: 'WOMB is a production company offering photography, film and creative direction services.' }],
         },
     },
+
     sanity: {
         projectId: 'q5syy0z1',
         dataset: 'production',
